@@ -135,7 +135,6 @@ export default class DateRangePicker extends React.Component {
       withPortal,
       withFullScreenPortal,
       anchorDirection,
-      embedded,
     } = this.props;
     const dayPickerClassName = cx('DateRangePicker__picker', {
       'DateRangePicker__picker--direction-left': anchorDirection === ANCHOR_LEFT,
@@ -144,7 +143,6 @@ export default class DateRangePicker extends React.Component {
       'DateRangePicker__picker--vertical': orientation === VERTICAL_ORIENTATION,
       'DateRangePicker__picker--portal': withPortal || withFullScreenPortal,
       'DateRangePicker__picker--full-screen-portal': withFullScreenPortal,
-      'DateRangePicker__picker--embedded': embedded,
     });
 
     return dayPickerClassName;
@@ -233,6 +231,10 @@ export default class DateRangePicker extends React.Component {
       withShortcuts,
       shortcuts,
       shortcutsPrevious,
+      onPreviousDatesChange,
+      onPreviousShortcutChange,
+      previousEndDate,
+      previousStartDate,
     } = this.props;
     const { dayPickerContainerStyles } = this.state;
 
@@ -256,7 +258,9 @@ export default class DateRangePicker extends React.Component {
           onPrevMonthClick={onPrevMonthClick}
           onNextMonthClick={onNextMonthClick}
           onDatesChange={onDatesChange}
+          onPreviousDatesChange={onPreviousDatesChange}
           onRangeChange={onRangeChange}
+          onPreviousShortcutChange={onPreviousShortcutChange}
           onFocusChange={onFocusChange}
           focusedInput={focusedInput}
           startDate={startDate}
@@ -278,6 +282,8 @@ export default class DateRangePicker extends React.Component {
           withShortcuts={withShortcuts}
           shortcuts={shortcuts}
           shortcutsPrevious={shortcutsPrevious}
+          previousStartDate={previousStartDate}
+          previousEndDate={previousEndDate}
         />
 
         {withFullScreenPortal &&

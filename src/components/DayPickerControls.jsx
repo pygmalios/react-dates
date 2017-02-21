@@ -1,14 +1,14 @@
 import React from 'react';
 import RangeInputController from './PreviousDateRangePicker';
+import DateRangeController from './DateRangePickerInputController';
 import DayPickerController from './DayPickerRangeController';
+import { START_DATE, END_DATE } from '../../constants';
 
 export default class DayPickerControls extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       focusedInput: null,
-      startDate: null,
-      previousDate: null,
     };
 
     this.onFocusChange = this.onFocusChange.bind(this);
@@ -38,10 +38,16 @@ export default class DayPickerControls extends React.Component {
   render() {
     const {
       focusedInput,
+    } = this.state;
+    const {
+      onApply,
+      onCancel,
+      shortcuts,
+      onDatesChange,
+      onShortcutChange,
       startDate,
       endDate,
-    } = this.state;
-    const { onApply, onCancel, shortcuts } = this.props;
+    } = this.props;
 
     return (
       <div>
@@ -55,11 +61,16 @@ export default class DayPickerControls extends React.Component {
             />
           </label>
 
-          <RangeInputController
-            focusedInput={focusedInput}
-            onFocusChange={this.onFocusChange}
-          />
-
+          <div className="DateRangePicker">
+            <DateRangeController
+              startDate={startDate}
+              isStartDateFocused={focusedInput === START_DATE}
+              endDate={endDate}
+              isEndDateFocused={focusedInput === END_DATE}
+              onFocusChange={this.onFocusChange}
+              selectedRange={7}
+            />
+          </div>
           <span>
             By
           </span>
@@ -77,16 +88,17 @@ export default class DayPickerControls extends React.Component {
           <div className="DayPickerControls__previous">
             <DayPickerController
               ref={(ref) => { this.dayPicker = ref; }}
+              onFocusChange={this.onFocusChange}
               numberOfMonths={2}
-              onDatesChange={this.onDatesChange}
-              onRangeChange={this.onRangeChange}
+              onDatesChange={onDatesChange}
+              onRangeChange={onShortcutChange}
               focusedInput={focusedInput}
               startDate={startDate}
               endDate={endDate}
               minimumNights={0}
               isOutsideRange={() => false}
               keepOpenOnDateSelect
-              selectedRange={4}
+              selectedRange={5}
               shortcuts={shortcuts}
               withShortcuts
             />

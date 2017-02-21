@@ -387,6 +387,8 @@ export default class DayPicker extends React.Component {
       withShortcuts,
       onDayClick,
       onRangeClick,
+      onPreviousDatesChange,
+      onPreviousShortcutChange,
       onApply,
       onCancel,
       onDayMouseEnter,
@@ -397,6 +399,8 @@ export default class DayPicker extends React.Component {
       selectedRange,
       shortcuts,
       shortcutsPrevious,
+      previousStartDate,
+      previousEndDate,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -499,6 +503,10 @@ export default class DayPicker extends React.Component {
           { withControls &&
             <DayPickerControls
               shortcuts={shortcutsPrevious}
+              onDatesChange={onPreviousDatesChange}
+              onShortcutChange={onPreviousShortcutChange}
+              startDate={previousStartDate}
+              endDate={previousEndDate}
               onApply={onApply}
               onCancel={onCancel}
             />

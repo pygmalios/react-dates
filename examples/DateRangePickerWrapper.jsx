@@ -95,11 +95,16 @@ class DateRangePickerWrapper extends React.Component {
       focusedInput,
       startDate: props.initialStartDate,
       endDate: props.initialEndDate,
+      previousStartDate: props.initialStartDate,
+      previousEndDate: props.initialEndDate,
       selectedRange: props.selectedRange,
     };
 
     this.onRangeChange = this.onRangeChange.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
+    this.onPreviousShortcutChange = this.onPreviousShortcutChange.bind(this);
+    this.onPreviousDatesChange = this.onPreviousDatesChange.bind(this);
+
     this.onFocusChange = this.onFocusChange.bind(this);
   }
 
@@ -111,12 +116,28 @@ class DateRangePickerWrapper extends React.Component {
     this.setState({ startDate, endDate });
   }
 
+  onPreviousDatesChange({ startDate, endDate }) {
+    console.log('onPreviousDatesChange', startDate, endDate);
+    this.setState({ previousStartDate: startDate, previousEndDate: endDate });
+  }
+
+  onPreviousShortcutChange(selectedPreviousShortcut) {
+    this.setState({ selectedPreviousShortcut });
+  }
+
   onFocusChange(focusedInput) {
     this.setState({ focusedInput });
   }
 
   render() {
-    const { focusedInput, startDate, endDate } = this.state;
+    const {
+      focusedInput,
+      startDate,
+      endDate,
+      selectedRange,
+      previousStartDate,
+      previousEndDate,
+     } = this.state;
 
     const props = omit(this.props, [
       'autoFocus',
@@ -132,10 +153,14 @@ class DateRangePickerWrapper extends React.Component {
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
           onRangeChange={this.onRangeChange}
+          onPreviousDatesChange={this.onPreviousDatesChange}
+          onPreviousShortcutChange={this.onPreviousShortcutChange}
           focusedInput={focusedInput}
           startDate={startDate}
           endDate={endDate}
-          selectedRange={this.state.selectedRange}
+          selectedRange={selectedRange}
+          previousStartDate={previousStartDate}
+          previousEndDate={previousEndDate}
         />
       </div>
     );

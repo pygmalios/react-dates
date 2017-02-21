@@ -20,6 +20,7 @@ import {
 
 import DayPicker from './DayPicker';
 
+const PREVIOUS_CUSTOM_RANGE = 5;
 const CUSTOM_RANGE = 7;
 
 const propTypes = forbidExtraProps({
@@ -92,6 +93,7 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY',
 };
 
+// TODO: move it outside to the shortcuts, and pass shortcut as { name, period }
 const rangePeriods = [
   [0, 'days'],
   [1, 'days'],
@@ -99,6 +101,13 @@ const rangePeriods = [
   [30, 'days'],
   [3, 'months'],
   [6, 'months'],
+  [1, 'years'],
+];
+
+const previousRangePeriods = [
+  [1, 'weeks'],
+  [1, 'months'],
+  [3, 'months'],
   [1, 'years'],
 ];
 
@@ -124,13 +133,13 @@ export default class DayPickerRangeController extends React.Component {
     this.today = moment();
   }
 
-
   onDayClick(day, e) {
-    const { keepOpenOnDateSelect, minimumNights, selectedRange } = this.props;
+    const { keepOpenOnDateSelect, minimumNights, selectedRange, shortcuts } = this.props;
+    const customRangeIndex = shortcuts.length - 1;
     let { startDate, endDate } = this.props;
     if (e) e.preventDefault();
-    if (selectedRange !== CUSTOM_RANGE) {
-      this.props.onRangeChange(7);
+    if (selectedRange !== customRangeIndex) {
+     // this.props.onRangeChange(customRangeIndex);
       startDate = null;
       endDate = null;
     }
@@ -181,9 +190,12 @@ export default class DayPickerRangeController extends React.Component {
     });
   }
 
+  // TODO fix periods
   onRangeClick(rangeIndex) {
+    const { shortcuts } = this.props;
     let { startDate, endDate } = this.props;
-    if (rangeIndex !== CUSTOM_RANGE) {
+    const customRangeIndex = shortcuts.length - 1;
+    if (rangeIndex !== customRangeIndex) {
       const period = rangePeriods[rangeIndex];
       startDate = this.today.clone().subtract(...period);
       endDate = this.today.clone();
@@ -289,6 +301,10 @@ export default class DayPickerRangeController extends React.Component {
       selectedRange,
       shortcuts,
       shortcutsPrevious,
+      onPreviousDatesChange,
+      onPreviousShortcutChange,
+      previousStartDate,
+      previousEndDate,
     } = this.props;
 
     const modifiers = {
@@ -322,6 +338,8 @@ export default class DayPickerRangeController extends React.Component {
         numberOfMonths={numberOfMonths}
         onDayClick={this.onDayClick}
         onRangeClick={this.onRangeClick}
+        onPreviousDatesChange={onPreviousDatesChange}
+        onPreviousShortcutChange={onPreviousShortcutChange}
         onApply={this.onApply}
         onCancel={this.onCancel}
         onDayMouseEnter={this.onDayMouseEnter}
@@ -341,6 +359,8 @@ export default class DayPickerRangeController extends React.Component {
         withShortcuts={withShortcuts}
         shortcuts={shortcuts}
         shortcutsPrevious={shortcutsPrevious}
+        previousStartDate={previousStartDate}
+        previousEndDate={previousEndDate}
       />
     );
   }
