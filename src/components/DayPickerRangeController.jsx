@@ -20,6 +20,8 @@ import {
 
 import DayPicker from './DayPicker';
 
+const CUSTOM_RANGE = 7;
+
 const propTypes = forbidExtraProps({
   startDate: momentPropTypes.momentObj,
   endDate: momentPropTypes.momentObj,
@@ -88,6 +90,16 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY',
 };
 
+const rangePeriods = [
+  [0, 'days'],
+  [1, 'days'],
+  [7, 'days'],
+  [30, 'days'],
+  [3, 'months'],
+  [6, 'months'],
+  [1, 'years'],
+];
+
 export default class DayPickerRangeController extends React.Component {
   constructor(props) {
     super(props);
@@ -99,6 +111,9 @@ export default class DayPickerRangeController extends React.Component {
     this.today = moment();
 
     this.onDayClick = this.onDayClick.bind(this);
+    this.onRangeClick = this.onRangeClick.bind(this);
+    this.onApply = this.onApply.bind(this);
+    this.onCancel = this.onCancel.bind(this);
     this.onDayMouseEnter = this.onDayMouseEnter.bind(this);
     this.onDayMouseLeave = this.onDayMouseLeave.bind(this);
   }
@@ -107,9 +122,11 @@ export default class DayPickerRangeController extends React.Component {
     this.today = moment();
   }
 
+
   onDayClick(day, e) {
-    const { keepOpenOnDateSelect, minimumNights } = this.props;
+    const { keepOpenOnDateSelect, minimumNights, selectedRange } = this.props;
     if (e) e.preventDefault();
+    if (selectedRange !== CUSTOM_RANGE) this.props.onRangeChange(7);
     if (this.isBlocked(day)) return;
 
     const { focusedInput } = this.props;
@@ -155,6 +172,27 @@ export default class DayPickerRangeController extends React.Component {
     this.setState({
       hoverDate: null,
     });
+  }
+
+  onRangeClick(rangeIndex) {
+    let { startDate, endDate } = this.props;
+    if (rangeIndex !== CUSTOM_RANGE) {
+      const period = rangePeriods[rangeIndex];
+      startDate = this.today.clone().subtract(...period);
+      endDate = this.today.clone();
+      this.props.onFocusChange(null);
+    }
+
+    this.props.onRangeChange(rangeIndex);
+    this.props.onDatesChange({ startDate, endDate });
+  }
+
+  onApply() {
+    this.props.onFocusChange(null);
+  }
+
+  onCancel() {
+    this.props.onFocusChange(null);
   }
 
   doesNotMeetMinimumNights(day) {
@@ -239,6 +277,7 @@ export default class DayPickerRangeController extends React.Component {
       initialVisibleMonth,
       focusedInput,
       renderDay,
+      selectedRange,
     } = this.props;
 
     const modifiers = {
@@ -271,6 +310,9 @@ export default class DayPickerRangeController extends React.Component {
         modifiers={modifiers}
         numberOfMonths={numberOfMonths}
         onDayClick={this.onDayClick}
+        onRangeClick={this.onRangeClick}
+        onApply={this.onApply}
+        onCancel={this.onCancel}
         onDayMouseEnter={this.onDayMouseEnter}
         onDayMouseLeave={this.onDayMouseLeave}
         onPrevMonthClick={onPrevMonthClick}
@@ -283,6 +325,7 @@ export default class DayPickerRangeController extends React.Component {
         navPrev={navPrev}
         navNext={navNext}
         renderDay={renderDay}
+        selectedRange={selectedRange}
       />
     );
   }

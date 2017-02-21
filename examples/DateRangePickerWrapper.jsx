@@ -31,6 +31,7 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
+  selectedRange: 7,
 
   // input related props
   startDateId: START_DATE,
@@ -94,10 +95,16 @@ class DateRangePickerWrapper extends React.Component {
       focusedInput,
       startDate: props.initialStartDate,
       endDate: props.initialEndDate,
+      selectedRange: props.selectedRange,
     };
 
+    this.onRangeChange = this.onRangeChange.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
     this.onFocusChange = this.onFocusChange.bind(this);
+  }
+
+  onRangeChange(selectedRange) {
+    this.setState({ selectedRange });
   }
 
   onDatesChange({ startDate, endDate }) {
@@ -124,9 +131,11 @@ class DateRangePickerWrapper extends React.Component {
           {...props}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
+          onRangeChange={this.onRangeChange}
           focusedInput={focusedInput}
           startDate={startDate}
           endDate={endDate}
+          selectedRange={this.state.selectedRange}
         />
       </div>
     );

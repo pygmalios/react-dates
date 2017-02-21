@@ -8,6 +8,7 @@ import cx from 'classnames';
 import OutsideClickHandler from './OutsideClickHandler';
 import CalendarMonthGrid from './CalendarMonthGrid';
 import DayPickerNavigation from './DayPickerNavigation';
+import DayPickerRanges from './DayPickerRanges';
 
 import getTransformStyles from '../utils/getTransformStyles';
 
@@ -21,6 +22,7 @@ import {
 
 const CALENDAR_MONTH_WIDTH = 300;
 const DAY_PICKER_PADDING = 9;
+const DAY_PICKER_RANGES = 200;
 const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
@@ -296,7 +298,7 @@ export default class DayPicker extends React.Component {
 
     if (newMonthHeight !== calculateDimension(this.transitionContainer, 'height')) {
       this.monthHeight = newMonthHeight;
-      this.transitionContainer.style.height = `${newMonthHeight}px`;
+      this.transitionContainer.style.height = `${newMonthHeight + 110}px`;
     }
   }
 
@@ -379,11 +381,15 @@ export default class DayPicker extends React.Component {
       modifiers,
       withPortal,
       onDayClick,
+      onRangeClick,
+      onApply,
+      onCancel,
       onDayMouseEnter,
       onDayMouseLeave,
       renderDay,
       onOutsideClick,
       monthFormat,
+      selectedRange,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -413,11 +419,15 @@ export default class DayPicker extends React.Component {
       'transition-container--vertical': this.isVertical(),
     });
 
-    const horizontalWidth = (CALENDAR_MONTH_WIDTH * numberOfMonths) + (2 * DAY_PICKER_PADDING);
-
+    const transitionContainerWidth = (CALENDAR_MONTH_WIDTH * numberOfMonths) + (2 * DAY_PICKER_PADDING)
+    const horizontalWidth = transitionContainerWidth + DAY_PICKER_RANGES;
     // this is a kind of made-up value that generally looks good. we'll
     // probably want to let the user set this explicitly.
     const verticalHeight = 1.75 * CALENDAR_MONTH_WIDTH;
+
+    const contentContainerStyle = {
+      width: this.isHorizontal() && horizontalWidth,
+    };
 
     const dayPickerStyle = {
       width: this.isHorizontal() && horizontalWidth,
@@ -428,7 +438,7 @@ export default class DayPicker extends React.Component {
     };
 
     const transitionContainerStyle = {
-      width: this.isHorizontal() && horizontalWidth,
+      width: this.isHorizontal() && transitionContainerWidth,
       height: this.isVertical() && !verticalScrollable && !withPortal && verticalHeight,
     };
 
@@ -439,35 +449,46 @@ export default class DayPicker extends React.Component {
     return (
       <div className={dayPickerClassNames} style={dayPickerStyle} >
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
-          {!verticalScrollable && this.renderNavigation()}
+          <div style={contentContainerStyle} className="DayPicker__content">
+            <div style={{ width: transitionContainerWidth }} >
+              {!verticalScrollable && this.renderNavigation()}
+            </div>
 
-          <div className="DayPicker__week-headers">
-            {weekHeaders}
-          </div>
+            <div className="DayPicker__week-headers">
+              {weekHeaders}
+            </div>
 
-          <div
-            className={transitionContainerClasses}
-            ref={(ref) => { this.transitionContainer = ref; }}
-            style={transitionContainerStyle}
-          >
-            <CalendarMonthGrid
-              ref={(ref) => { this.calendarMonthGrid = ref; }}
-              transformValue={transformValue}
-              enableOutsideDays={enableOutsideDays}
-              firstVisibleMonthIndex={firstVisibleMonthIndex}
-              initialMonth={currentMonth}
-              isAnimating={isCalendarMonthGridAnimating}
-              modifiers={modifiers}
-              orientation={orientation}
-              numberOfMonths={numberOfMonths * scrollableMonthMultiple}
-              onDayClick={onDayClick}
-              onDayMouseEnter={onDayMouseEnter}
-              onDayMouseLeave={onDayMouseLeave}
-              renderDay={renderDay}
-              onMonthTransitionEnd={this.updateStateAfterMonthTransition}
-              monthFormat={monthFormat}
-            />
-            {verticalScrollable && this.renderNavigation()}
+            <div
+              className={transitionContainerClasses}
+              ref={(ref) => { this.transitionContainer = ref; }}
+              style={transitionContainerStyle}
+            >
+              <CalendarMonthGrid
+                ref={(ref) => { this.calendarMonthGrid = ref; }}
+                transformValue={transformValue}
+                enableOutsideDays={enableOutsideDays}
+                firstVisibleMonthIndex={firstVisibleMonthIndex}
+                initialMonth={currentMonth}
+                isAnimating={isCalendarMonthGridAnimating}
+                modifiers={modifiers}
+                orientation={orientation}
+                numberOfMonths={numberOfMonths * scrollableMonthMultiple}
+                onDayClick={onDayClick}
+                onDayMouseEnter={onDayMouseEnter}
+                onDayMouseLeave={onDayMouseLeave}
+                renderDay={renderDay}
+                onMonthTransitionEnd={this.updateStateAfterMonthTransition}
+                monthFormat={monthFormat}
+              />
+              {verticalScrollable && this.renderNavigation()}
+            </div>
+            {!verticalScrollable &&
+            <DayPickerRanges
+              selectedRange={selectedRange}
+              onRangeClick={onRangeClick}
+              onApply={onApply}
+              onCancel={onCancel}
+            />}
           </div>
         </OutsideClickHandler>
       </div>

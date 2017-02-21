@@ -81,6 +81,17 @@ const defaultProps = {
   },
 };
 
+const ranges = [
+  'Today',
+  'Yesterday',
+  'Last 7 Days',
+  'Last 30 Days',
+  'Last 3 Months',
+  'Last 6 Months',
+  'Last Year',
+  'Custom Range',
+];
+
 export default class DateRangePickerInput extends React.Component {
   constructor(props) {
     super(props);
@@ -133,10 +144,14 @@ export default class DateRangePickerInput extends React.Component {
       customInputIcon,
       customArrowIcon,
       phrases,
+      selectedRange,
     } = this.props;
 
     const inputIcon = customInputIcon || (<CalendarIcon />);
     const arrowIcon = customArrowIcon || (<RightArrow />);
+    const startDisplayValue = selectedRange !== 7
+      ? ranges[selectedRange]
+      : startDate;
 
     return (
       <div
@@ -152,10 +167,11 @@ export default class DateRangePickerInput extends React.Component {
             {inputIcon}
           </span>
         }
+
         <DateInput
           id={startDateId}
           placeholder={startDatePlaceholderText}
-          displayValue={startDate}
+          displayValue={startDisplayValue}
           inputValue={startDateValue}
           screenReaderMessage={screenReaderMessage}
           focused={isStartDateFocused}
@@ -168,25 +184,28 @@ export default class DateRangePickerInput extends React.Component {
           onKeyDownShiftTab={onStartDateShiftTab}
         />
 
+        { selectedRange === 7 &&
         <div className="DateRangePickerInput__arrow">
           {arrowIcon}
         </div>
+        }
+        { selectedRange === 7 &&
+          <DateInput
+            id={endDateId}
+            placeholder={endDatePlaceholderText}
+            displayValue={endDate}
+            inputValue={endDateValue}
+            screenReaderMessage={screenReaderMessage}
+            focused={isEndDateFocused}
+            disabled={disabled}
+            required={required}
+            showCaret={showCaret}
 
-        <DateInput
-          id={endDateId}
-          placeholder={endDatePlaceholderText}
-          displayValue={endDate}
-          inputValue={endDateValue}
-          screenReaderMessage={screenReaderMessage}
-          focused={isEndDateFocused}
-          disabled={disabled}
-          required={required}
-          showCaret={showCaret}
-
-          onChange={onEndDateChange}
-          onFocus={onEndDateFocus}
-          onKeyDownTab={onEndDateTab}
-        />
+            onChange={onEndDateChange}
+            onFocus={onEndDateFocus}
+            onKeyDownTab={onEndDateTab}
+          />
+        }
 
         {showClearDates &&
           <button

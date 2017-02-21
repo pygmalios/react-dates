@@ -207,6 +207,7 @@ export default class DateRangePickerInputWithHandlers extends React.Component {
       disabled,
       required,
       phrases,
+      selectedRange,
     } = this.props;
 
     const startDateString = this.getDateString(startDate);
@@ -242,6 +243,7 @@ export default class DateRangePickerInputWithHandlers extends React.Component {
         showClearDates={showClearDates}
         onClearDates={this.clearDates}
         screenReaderMessage={screenReaderMessage}
+        selectedRange={selectedRange}
       />
     );
   }
