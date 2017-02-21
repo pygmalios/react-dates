@@ -8,21 +8,25 @@ const ranges = [
   'Last 3 Months',
   'Last 6 Months',
   'Last Year',
-  'Custom Range',
+  'Custom Range XX',
 ];
 
-export default class DayPickerRanges extends React.Component {
+const defaultProps = {
+  shortcuts: ranges,
+};
+
+class DayPickerShortcuts extends React.Component {
 
   isRangeActive(index) {
     return index === this.props.selectedRange;
   }
 
   render() {
-    const { onRangeClick, onApply, onCancel } = this.props;
+    const { shortcuts, onRangeClick, onApply, onCancel } = this.props;
     return (
       <div className="DayPickerShortcuts__ranges">
         <ul>
-          {ranges.map((range, i) => (
+          {shortcuts.map((range, i) => (
             <li
               key={`${range}`}
               className={this.isRangeActive(i) ? 'active' : ''}
@@ -34,3 +38,7 @@ export default class DayPickerRanges extends React.Component {
     );
   }
 }
+
+DayPickerShortcuts.defaultProps = defaultProps;
+
+export default DayPickerShortcuts;

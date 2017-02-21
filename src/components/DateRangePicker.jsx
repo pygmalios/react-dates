@@ -56,6 +56,7 @@ const defaultProps = {
   withPortal: false,
   withFullScreenPortal: false,
   withControls: false,
+  withShortcuts: false,
   initialVisibleMonth: null,
   numberOfMonths: 2,
   keepOpenOnDateSelect: false,
@@ -229,6 +230,9 @@ export default class DateRangePicker extends React.Component {
       selectedRange,
       onRangeChange,
       withControls,
+      withShortcuts,
+      shortcuts,
+      shortcutsPrevious,
     } = this.props;
     const { dayPickerContainerStyles } = this.state;
 
@@ -271,6 +275,9 @@ export default class DateRangePicker extends React.Component {
           renderDay={renderDay}
           selectedRange={selectedRange}
           withControls={withControls}
+          withShortcuts={withShortcuts}
+          shortcuts={shortcuts}
+          shortcutsPrevious={shortcutsPrevious}
         />
 
         {withFullScreenPortal &&

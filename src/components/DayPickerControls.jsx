@@ -32,13 +32,16 @@ export default class DayPickerControls extends React.Component {
   }
 
   onFocusChange(focusedInput) {
-    console.log('onFocusChange', focusedInput);
     this.setState({ focusedInput });
   }
 
   render() {
-    const { focusedInput, startDate, endDate, selectedRange } = this.state;
-    const { onApply, onCancel } = this.props;
+    const {
+      focusedInput,
+      startDate,
+      endDate,
+    } = this.state;
+    const { onApply, onCancel, shortcuts } = this.props;
 
     return (
       <div>
@@ -83,7 +86,9 @@ export default class DayPickerControls extends React.Component {
               minimumNights={0}
               isOutsideRange={() => false}
               keepOpenOnDateSelect
-              selectedRange={selectedRange}
+              selectedRange={4}
+              shortcuts={shortcuts}
+              withShortcuts
             />
           </div>
         }

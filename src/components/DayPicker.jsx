@@ -23,7 +23,7 @@ import {
 
 const CALENDAR_MONTH_WIDTH = 300;
 const DAY_PICKER_PADDING = 9;
-const DAY_PICKER_RANGES = 200;
+const DAY_PICKER_SHORTCUTS = 200;
 const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
@@ -383,6 +383,8 @@ export default class DayPicker extends React.Component {
       orientation,
       modifiers,
       withPortal,
+      withControls,
+      withShortcuts,
       onDayClick,
       onRangeClick,
       onApply,
@@ -393,7 +395,8 @@ export default class DayPicker extends React.Component {
       onOutsideClick,
       monthFormat,
       selectedRange,
-      withControls,
+      shortcuts,
+      shortcutsPrevious,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -424,7 +427,7 @@ export default class DayPicker extends React.Component {
     });
 
     const transitionContainerWidth = (CALENDAR_MONTH_WIDTH * numberOfMonths) + (2 * DAY_PICKER_PADDING)
-    const horizontalWidth = transitionContainerWidth + DAY_PICKER_RANGES;
+    const horizontalWidth = transitionContainerWidth + (withShortcuts ? DAY_PICKER_SHORTCUTS : 0);
     // this is a kind of made-up value that generally looks good. we'll
     // probably want to let the user set this explicitly.
     const verticalHeight = 1.75 * CALENDAR_MONTH_WIDTH;
@@ -486,14 +489,16 @@ export default class DayPicker extends React.Component {
               />
               {verticalScrollable && this.renderNavigation()}
             </div>
-            {!verticalScrollable &&
+            {!verticalScrollable && withShortcuts &&
             <DayPickerShortcuts
+              shortcuts={shortcuts}
               selectedRange={selectedRange}
               onRangeClick={onRangeClick}
             />}
           </div>
           { withControls &&
             <DayPickerControls
+              shortcuts={shortcutsPrevious}
               onApply={onApply}
               onCancel={onCancel}
             />

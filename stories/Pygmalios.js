@@ -4,6 +4,26 @@ import { storiesOf } from '@kadira/storybook';
 
 import DateRangePickerWrapper from '../examples/DateRangePickerWrapper';
 
+const rangesTop = [
+  'Today',
+  'Yesterday',
+  'Last 7 Days',
+  'Last 30 Days',
+  'Last 3 Months',
+  'Last 6 Months',
+  'Last Year',
+  'Custom Range',
+];
+
+const rangesPrevious = [
+  'Previous Period',
+  'Week ago',
+  'Month ago',
+  'Quartal ago',
+  'Year ago',
+  'Fixed custom range',
+];
+
 storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
@@ -13,5 +33,8 @@ storiesOf('Pygmalios', module)
       enableOutsideDates
       autoFocus
       withControls
+      withShortcuts
+      shortcuts={rangesTop}
+      shortcutsPrevious={rangesPrevious}
     />
   ));

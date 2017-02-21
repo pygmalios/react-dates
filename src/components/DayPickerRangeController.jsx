@@ -74,6 +74,8 @@ const defaultProps = {
   numberOfMonths: 1,
   orientation: HORIZONTAL_ORIENTATION,
   withPortal: false,
+  withControls: false,
+  withShortcuts: false,
 
   initialVisibleMonth: () => moment(),
 
@@ -279,11 +281,14 @@ export default class DayPickerRangeController extends React.Component {
       onNextMonthClick,
       withPortal,
       withControls,
+      withShortcuts,
       enableOutsideDays,
       initialVisibleMonth,
       focusedInput,
       renderDay,
       selectedRange,
+      shortcuts,
+      shortcutsPrevious,
     } = this.props;
 
     const modifiers = {
@@ -333,6 +338,9 @@ export default class DayPickerRangeController extends React.Component {
         renderDay={renderDay}
         selectedRange={selectedRange}
         withControls={withControls}
+        withShortcuts={withShortcuts}
+        shortcuts={shortcuts}
+        shortcutsPrevious={shortcutsPrevious}
       />
     );
   }
