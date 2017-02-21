@@ -20,7 +20,7 @@ export default class DayPickerRanges extends React.Component {
   render() {
     const { onRangeClick, onApply, onCancel } = this.props;
     return (
-      <div className="DayPicker__ranges">
+      <div className="DayPickerShortcuts__ranges">
         <ul>
           {ranges.map((range, i) => (
             <li
@@ -30,12 +30,6 @@ export default class DayPickerRanges extends React.Component {
             >{range}</li>
           ))}
         </ul>
-        <div className="DayPickerRanges__inputs">
-          <button className="success" type="button" onClick={onApply}>
-            Apply
-          </button>
-          <button type="button" onClick={onCancel}>Cancel</button>
-        </div>
       </div>
     );
   }

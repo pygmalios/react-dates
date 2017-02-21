@@ -147,6 +147,7 @@ export default class DateRangePickerInput extends React.Component {
       selectedRange,
     } = this.props;
 
+    const hasSingleInput = selectedRange !== 7;
     const inputIcon = customInputIcon || (<CalendarIcon />);
     const arrowIcon = customArrowIcon || (<RightArrow />);
     const startDisplayValue = selectedRange !== 7
@@ -178,18 +179,17 @@ export default class DateRangePickerInput extends React.Component {
           disabled={disabled}
           required={required}
           showCaret={showCaret}
-
           onChange={onStartDateChange}
           onFocus={onStartDateFocus}
           onKeyDownShiftTab={onStartDateShiftTab}
         />
 
-        { selectedRange === 7 &&
+        { !hasSingleInput &&
         <div className="DateRangePickerInput__arrow">
           {arrowIcon}
         </div>
         }
-        { selectedRange === 7 &&
+        { !hasSingleInput &&
           <DateInput
             id={endDateId}
             placeholder={endDatePlaceholderText}

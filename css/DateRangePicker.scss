@@ -40,6 +40,12 @@
   width: 100%;
 }
 
+.DateRangePicker__picker--embedded {
+  position: relative !important;
+  height: 100%;
+  width: 100%;
+}
+
 .DateRangePicker__picker--full-screen-portal {
   background-color: $react-dates-color-white;
 }

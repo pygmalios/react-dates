@@ -55,6 +55,7 @@ const defaultProps = {
   horizontalMargin: 0,
   withPortal: false,
   withFullScreenPortal: false,
+  withControls: false,
   initialVisibleMonth: null,
   numberOfMonths: 2,
   keepOpenOnDateSelect: false,
@@ -133,6 +134,7 @@ export default class DateRangePicker extends React.Component {
       withPortal,
       withFullScreenPortal,
       anchorDirection,
+      embedded,
     } = this.props;
     const dayPickerClassName = cx('DateRangePicker__picker', {
       'DateRangePicker__picker--direction-left': anchorDirection === ANCHOR_LEFT,
@@ -141,6 +143,7 @@ export default class DateRangePicker extends React.Component {
       'DateRangePicker__picker--vertical': orientation === VERTICAL_ORIENTATION,
       'DateRangePicker__picker--portal': withPortal || withFullScreenPortal,
       'DateRangePicker__picker--full-screen-portal': withFullScreenPortal,
+      'DateRangePicker__picker--embedded': embedded,
     });
 
     return dayPickerClassName;
@@ -225,6 +228,7 @@ export default class DateRangePicker extends React.Component {
       initialVisibleMonth,
       selectedRange,
       onRangeChange,
+      withControls,
     } = this.props;
     const { dayPickerContainerStyles } = this.state;
 
@@ -266,6 +270,7 @@ export default class DateRangePicker extends React.Component {
           keepOpenOnDateSelect={keepOpenOnDateSelect}
           renderDay={renderDay}
           selectedRange={selectedRange}
+          withControls={withControls}
         />
 
         {withFullScreenPortal &&

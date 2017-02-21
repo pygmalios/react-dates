@@ -8,7 +8,8 @@ import cx from 'classnames';
 import OutsideClickHandler from './OutsideClickHandler';
 import CalendarMonthGrid from './CalendarMonthGrid';
 import DayPickerNavigation from './DayPickerNavigation';
-import DayPickerRanges from './DayPickerRanges';
+import DayPickerShortcuts from './DayPickerShortcuts';
+import DayPickerControls from './DayPickerControls';
 
 import getTransformStyles from '../utils/getTransformStyles';
 
@@ -69,6 +70,7 @@ const defaultProps = {
   navNext: null,
   onPrevMonthClick() {},
   onNextMonthClick() {},
+  withControls: false,
 
   // day props
   modifiers: {},
@@ -298,7 +300,8 @@ export default class DayPicker extends React.Component {
 
     if (newMonthHeight !== calculateDimension(this.transitionContainer, 'height')) {
       this.monthHeight = newMonthHeight;
-      this.transitionContainer.style.height = `${newMonthHeight + 110}px`;
+      const shortcutsHeight = 50;
+      this.transitionContainer.style.height = `${newMonthHeight + shortcutsHeight}px`;
     }
   }
 
@@ -390,6 +393,7 @@ export default class DayPicker extends React.Component {
       onOutsideClick,
       monthFormat,
       selectedRange,
+      withControls,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -483,13 +487,17 @@ export default class DayPicker extends React.Component {
               {verticalScrollable && this.renderNavigation()}
             </div>
             {!verticalScrollable &&
-            <DayPickerRanges
+            <DayPickerShortcuts
               selectedRange={selectedRange}
               onRangeClick={onRangeClick}
-              onApply={onApply}
-              onCancel={onCancel}
             />}
           </div>
+          { withControls &&
+            <DayPickerControls
+              onApply={onApply}
+              onCancel={onCancel}
+            />
+          }
         </OutsideClickHandler>
       </div>
     );

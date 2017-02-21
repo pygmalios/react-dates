@@ -4,6 +4,7 @@ module.exports = {
 
   START_DATE: 'startDate',
   END_DATE: 'endDate',
+  FULL_DATE: 'fullDate',
 
   HORIZONTAL_ORIENTATION: 'horizontal',
   VERTICAL_ORIENTATION: 'vertical',

@@ -12,5 +12,6 @@ storiesOf('Pygmalios', module)
       minimumNights={0}
       enableOutsideDates
       autoFocus
+      withControls
     />
   ));

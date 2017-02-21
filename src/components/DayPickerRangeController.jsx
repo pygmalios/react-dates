@@ -278,6 +278,7 @@ export default class DayPickerRangeController extends React.Component {
       onPrevMonthClick,
       onNextMonthClick,
       withPortal,
+      withControls,
       enableOutsideDays,
       initialVisibleMonth,
       focusedInput,
@@ -331,6 +332,7 @@ export default class DayPickerRangeController extends React.Component {
         navNext={navNext}
         renderDay={renderDay}
         selectedRange={selectedRange}
+        withControls={withControls}
       />
     );
   }
