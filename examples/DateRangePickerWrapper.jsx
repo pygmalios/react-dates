@@ -6,7 +6,14 @@ import omit from 'lodash.omit';
 import DateRangePicker from '../src/components/DateRangePicker';
 
 import DateRangePickerShape from '../src/shapes/DateRangePickerShape';
-import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../constants';
+import {
+  START_DATE,
+  END_DATE,
+  HORIZONTAL_ORIENTATION,
+  ANCHOR_LEFT,
+  CUSTOM_RANGE_SHORTCUT,
+  PREVIOUS_PERIOD_SHORTCUT,
+} from '../constants';
 import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
 
 const propTypes = {
@@ -31,7 +38,8 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
-  selectedRange: 7,
+  selectedShortcut: { name: 'Custom Range' },
+  selectedShortcutPrevious: { name: 'Custom Range' },
 
   // input related props
   startDateId: START_DATE,
@@ -97,10 +105,14 @@ class DateRangePickerWrapper extends React.Component {
       endDate: props.initialEndDate,
       previousStartDate: props.initialStartDate,
       previousEndDate: props.initialEndDate,
-      selectedRange: props.selectedRange,
+      selectedShortcut: props.selectedShortcut,
+      selectedShortcutPrevious: props.selectedShortcutPrevious,
     };
 
-    this.onRangeChange = this.onRangeChange.bind(this);
+    this.updatePreviousPeriod = this.updatePreviousPeriod.bind(this);
+    this.getPreviousPeriod = this.getPreviousPeriod.bind(this);
+
+    this.onShortcutChange = this.onShortcutChange.bind(this);
     this.onDatesChange = this.onDatesChange.bind(this);
     this.onPreviousShortcutChange = this.onPreviousShortcutChange.bind(this);
     this.onPreviousDatesChange = this.onPreviousDatesChange.bind(this);
@@ -108,8 +120,27 @@ class DateRangePickerWrapper extends React.Component {
     this.onFocusChange = this.onFocusChange.bind(this);
   }
 
-  onRangeChange(selectedRange) {
-    this.setState({ selectedRange });
+  getPreviousPeriod(startDate, endDate) {
+    const { selectedShortcut, selectedShortcutPrevious: { name, period } } = this.state;
+    return name === PREVIOUS_PERIOD_SHORTCUT
+      ? selectedShortcut.period || [endDate.diff(startDate)]
+      : period;
+  }
+
+  updatePreviousPeriod(startDate, endDate) {
+    if (!!startDate && !!endDate) {
+      return;
+    }
+
+    const previousEndDate = endDate.clone().subtract(1, 'day');
+    const period = this.getPreviousPeriod(startDate, endDate);
+    const previousStartDate = previousEndDate.subtract(...period);
+
+    this.setState({ previousStartDate, previousEndDate });
+  }
+
+  onShortcutChange(selectedShortcut) {
+    this.setState({ selectedShortcut });
   }
 
   onDatesChange({ startDate, endDate }) {
@@ -117,12 +148,22 @@ class DateRangePickerWrapper extends React.Component {
   }
 
   onPreviousDatesChange({ startDate, endDate }) {
-    console.log('onPreviousDatesChange', startDate, endDate);
     this.setState({ previousStartDate: startDate, previousEndDate: endDate });
+    this.updatePreviousPeriod();
   }
 
-  onPreviousShortcutChange(selectedPreviousShortcut) {
-    this.setState({ selectedPreviousShortcut });
+
+  onPreviousShortcutChange(selectedShortcutPrevious) {
+    this.setState({ selectedShortcutPrevious });
+    if (selectedShortcutPrevious.name === PREVIOUS_PERIOD_SHORTCUT) {
+      const { startDate, endDate, selectedShortcut } = this.state;
+      if (startDate && endDate) {
+        const period = selectedShortcut.period || [endDate.diff(startDate)];
+        const previousEndDate = startDate.clone().subtract(1, 'days');
+        const previousStartDate = previousEndDate.clone().subtract(...period);
+        this.setState({ previousStartDate, previousEndDate });
+      }
+    }
   }
 
   onFocusChange(focusedInput) {
@@ -134,7 +175,8 @@ class DateRangePickerWrapper extends React.Component {
       focusedInput,
       startDate,
       endDate,
-      selectedRange,
+      selectedShortcut,
+      selectedShortcutPrevious,
       previousStartDate,
       previousEndDate,
      } = this.state;
@@ -152,13 +194,14 @@ class DateRangePickerWrapper extends React.Component {
           {...props}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
-          onRangeChange={this.onRangeChange}
+          onShortcutChange={this.onShortcutChange}
           onPreviousDatesChange={this.onPreviousDatesChange}
           onPreviousShortcutChange={this.onPreviousShortcutChange}
           focusedInput={focusedInput}
           startDate={startDate}
           endDate={endDate}
-          selectedRange={selectedRange}
+          selectedShortcut={selectedShortcut}
+          selectedShortcutPrevious={selectedShortcutPrevious}
           previousStartDate={previousStartDate}
           previousEndDate={previousEndDate}
         />

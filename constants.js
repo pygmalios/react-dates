@@ -12,4 +12,7 @@ module.exports = {
 
   ANCHOR_LEFT: 'left',
   ANCHOR_RIGHT: 'right',
+
+  CUSTOM_RANGE_SHORTCUT: 'Custom Range',
+  PREVIOUS_PERIOD_SHORTCUT: 'Previous Period',
 };

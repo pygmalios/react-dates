@@ -1,37 +1,35 @@
 import React from 'react'
 
-const ranges = [
-  'Today',
-  'Yesterday',
-  'Last 7 Days',
-  'Last 30 Days',
-  'Last 3 Months',
-  'Last 6 Months',
-  'Last Year',
-  'Custom Range XX',
-];
-
 const defaultProps = {
-  shortcuts: ranges,
+  shortcuts: [],
 };
 
 class DayPickerShortcuts extends React.Component {
 
-  isRangeActive(index) {
-    return index === this.props.selectedRange;
+  constructor(props) {
+    super(props)
+
+    this.isShortcutActive = this.isShortcutActive.bind(this);
+  }
+
+  isShortcutActive(shortcut) {
+    return shortcut.name === this.props.selectedShortcut.name;
   }
 
   render() {
-    const { shortcuts, onRangeClick, onApply, onCancel } = this.props;
+    const { shortcuts, onShortcutClick } = this.props;
+
     return (
       <div className="DayPickerShortcuts__ranges">
         <ul>
-          {shortcuts.map((range, i) => (
+          {shortcuts.map(shortcut => (
             <li
-              key={`${range}`}
-              className={this.isRangeActive(i) ? 'active' : ''}
-              onClick={() => onRangeClick(i)}
-            >{range}</li>
+              key={`${shortcut.name}`}
+              className={this.isShortcutActive(shortcut) ? 'active' : ''}
+              onClick={() => onShortcutClick(shortcut)}
+            >
+              {shortcut.name}
+            </li>
           ))}
         </ul>
       </div>

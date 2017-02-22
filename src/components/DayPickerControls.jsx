@@ -42,6 +42,7 @@ export default class DayPickerControls extends React.Component {
     const {
       onApply,
       onCancel,
+      selectedShortcut,
       shortcuts,
       onDatesChange,
       onShortcutChange,
@@ -68,7 +69,7 @@ export default class DayPickerControls extends React.Component {
               endDate={endDate}
               isEndDateFocused={focusedInput === END_DATE}
               onFocusChange={this.onFocusChange}
-              selectedRange={7}
+              selectedShortcut={selectedShortcut}
             />
           </div>
           <span>
@@ -91,14 +92,14 @@ export default class DayPickerControls extends React.Component {
               onFocusChange={this.onFocusChange}
               numberOfMonths={2}
               onDatesChange={onDatesChange}
-              onRangeChange={onShortcutChange}
+              onShortcutChange={onShortcutChange}
               focusedInput={focusedInput}
               startDate={startDate}
               endDate={endDate}
               minimumNights={0}
               isOutsideRange={() => false}
               keepOpenOnDateSelect
-              selectedRange={5}
+              selectedShortcut={selectedShortcut}
               shortcuts={shortcuts}
               withShortcuts
             />

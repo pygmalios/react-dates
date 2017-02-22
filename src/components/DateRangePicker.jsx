@@ -225,8 +225,9 @@ export default class DateRangePicker extends React.Component {
       keepOpenOnDateSelect,
       renderDay,
       initialVisibleMonth,
-      selectedRange,
-      onRangeChange,
+      selectedShortcut,
+      selectedShortcutPrevious,
+      onShortcutChange,
       withControls,
       withShortcuts,
       shortcuts,
@@ -259,7 +260,7 @@ export default class DateRangePicker extends React.Component {
           onNextMonthClick={onNextMonthClick}
           onDatesChange={onDatesChange}
           onPreviousDatesChange={onPreviousDatesChange}
-          onRangeChange={onRangeChange}
+          onShortcutChange={onShortcutChange}
           onPreviousShortcutChange={onPreviousShortcutChange}
           onFocusChange={onFocusChange}
           focusedInput={focusedInput}
@@ -277,7 +278,8 @@ export default class DateRangePicker extends React.Component {
           isDayBlocked={isDayBlocked}
           keepOpenOnDateSelect={keepOpenOnDateSelect}
           renderDay={renderDay}
-          selectedRange={selectedRange}
+          selectedShortcut={selectedShortcut}
+          selectedShortcutPrevious={selectedShortcutPrevious}
           withControls={withControls}
           withShortcuts={withShortcuts}
           shortcuts={shortcuts}
@@ -327,7 +329,7 @@ export default class DateRangePicker extends React.Component {
       keepOpenOnDateSelect,
       onDatesChange,
       onFocusChange,
-      selectedRange,
+      selectedShortcut,
     } = this.props;
 
     const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : undefined;
@@ -360,7 +362,7 @@ export default class DateRangePicker extends React.Component {
             onFocusChange={onFocusChange}
             phrases={phrases}
             screenReaderMessage={screenReaderInputMessage}
-            selectedRange={selectedRange}
+            selectedShortcut={selectedShortcut}
           />
 
           {this.maybeRenderDayPickerWithPortal()}

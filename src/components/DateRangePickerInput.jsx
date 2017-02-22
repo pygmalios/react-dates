@@ -81,17 +81,6 @@ const defaultProps = {
   },
 };
 
-const ranges = [
-  'Today',
-  'Yesterday',
-  'Last 7 Days',
-  'Last 30 Days',
-  'Last 3 Months',
-  'Last 6 Months',
-  'Last Year',
-  'Custom Range',
-];
-
 export default class DateRangePickerInput extends React.Component {
   constructor(props) {
     super(props);
@@ -144,14 +133,14 @@ export default class DateRangePickerInput extends React.Component {
       customInputIcon,
       customArrowIcon,
       phrases,
-      selectedRange,
+      selectedShortcut,
     } = this.props;
 
-    const hasSingleInput = selectedRange !== 7;
+    const hasSingleInput = selectedShortcut.period;
     const inputIcon = customInputIcon || (<CalendarIcon />);
     const arrowIcon = customArrowIcon || (<RightArrow />);
-    const startDisplayValue = selectedRange !== 7
-      ? ranges[selectedRange]
+    const startDisplayValue = selectedShortcut.period
+      ? selectedShortcut.name
       : startDate;
 
     return (

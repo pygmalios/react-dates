@@ -4,24 +4,24 @@ import { storiesOf } from '@kadira/storybook';
 
 import DateRangePickerWrapper from '../examples/DateRangePickerWrapper';
 
-const rangesTop = [
-  'Today',
-  'Yesterday',
-  'Last 7 Days',
-  'Last 30 Days',
-  'Last 3 Months',
-  'Last 6 Months',
-  'Last Year',
-  'Custom Range',
+const shortcuts = [
+  { name: 'Today', period: [0, 'days'] },
+  { name: 'Yesterday', period: [1, 'days'] },
+  { name: 'Last 7 Days', period: [7, 'days'] },
+  { name: 'Last 30 Days', period: [30, 'days'] },
+  { name: 'Last 3 Months', period: [3, 'months'] },
+  { name: 'Last 6 Months', period: [6, 'months'] },
+  { name: 'Last Year', period: [1, 'years'] },
+  { name: 'Custom Range' },
 ];
 
-const rangesPrevious = [
-  'Previous Period',
-  'Week ago',
-  'Month ago',
-  'Quartal ago',
-  'Year ago',
-  'Fixed custom range',
+const shortcutsPrevious = [
+  { name: 'Previous Period' },
+  { name: 'Week ago', period: [1, 'weeks'] },
+  { name: 'Month ago', period: [1, 'months'] },
+  { name: 'Quartal ago', period: [3, 'months'] },
+  { name: 'Year ago', period: [1, 'years'] },
+  { name: 'Custom Range' },
 ];
 
 storiesOf('Pygmalios', module)
@@ -34,7 +34,7 @@ storiesOf('Pygmalios', module)
       autoFocus
       withControls
       withShortcuts
-      shortcuts={rangesTop}
-      shortcutsPrevious={rangesPrevious}
+      shortcuts={shortcuts}
+      shortcutsPrevious={shortcutsPrevious}
     />
   ));

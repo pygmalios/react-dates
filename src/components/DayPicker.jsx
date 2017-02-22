@@ -386,7 +386,7 @@ export default class DayPicker extends React.Component {
       withControls,
       withShortcuts,
       onDayClick,
-      onRangeClick,
+      onShortcutClick,
       onPreviousDatesChange,
       onPreviousShortcutChange,
       onApply,
@@ -396,7 +396,8 @@ export default class DayPicker extends React.Component {
       renderDay,
       onOutsideClick,
       monthFormat,
-      selectedRange,
+      selectedShortcut,
+      selectedShortcutPrevious,
       shortcuts,
       shortcutsPrevious,
       previousStartDate,
@@ -496,12 +497,13 @@ export default class DayPicker extends React.Component {
             {!verticalScrollable && withShortcuts &&
             <DayPickerShortcuts
               shortcuts={shortcuts}
-              selectedRange={selectedRange}
-              onRangeClick={onRangeClick}
+              selectedShortcut={selectedShortcut}
+              onShortcutClick={onShortcutClick}
             />}
           </div>
           { withControls &&
             <DayPickerControls
+              selectedShortcut={selectedShortcutPrevious}
               shortcuts={shortcutsPrevious}
               onDatesChange={onPreviousDatesChange}
               onShortcutChange={onPreviousShortcutChange}
