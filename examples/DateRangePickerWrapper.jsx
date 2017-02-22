@@ -90,11 +90,7 @@ const defaultProps = {
 };
 
 function isDayHighlightedPrevious(startDate, endDate) {
-  return day => {
-   const r = isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
-   console.log('isDayHighlighted', r, day);
-   return r;
-  }
+  return day => isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
 }
 
 class DateRangePickerWrapper extends React.Component {

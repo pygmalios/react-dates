@@ -96,6 +96,7 @@ export default class DayPickerRangeController extends React.Component {
     super(props);
     this.state = {
       isComparing: true,
+      compareBy: 'byPercentage',
       hoverDate: null,
     };
 
@@ -108,6 +109,8 @@ export default class DayPickerRangeController extends React.Component {
     this.onCancel = this.onCancel.bind(this);
     this.onDayMouseEnter = this.onDayMouseEnter.bind(this);
     this.onDayMouseLeave = this.onDayMouseLeave.bind(this);
+    this.onCompareByChange = this.onCompareByChange.bind(this);
+    this.onCompareToChange = this.onCompareToChange.bind(this);
   }
 
   componentWillUpdate() {
@@ -182,6 +185,14 @@ export default class DayPickerRangeController extends React.Component {
     this.props.onFocusChange(null);
   }
 
+  onCompareToChange(isComparing) {
+    this.setState({ isComparing });
+  }
+
+  onCompareByChange(compareBy) {
+    this.setState({ compareBy });
+  }
+
   doesNotMeetMinimumNights(day) {
     const { startDate, isOutsideRange, focusedInput, minimumNights } = this.props;
     if (focusedInput !== END_DATE) return false;
@@ -247,7 +258,7 @@ export default class DayPickerRangeController extends React.Component {
   }
 
   render() {
-    const { isComparing } = this.state;
+    const { isComparing, compareBy } = this.state;
     const {
       isDayBlocked,
       isDayHighlighted,
@@ -335,7 +346,9 @@ export default class DayPickerRangeController extends React.Component {
         previousEndDate={previousEndDate}
         isDayHighlightedPrevious={isDayHighlightedPrevious}
         isComparing={isComparing}
+        compareBy={compareBy}
         onCompareToChange={this.onCompareToChange}
+        onCompareByChange={this.onCompareByChange}
       />
     );
   }

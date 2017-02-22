@@ -403,8 +403,10 @@ export default class DayPicker extends React.Component {
       previousStartDate,
       previousEndDate,
       isDayHighlightedPrevious,
-      onByValueChange,
+      isComparing,
+      compareBy,
       onCompareToChange,
+      onCompareByChange,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -515,8 +517,10 @@ export default class DayPicker extends React.Component {
               onApply={onApply}
               onCancel={onCancel}
               isDayHighlighted={isDayHighlightedPrevious}
+              isComparing={isComparing}
+              compareBy={compareBy}
               onCompareToChange={onCompareToChange}
-              onByValueChange={onByValueChange}
+              onCompareByChange={onCompareByChange}
             />
           }
         </OutsideClickHandler>

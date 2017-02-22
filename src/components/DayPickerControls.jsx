@@ -15,17 +15,17 @@ export default class DayPickerControls extends React.Component {
   }
 
   renderCompareByOptions() {
-    const { compareBy } = this.props;
+    const { compareBy, onCompareByChange } = this.props;
     const options = [
-      { option: "byPercentage", label: 'Change by % Value' },
+      { option: 'byPercentage', label: 'Change by % Value' },
       { option: 'byNumeric', label: 'Change by Numeric Value' },
       { option: 'byExact', label: 'Exact Value of Custom Range' },
     ];
 
     return (
-      <select>
+      <select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
         {options.map(option => (
-          <option>{option.label}</option>
+          <option value={option.option}>{option.label}</option>
         ))}
       </select>
     );
@@ -51,7 +51,7 @@ export default class DayPickerControls extends React.Component {
       startDate,
       endDate,
       isDayHighlighted,
-      isCompareToChecked,
+      isComparing,
     } = this.props;
 
     return (
@@ -62,26 +62,29 @@ export default class DayPickerControls extends React.Component {
             <input
               name="compare-to-checkbox"
               type="checkbox"
-              checked={isCompareToChecked}
-              onChange={() => onCompareToChange(!isCompareToChecked)}
+              checked={isComparing}
+              onChange={() => onCompareToChange(!isComparing)}
             />
           </label>
 
-          <div className="DateRangePicker">
-            <DateRangeController
-              startDate={startDate}
-              isStartDateFocused={focusedInput === START_DATE}
-              endDate={endDate}
-              isEndDateFocused={focusedInput === END_DATE}
-              onFocusChange={this.onFocusChange}
-              selectedShortcut={selectedShortcut}
-            />
-          </div>
-          <span>
-            By
-          </span>
-
-          {this.renderCompareByOptions()}
+          { isComparing &&
+            <div className="DateRangePicker">
+              <DateRangeController
+                startDate={startDate}
+                isStartDateFocused={focusedInput === START_DATE}
+                endDate={endDate}
+                isEndDateFocused={focusedInput === END_DATE}
+                onFocusChange={this.onFocusChange}
+                selectedShortcut={selectedShortcut}
+              />
+            </div>
+          }
+          { isComparing &&
+            <span>
+              By
+            </span>
+          }
+          {isComparing && this.renderCompareByOptions()}
 
           <button className="success" type="button" onClick={onApply}>
             Apply
