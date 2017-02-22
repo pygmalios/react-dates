@@ -169,17 +169,7 @@ export default class DayPickerRangeController extends React.Component {
     });
   }
 
-  // TODO fix periods
   onShortcutClick(shortcut) {
-    const { period } = shortcut;
-    let { startDate, endDate } = this.props;
-    if (period) {
-      startDate = this.today.clone().subtract(...period);
-      endDate = this.today.clone();
-      this.props.onDatesChange({ startDate, endDate });
-      this.props.onFocusChange(null);
-    }
-
     this.props.onShortcutChange(shortcut);
   }
 
