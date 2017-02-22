@@ -142,7 +142,9 @@ class DateRangePickerWrapper extends React.Component {
       const startDate = this.today.clone().subtract(...selectedShortcut.period);
       const endDate = this.today.clone();
       this.setState({ startDate, endDate });
-      const period = this.getPreviousPeriod(startDate, endDate, selectedShortcut, this.state.selectedShortcutPrevious);
+      const period = this.getPreviousPeriod(
+        startDate, endDate, selectedShortcut,
+        this.state.selectedShortcutPrevious);
       this.updatePreviousPeriod(startDate, endDate, period);
     }
 
@@ -152,14 +154,15 @@ class DateRangePickerWrapper extends React.Component {
   onDatesChange({ startDate, endDate }) {
     this.setState({ startDate, endDate });
     const { selectedShortcut, selectedShortcutPrevious } = this.state;
-    const period = this.getPreviousPeriod(startDate, endDate, selectedShortcut, selectedShortcutPrevious);
+    const period = this.getPreviousPeriod(
+      startDate, endDate,
+      selectedShortcut, selectedShortcutPrevious);
     this.updatePreviousPeriod(startDate, endDate, period);
   }
 
   onPreviousDatesChange({ startDate, endDate }) {
     this.setState({ previousStartDate: startDate, previousEndDate: endDate });
   }
-
 
   onPreviousShortcutChange(selectedShortcutPrevious) {
     const { startDate, endDate, selectedShortcut } = this.state;
