@@ -83,6 +83,7 @@ const defaultProps = {
     closeDatePicker: 'Close',
     clearDates: 'Clear Dates',
   },
+
 };
 
 export default class DateRangePicker extends React.Component {
@@ -206,6 +207,7 @@ export default class DateRangePicker extends React.Component {
       isDayBlocked,
       isDayHighlighted,
       isOutsideRange,
+      isDayHighlightedPrevious,
       numberOfMonths,
       orientation,
       monthFormat,
@@ -237,6 +239,7 @@ export default class DateRangePicker extends React.Component {
       previousEndDate,
       previousStartDate,
     } = this.props;
+
     const { dayPickerContainerStyles } = this.state;
 
     const onOutsideClick = (!withFullScreenPortal && withPortal)
@@ -276,6 +279,7 @@ export default class DateRangePicker extends React.Component {
           isOutsideRange={isOutsideRange}
           isDayHighlighted={isDayHighlighted}
           isDayBlocked={isDayBlocked}
+          isDayHighlightedPrevious={isDayHighlightedPrevious}
           keepOpenOnDateSelect={keepOpenOnDateSelect}
           renderDay={renderDay}
           selectedShortcut={selectedShortcut}

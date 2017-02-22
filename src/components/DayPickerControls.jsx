@@ -46,8 +46,12 @@ export default class DayPickerControls extends React.Component {
       shortcuts,
       onDatesChange,
       onShortcutChange,
+      onCompareToChange,
+      onByValueChange,
       startDate,
       endDate,
+      isDayHighlighted,
+      isCompareToChecked,
     } = this.props;
 
     return (
@@ -58,7 +62,8 @@ export default class DayPickerControls extends React.Component {
             <input
               name="compare-to-checkbox"
               type="checkbox"
-              checked
+              checked={isCompareToChecked}
+              onChange={() => onCompareToChange(!isCompareToChecked)}
             />
           </label>
 
@@ -89,6 +94,7 @@ export default class DayPickerControls extends React.Component {
           <div className="DayPickerControls__previous">
             <DayPickerController
               ref={(ref) => { this.dayPicker = ref; }}
+              isDayHighlighted={isDayHighlighted}
               onFocusChange={this.onFocusChange}
               numberOfMonths={2}
               onDatesChange={onDatesChange}
@@ -97,7 +103,6 @@ export default class DayPickerControls extends React.Component {
               startDate={startDate}
               endDate={endDate}
               minimumNights={0}
-              isOutsideRange={() => false}
               keepOpenOnDateSelect
               selectedShortcut={selectedShortcut}
               shortcuts={shortcuts}

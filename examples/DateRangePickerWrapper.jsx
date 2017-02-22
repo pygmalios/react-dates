@@ -15,6 +15,7 @@ import {
   PREVIOUS_PERIOD_SHORTCUT,
 } from '../constants';
 import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
+import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 
 const propTypes = {
   // example props for the demo
@@ -87,6 +88,14 @@ const defaultProps = {
     clearDates: 'Clear Dates',
   },
 };
+
+function isDayHighlightedPrevious(startDate, endDate) {
+  return day => {
+   const r = isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
+   console.log('isDayHighlighted', r, day);
+   return r;
+  }
+}
 
 class DateRangePickerWrapper extends React.Component {
   constructor(props) {
@@ -185,6 +194,8 @@ class DateRangePickerWrapper extends React.Component {
     this.setState({ focusedInput });
   }
 
+
+
   render() {
     const {
       focusedInput,
@@ -202,11 +213,12 @@ class DateRangePickerWrapper extends React.Component {
       'initialStartDate',
       'initialEndDate',
     ]);
-
+    const highlight = isDayHighlightedPrevious(startDate, endDate)
     return (
       <div>
         <DateRangePicker
           {...props}
+          isDayHighlightedPrevious={highlight}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
           onShortcutChange={this.onShortcutChange}

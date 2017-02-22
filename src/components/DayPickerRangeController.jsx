@@ -95,6 +95,7 @@ export default class DayPickerRangeController extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isComparing: true,
       hoverDate: null,
     };
 
@@ -246,10 +247,12 @@ export default class DayPickerRangeController extends React.Component {
   }
 
   render() {
+    const { isComparing } = this.state;
     const {
       isDayBlocked,
       isDayHighlighted,
       isOutsideRange,
+      isDayHighlightedPrevious,
       numberOfMonths,
       orientation,
       monthFormat,
@@ -330,6 +333,9 @@ export default class DayPickerRangeController extends React.Component {
         shortcutsPrevious={shortcutsPrevious}
         previousStartDate={previousStartDate}
         previousEndDate={previousEndDate}
+        isDayHighlightedPrevious={isDayHighlightedPrevious}
+        isComparing={isComparing}
+        onCompareToChange={this.onCompareToChange}
       />
     );
   }
