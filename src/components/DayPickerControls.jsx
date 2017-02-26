@@ -51,6 +51,7 @@ export default class DayPickerControls extends React.Component {
       startDate,
       endDate,
       isDayHighlighted,
+      isOutsideRange,
       isComparing,
     } = this.props;
 
@@ -98,6 +99,7 @@ export default class DayPickerControls extends React.Component {
             <DayPickerController
               ref={(ref) => { this.dayPicker = ref; }}
               isDayHighlighted={isDayHighlighted}
+              isOutsideRange={isOutsideRange}
               onFocusChange={this.onFocusChange}
               numberOfMonths={2}
               onDatesChange={onDatesChange}
