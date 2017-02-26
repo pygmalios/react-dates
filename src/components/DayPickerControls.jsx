@@ -1,5 +1,4 @@
 import React from 'react';
-import RangeInputController from './PreviousDateRangePicker';
 import DateRangeController from './DateRangePickerInputController';
 import DayPickerController from './DayPickerRangeController';
 import { START_DATE, END_DATE } from '../../constants';
@@ -53,6 +52,7 @@ export default class DayPickerControls extends React.Component {
       isDayHighlighted,
       isOutsideRange,
       isComparing,
+      initialVisibleMonth,
     } = this.props;
 
     return (
@@ -98,6 +98,7 @@ export default class DayPickerControls extends React.Component {
           <div className="DayPickerControls__previous">
             <DayPickerController
               ref={(ref) => { this.dayPicker = ref; }}
+              initialVisibleMonth={initialVisibleMonth}
               isDayHighlighted={isDayHighlighted}
               isOutsideRange={isOutsideRange}
               onFocusChange={this.onFocusChange}

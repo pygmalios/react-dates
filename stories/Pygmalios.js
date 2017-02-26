@@ -38,7 +38,6 @@ storiesOf('Pygmalios', module)
       isDayHighlightedFn={isDayHighlightedFn}
       keepOpenOnDateSelect
       minimumNights={0}
-      enableOutsideDates
       autoFocus
       withControls
       withShortcuts

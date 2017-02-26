@@ -357,6 +357,7 @@ export default class DayPickerRangeController extends React.Component {
             isOutsideRange={isOutsideRange}
             isDayHighlighted={isDayHighlightedPrevious}
             isComparing={isComparing}
+            initialVisibleMonth={() => (previousStartDate || previousEndDate || initialVisibleMonth())}
             compareBy={compareBy}
             onCompareToChange={this.onCompareToChange}
             onCompareByChange={this.onCompareByChange}
