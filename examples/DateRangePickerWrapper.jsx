@@ -15,7 +15,6 @@ import {
   PREVIOUS_PERIOD_SHORTCUT,
 } from '../constants';
 import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
-import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 
 const propTypes = {
   // example props for the demo
@@ -79,6 +78,7 @@ const defaultProps = {
   isDayBlocked: () => false,
   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => false,
+  isDayHighlightedFn: (d1, d2) => () => false,
 
   // internationalization
   displayFormat: () => moment.localeData().longDateFormat('L'),
@@ -88,10 +88,6 @@ const defaultProps = {
     clearDates: 'Clear Dates',
   },
 };
-
-function isDayHighlightedPrevious(startDate, endDate) {
-  return day => isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
-}
 
 class DateRangePickerWrapper extends React.Component {
   constructor(props) {
@@ -179,7 +175,8 @@ class DateRangePickerWrapper extends React.Component {
         this.setState({ previousStartDate, previousEndDate });
       }
     } else if (selectedShortcutPrevious.name !== CUSTOM_RANGE_SHORTCUT) {
-      const period = this.getPreviousPeriod(startDate, endDate, selectedShortcut, selectedShortcutPrevious);
+      const period = this.getPreviousPeriod(startDate, endDate,
+                                            selectedShortcut, selectedShortcutPrevious);
       this.updatePreviousPeriod(startDate, endDate, period);
     }
 
@@ -209,12 +206,16 @@ class DateRangePickerWrapper extends React.Component {
       'initialStartDate',
       'initialEndDate',
     ]);
-    const highlight = isDayHighlightedPrevious(startDate, endDate)
+
+    if (props.withControls) {
+      props.isDayHighlighted = props.isDayHighlightedFn && props.isDayHighlightedFn(previousStartDate, previousEndDate);
+      props.isDayHighlightedPrevious = props.isDayHighlightedFn && props.isDayHighlightedFn(startDate, endDate);
+    }
+
     return (
       <div>
         <DateRangePicker
           {...props}
-          isDayHighlightedPrevious={highlight}
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
           onShortcutChange={this.onShortcutChange}

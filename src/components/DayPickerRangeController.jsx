@@ -20,6 +20,7 @@ import {
 } from '../../constants';
 
 import DayPicker from './DayPicker';
+import DayPickerControls from './DayPickerControls';
 
 const propTypes = forbidExtraProps({
   startDate: momentPropTypes.momentObj,
@@ -312,44 +313,53 @@ export default class DayPickerRangeController extends React.Component {
     };
 
     return (
-      <DayPicker
-        ref={(ref) => { this.dayPicker = ref; }}
-        orientation={orientation}
-        enableOutsideDays={enableOutsideDays}
-        modifiers={modifiers}
-        numberOfMonths={numberOfMonths}
-        onDayClick={this.onDayClick}
-        onShortcutClick={this.onShortcutClick}
-        onPreviousDatesChange={onPreviousDatesChange}
-        onPreviousShortcutChange={onPreviousShortcutChange}
-        onApply={this.onApply}
-        onCancel={this.onCancel}
-        onDayMouseEnter={this.onDayMouseEnter}
-        onDayMouseLeave={this.onDayMouseLeave}
-        onPrevMonthClick={onPrevMonthClick}
-        onNextMonthClick={onNextMonthClick}
-        monthFormat={monthFormat}
-        withPortal={withPortal}
-        hidden={!focusedInput}
-        initialVisibleMonth={initialVisibleMonth}
-        onOutsideClick={onOutsideClick}
-        navPrev={navPrev}
-        navNext={navNext}
-        renderDay={renderDay}
-        selectedShortcut={selectedShortcut}
-        selectedShortcutPrevious={selectedShortcutPrevious}
-        withControls={withControls}
-        withShortcuts={withShortcuts}
-        shortcuts={shortcuts}
-        shortcutsPrevious={shortcutsPrevious}
-        previousStartDate={previousStartDate}
-        previousEndDate={previousEndDate}
-        isDayHighlightedPrevious={isDayHighlightedPrevious}
-        isComparing={isComparing}
-        compareBy={compareBy}
-        onCompareToChange={this.onCompareToChange}
-        onCompareByChange={this.onCompareByChange}
-      />
+      <div>
+        <DayPicker
+          ref={(ref) => { this.dayPicker = ref; }}
+          orientation={orientation}
+          enableOutsideDays={enableOutsideDays}
+          modifiers={modifiers}
+          numberOfMonths={numberOfMonths}
+          onDayClick={this.onDayClick}
+          onShortcutClick={this.onShortcutClick}
+          onPreviousDatesChange={onPreviousDatesChange}
+          onPreviousShortcutChange={onPreviousShortcutChange}
+          onApply={this.onApply}
+          onCancel={this.onCancel}
+          onDayMouseEnter={this.onDayMouseEnter}
+          onDayMouseLeave={this.onDayMouseLeave}
+          onPrevMonthClick={onPrevMonthClick}
+          onNextMonthClick={onNextMonthClick}
+          monthFormat={monthFormat}
+          withPortal={withPortal}
+          hidden={!focusedInput}
+          initialVisibleMonth={initialVisibleMonth}
+          onOutsideClick={onOutsideClick}
+          navPrev={navPrev}
+          navNext={navNext}
+          renderDay={renderDay}
+          selectedShortcut={selectedShortcut}
+          withShortcuts={withShortcuts}
+          shortcuts={shortcuts}
+        />
+        { withControls &&
+          <DayPickerControls
+            selectedShortcut={selectedShortcutPrevious}
+            shortcuts={shortcutsPrevious}
+            onDatesChange={onPreviousDatesChange}
+            onShortcutChange={onPreviousShortcutChange}
+            startDate={previousStartDate}
+            endDate={previousEndDate}
+            onApply={this.onApply}
+            onCancel={this.onCancel}
+            isDayHighlighted={isDayHighlightedPrevious}
+            isComparing={isComparing}
+            compareBy={compareBy}
+            onCompareToChange={this.onCompareToChange}
+            onCompareByChange={this.onCompareByChange}
+          />
+        }
+      </div>
     );
   }
 }

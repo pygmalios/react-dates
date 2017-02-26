@@ -383,30 +383,16 @@ export default class DayPicker extends React.Component {
       orientation,
       modifiers,
       withPortal,
-      withControls,
       withShortcuts,
       onDayClick,
       onShortcutClick,
-      onPreviousDatesChange,
-      onPreviousShortcutChange,
-      onApply,
-      onCancel,
       onDayMouseEnter,
       onDayMouseLeave,
       renderDay,
       onOutsideClick,
       monthFormat,
       selectedShortcut,
-      selectedShortcutPrevious,
       shortcuts,
-      shortcutsPrevious,
-      previousStartDate,
-      previousEndDate,
-      isDayHighlightedPrevious,
-      isComparing,
-      compareBy,
-      onCompareToChange,
-      onCompareByChange,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -506,23 +492,6 @@ export default class DayPicker extends React.Component {
               onShortcutClick={onShortcutClick}
             />}
           </div>
-          { withControls &&
-            <DayPickerControls
-              selectedShortcut={selectedShortcutPrevious}
-              shortcuts={shortcutsPrevious}
-              onDatesChange={onPreviousDatesChange}
-              onShortcutChange={onPreviousShortcutChange}
-              startDate={previousStartDate}
-              endDate={previousEndDate}
-              onApply={onApply}
-              onCancel={onCancel}
-              isDayHighlighted={isDayHighlightedPrevious}
-              isComparing={isComparing}
-              compareBy={compareBy}
-              onCompareToChange={onCompareToChange}
-              onCompareByChange={onCompareByChange}
-            />
-          }
         </OutsideClickHandler>
       </div>
     );

@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { storiesOf } from '@kadira/storybook';
+import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
+import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 
 import DateRangePickerWrapper from '../examples/DateRangePickerWrapper';
 
@@ -24,10 +26,16 @@ const shortcutsPrevious = [
   { name: 'Custom Range' },
 ];
 
+function isDayHighlightedFn(startDate, endDate) {
+  return day => isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
+}
+
+
 storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
-      isOutsideRange={() => false}
+      isOutsideRange={day => day.isAfter(moment())}
+      isDayHighlightedFn={isDayHighlightedFn}
       keepOpenOnDateSelect
       minimumNights={0}
       enableOutsideDates
