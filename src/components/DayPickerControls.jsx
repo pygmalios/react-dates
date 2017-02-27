@@ -13,23 +13,6 @@ export default class DayPickerControls extends React.Component {
     this.onFocusChange = this.onFocusChange.bind(this);
   }
 
-  renderCompareByOptions() {
-    const { compareBy, onCompareByChange } = this.props;
-    const options = [
-      { option: 'byPercentage', label: 'Change by % Value' },
-      { option: 'byNumeric', label: 'Change by Numeric Value' },
-      { option: 'byExact', label: 'Exact Value of Custom Range' },
-    ];
-
-    return (
-      <select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
-        {options.map(option => (
-          <option key={option.option}  value={option.option}>{option.label}</option>
-        ))}
-      </select>
-    );
-  }
-
   onFocusChange(focusedInput) {
     this.setState({ focusedInput });
   }
@@ -38,6 +21,13 @@ export default class DayPickerControls extends React.Component {
     const {
       focusedInput,
     } = this.state;
+
+    const { compareBy, onCompareByChange } = this.props;
+    const options = [
+      { option: 'byPercentage', label: 'Change by % Value' },
+      { option: 'byNumeric', label: 'Change by Numeric Value' },
+      { option: 'byExact', label: 'Exact Value of Custom Range' },
+    ];
     const {
       onApply,
       onCancel,
@@ -85,7 +75,12 @@ export default class DayPickerControls extends React.Component {
               By
             </span>
           }
-          {isComparing && this.renderCompareByOptions()}
+
+          { isComparing &&
+            (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
+              { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
+            </select>)
+          }
 
           <button className="success" type="button" onClick={onApply}>
             Apply
@@ -94,6 +89,7 @@ export default class DayPickerControls extends React.Component {
             Cancel
           </button>
         </div>
+
         { focusedInput &&
           <DayPickerController
             ref={(ref) => { this.dayPicker = ref; }}
