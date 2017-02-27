@@ -95,26 +95,25 @@ export default class DayPickerControls extends React.Component {
           </button>
         </div>
         { focusedInput &&
-          <div className="DayPickerControls__previous">
-            <DayPickerController
-              ref={(ref) => { this.dayPicker = ref; }}
-              initialVisibleMonth={initialVisibleMonth}
-              isDayHighlighted={isDayHighlighted}
-              isOutsideRange={isOutsideRange}
-              onFocusChange={this.onFocusChange}
-              numberOfMonths={2}
-              onDatesChange={onDatesChange}
-              onShortcutChange={onShortcutChange}
-              focusedInput={focusedInput}
-              startDate={startDate}
-              endDate={endDate}
-              minimumNights={0}
-              keepOpenOnDateSelect
-              selectedShortcut={selectedShortcut}
-              shortcuts={shortcuts}
-              withShortcuts
-            />
-          </div>
+          <DayPickerController
+            ref={(ref) => { this.dayPicker = ref; }}
+            initialVisibleMonth={initialVisibleMonth}
+            isDayHighlighted={isDayHighlighted}
+            isOutsideRange={isOutsideRange}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={2}
+            onDatesChange={onDatesChange}
+            onShortcutChange={onShortcutChange}
+            focusedInput={focusedInput}
+            startDate={startDate}
+            endDate={endDate}
+            minimumNights={0}
+            keepOpenOnDateSelect
+            selectedShortcut={selectedShortcut}
+            shortcuts={shortcuts}
+            withShortcuts
+            isPrevious
+          />
         }
       </div>
     );
