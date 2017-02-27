@@ -4,6 +4,7 @@ var DateRangePickerInputController = require('./lib/components/DateRangePickerIn
 var SingleDatePicker = require('./lib/components/SingleDatePicker').default;
 var SingleDatePickerInput = require('./lib/components/SingleDatePickerInput').default;
 var DayPicker = require('./lib/components/DayPicker').default;
+var DayPickerControls = require('./lib/components/DayPickerControls').default;
 var DayPickerRangeController = require('./lib/components/DayPickerRangeController').default;
 var CalendarMonthGrid = require('./lib/components/CalendarMonthGrid').default;
 var CalendarMonth = require('./lib/components/CalendarMonth').default;
@@ -30,6 +31,7 @@ module.exports = {
   DateRangePickerInput: DateRangePickerInput,
   SingleDatePickerInput: SingleDatePickerInput,
   DayPicker: DayPicker,
+  DayPickerControls: DayPickerControls,
   DayPickerRangeController: DayPickerRangeController,
   CalendarMonthGrid: CalendarMonthGrid,
   CalendarMonth: CalendarMonth,

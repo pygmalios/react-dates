@@ -1,6 +1,6 @@
 import React from 'react';
-import DateRangeController from './DateRangePickerInputController';
-import DayPickerController from './DayPickerRangeController';
+import DateRangePickerController from './DateRangePickerInputController';
+import DayPickerRangeController from './DayPickerRangeController';
 import { START_DATE, END_DATE } from '../../constants';
 
 export default class DayPickerControls extends React.Component {
@@ -60,7 +60,7 @@ export default class DayPickerControls extends React.Component {
 
           { isComparing &&
             <div className="DateRangePicker">
-              <DateRangeController
+              <DateRangePickerController
                 startDate={startDate}
                 isStartDateFocused={focusedInput === START_DATE}
                 endDate={endDate}
@@ -70,11 +70,7 @@ export default class DayPickerControls extends React.Component {
               />
             </div>
           }
-          { isComparing &&
-            <span>
-              By
-            </span>
-          }
+          { isComparing && <span>By</span> }
 
           { isComparing &&
             (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
@@ -82,16 +78,12 @@ export default class DayPickerControls extends React.Component {
             </select>)
           }
 
-          <button className="success" type="button" onClick={onApply}>
-            Apply
-          </button>
-          <button type="button" onClick={onCancel}>
-            Cancel
-          </button>
+          <button className="success" type="button" onClick={onApply}>Apply</button>
+          <button type="button" onClick={onCancel}>Cancel</button>
         </div>
 
         { focusedInput &&
-          <DayPickerController
+          <DayPickerRangeController
             ref={(ref) => { this.dayPicker = ref; }}
             initialVisibleMonth={initialVisibleMonth}
             isDayHighlighted={isDayHighlighted}
