@@ -81,6 +81,8 @@ const defaultProps = {
 
   // internationalization
   monthFormat: 'MMMM YYYY',
+
+  isPrevious: false,
 };
 
 function applyTransformStyles(el, transform, opacity = '') {
@@ -393,6 +395,7 @@ export default class DayPicker extends React.Component {
       monthFormat,
       selectedShortcut,
       shortcuts,
+      isPrevious,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -415,6 +418,7 @@ export default class DayPicker extends React.Component {
       'DayPicker--vertical': this.isVertical(),
       'DayPicker--vertical-scrollable': verticalScrollable,
       'DayPicker--portal': withPortal,
+      'DayPicker--previous': isPrevious,
     });
 
     const transitionContainerClasses = cx('transition-container', {
