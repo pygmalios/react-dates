@@ -22,6 +22,11 @@ import {
 import DayPicker from './DayPicker';
 import DayPickerControls from './DayPickerControls';
 
+const shortcutShape = PropTypes.shape({
+  name: PropTypes.string.required,
+  period: PropTypes.array,
+});
+
 const propTypes = forbidExtraProps({
   startDate: momentPropTypes.momentObj,
   endDate: momentPropTypes.momentObj,
@@ -53,6 +58,22 @@ const propTypes = forbidExtraProps({
 
   // i18n
   monthFormat: PropTypes.string,
+
+  onShortcutChange: PropTypes.func,
+  onPreviousDatesChange: PropTypes.func,
+  onPreviousShortcutChange: PropTypes.func,
+  isDayHighlightedPrevious: PropTypes.func,
+
+  selectedShortcut: shortcutShape,
+  selectedShortcutPrevious: shortcutShape,
+  shortcuts: PropTypes.arrayOf(shortcutShape),
+  shortcutsPrevious: PropTypes.arrayOf(shortcutShape),
+  previousStartDate: momentPropTypes.momentObj,
+  previousEndDate: momentPropTypes.momentObj,
+
+  withShortcuts: PropTypes.bool,
+  withControls: PropTypes.bool,
+  isPrevious: PropTypes.bool,
 });
 
 const defaultProps = {
@@ -324,8 +345,6 @@ export default class DayPickerRangeController extends React.Component {
           numberOfMonths={numberOfMonths}
           onDayClick={this.onDayClick}
           onShortcutClick={this.onShortcutClick}
-          onPreviousDatesChange={onPreviousDatesChange}
-          onPreviousShortcutChange={onPreviousShortcutChange}
           onApply={this.onApply}
           onCancel={this.onCancel}
           onDayMouseEnter={this.onDayMouseEnter}

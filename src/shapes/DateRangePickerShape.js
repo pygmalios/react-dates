@@ -5,6 +5,11 @@ import FocusedInputShape from '../shapes/FocusedInputShape';
 import OrientationShape from '../shapes/OrientationShape';
 import anchorDirectionShape from '../shapes/AnchorDirectionShape';
 
+const shortcutShape = PropTypes.shape({
+  name: PropTypes.string.required,
+  period: PropTypes.array,
+});
+
 export default {
   // required props for a functional interactive DateRangePicker
   startDate: momentPropTypes.momentObj,
@@ -59,4 +64,20 @@ export default {
     closeDatePicker: PropTypes.node,
     clearDates: PropTypes.node,
   }),
+
+  selectedShortcut: shortcutShape,
+  selectedShortcutPrevious: shortcutShape,
+  shortcuts: PropTypes.arrayOf(shortcutShape),
+  shortcutsPrevious: PropTypes.arrayOf(shortcutShape),
+
+  withControls: PropTypes.bool,
+  withShortcuts: PropTypes.bool,
+
+  isDayHighlightedFn: PropTypes.func,
+  isDayHighlightedPrevious: PropTypes.func,
+  onShortcutChange: PropTypes.func,
+  onPreviousShortcutChange: PropTypes.func,
+  onPreviousDatesChange: PropTypes.func,
+  previousEndDate: momentPropTypes.momentObj,
+  previousStartDate: momentPropTypes.momentObj,
 };

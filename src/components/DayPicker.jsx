@@ -28,6 +28,11 @@ const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
 
+
+const shortcutShape = PropTypes.shape({
+  name: PropTypes.string.required,
+  period: PropTypes.array,
+});
 const propTypes = forbidExtraProps({
   // calendar presentation props
   enableOutsideDays: PropTypes.bool,
@@ -53,6 +58,16 @@ const propTypes = forbidExtraProps({
 
   // internationalization
   monthFormat: PropTypes.string,
+  onShortcutClick: PropTypes.func,
+  onApply: PropTypes.func,
+  onCancel: PropTypes.func,
+
+  selectedShortcut: shortcutShape,
+  shortcuts: PropTypes.arrayOf(shortcutShape),
+
+  withShortcuts: PropTypes.bool,
+  withControls: PropTypes.bool,
+  isPrevious: PropTypes.bool,
 });
 
 const defaultProps = {

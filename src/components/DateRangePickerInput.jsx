@@ -9,6 +9,10 @@ import CalendarIcon from '../svg/calendar.svg';
 
 import { START_DATE, END_DATE } from '../../constants';
 
+const shortcutShape = PropTypes.shape({
+  name: PropTypes.string.required,
+  period: PropTypes.array,
+});
 const propTypes = forbidExtraProps({
   startDateId: PropTypes.string,
   startDatePlaceholderText: PropTypes.string,
@@ -44,6 +48,8 @@ const propTypes = forbidExtraProps({
   phrases: PropTypes.shape({
     clearDates: PropTypes.node,
   }),
+
+  selectedShortcut: shortcutShape,
 });
 
 const defaultProps = {

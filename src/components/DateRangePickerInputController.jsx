@@ -49,6 +49,11 @@ const propTypes = forbidExtraProps({
   phrases: PropTypes.shape({
     clearDates: PropTypes.node,
   }),
+
+  selectedShortcut: PropTypes.shape({
+    name: PropTypes.string.required,
+    period: PropTypes.array,
+  }),
 });
 
 const defaultProps = {

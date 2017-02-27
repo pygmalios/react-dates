@@ -24,7 +24,7 @@ export default class DayPickerControls extends React.Component {
     return (
       <select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
         {options.map(option => (
-          <option value={option.option}>{option.label}</option>
+          <option key={option.option}  value={option.option}>{option.label}</option>
         ))}
       </select>
     );
@@ -58,7 +58,7 @@ export default class DayPickerControls extends React.Component {
     return (
       <div>
         <div className="DayPickerControls__inputs">
-          <label forHtml="compare-to-checkbox">
+          <label htmlFor="compare-to-checkbox">
             Compare to
             <input
               name="compare-to-checkbox"
