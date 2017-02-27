@@ -30,11 +30,11 @@ function isDayHighlightedFn(startDate, endDate) {
   return day => isInclusivelyAfterDay(day, startDate) && isInclusivelyBeforeDay(day, endDate);
 }
 
-
+const today = moment().endOf('day');
 storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
-      isOutsideRange={day => day.isAfter(moment())}
+      isOutsideRange={day => day.isAfter(today)}
       isDayHighlightedFn={isDayHighlightedFn}
       keepOpenOnDateSelect
       minimumNights={0}
