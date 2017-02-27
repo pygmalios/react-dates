@@ -58,7 +58,7 @@ const defaultProps = {
 };
 
 function getMonths(initialMonth, numberOfMonths) {
-  let month = initialMonth.clone().subtract(1, 'month');
+  let month = initialMonth.clone().subtract(2, 'month');
 
   const months = [];
   for (let i = 0; i < numberOfMonths + 2; i += 1) {
