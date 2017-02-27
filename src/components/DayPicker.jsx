@@ -9,7 +9,6 @@ import OutsideClickHandler from './OutsideClickHandler';
 import CalendarMonthGrid from './CalendarMonthGrid';
 import DayPickerNavigation from './DayPickerNavigation';
 import DayPickerShortcuts from './DayPickerShortcuts';
-import DayPickerControls from './DayPickerControls';
 
 import getTransformStyles from '../utils/getTransformStyles';
 
