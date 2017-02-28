@@ -1,27 +1,9 @@
 import React from 'react';
 import DateRangePickerController from './DateRangePickerInputController';
-import DayPickerRangeController from './DayPickerRangeController';
 import { START_DATE, END_DATE } from '../../constants';
 
 export default class DayPickerControls extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      focusedInput: null,
-    };
-
-    this.onFocusChange = this.onFocusChange.bind(this);
-  }
-
-  onFocusChange(focusedInput) {
-    this.setState({ focusedInput });
-  }
-
   render() {
-    const {
-      focusedInput,
-    } = this.state;
-
     const { compareBy, onCompareByChange } = this.props;
     const options = [
       { option: 'byPercentage', label: 'Change by % Value' },
@@ -29,80 +11,53 @@ export default class DayPickerControls extends React.Component {
       { option: 'byExact', label: 'Exact Value of Custom Range' },
     ];
     const {
+      focusedInput,
+      onFocusChange,
       onApply,
       onCancel,
       selectedShortcut,
-      shortcuts,
-      onDatesChange,
-      onShortcutChange,
       onCompareToChange,
       onByValueChange,
       startDate,
       endDate,
-      isDayHighlighted,
-      isOutsideRange,
       isComparing,
-      initialVisibleMonth,
     } = this.props;
 
     return (
-      <div>
-        <div className="DayPickerControls__inputs">
-          <label htmlFor="compare-to-checkbox">
-            Compare to
-            <input
-              name="compare-to-checkbox"
-              type="checkbox"
-              checked={isComparing}
-              onChange={() => onCompareToChange(!isComparing)}
-            />
-          </label>
 
-          { isComparing &&
-            <div className="DateRangePicker">
-              <DateRangePickerController
-                startDate={startDate}
-                isStartDateFocused={focusedInput === START_DATE}
-                endDate={endDate}
-                isEndDateFocused={focusedInput === END_DATE}
-                onFocusChange={this.onFocusChange}
-                selectedShortcut={selectedShortcut}
-              />
-            </div>
-          }
-          { isComparing && <span>By</span> }
-
-          { isComparing &&
-            (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
-              { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
-            </select>)
-          }
-
-          <button className="success" type="button" onClick={onApply}>Apply</button>
-          <button type="button" onClick={onCancel}>Cancel</button>
-        </div>
-
-        { focusedInput &&
-          <DayPickerRangeController
-            ref={(ref) => { this.dayPicker = ref; }}
-            initialVisibleMonth={initialVisibleMonth}
-            isDayHighlighted={isDayHighlighted}
-            isOutsideRange={isOutsideRange}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={2}
-            onDatesChange={onDatesChange}
-            onShortcutChange={onShortcutChange}
-            focusedInput={focusedInput}
-            startDate={startDate}
-            endDate={endDate}
-            minimumNights={0}
-            keepOpenOnDateSelect
-            selectedShortcut={selectedShortcut}
-            shortcuts={shortcuts}
-            withShortcuts
-            isPrevious
+      <div className="DayPickerControls__inputs">
+        <label htmlFor="compare-to-checkbox">
+          Compare to
+          <input
+            name="compare-to-checkbox"
+            type="checkbox"
+            checked={isComparing}
+            onChange={() => onCompareToChange(!isComparing)}
           />
+        </label>
+
+        { isComparing &&
+          <div className="DateRangePicker">
+            <DateRangePickerController
+              startDate={startDate}
+              isStartDateFocused={focusedInput === START_DATE}
+              endDate={endDate}
+              isEndDateFocused={focusedInput === END_DATE}
+              onFocusChange={onFocusChange}
+              selectedShortcut={selectedShortcut}
+            />
+          </div>
         }
+        { isComparing && <span>By</span> }
+
+        { isComparing &&
+          (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
+            { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
+          </select>)
+        }
+
+        <button className="success" type="button" onClick={onApply}>Apply</button>
+        <button type="button" onClick={onCancel}>Cancel</button>
       </div>
     );
   }
