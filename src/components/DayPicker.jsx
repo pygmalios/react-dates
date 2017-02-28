@@ -22,7 +22,7 @@ import {
 
 const CALENDAR_MONTH_WIDTH = 272;
 const DAY_PICKER_PADDING = 9;
-const DAY_PICKER_SHORTCUTS = 170;
+const DAY_PICKER_SHORTCUTS = 210;
 const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';

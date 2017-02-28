@@ -1,5 +1,6 @@
 .DayPickerControls {
   position: relative;
+  height: 46px;
 
   .DayPickerControls__inputs {
     display: inline-flex;
@@ -8,12 +9,23 @@
     margin-left: 23px;
 
     select, span, label {
+      font-size: 0.9em;
       vertical-align: middle;
       margin-right: 12px;
     }
 
-    .DateRangePicker {
+    .DateRangePickerInput {
+      border: 1px solid rgb(200, 200 , 200);
+      vertical-align: middle;
       margin-right: 12px;
+      overflow: auto;
+    }
+
+    select {
+      padding: 4px 4px 4px;
+      height: 36px;
+      width: auto;
+      max-width: 210px;
     }
 
   }
@@ -22,10 +34,11 @@
 .DayPickerControls__buttons {
     display: inline-block;
     position: absolute;
-    left: 580px;
-    margin-left: 4px;
+    top: 2px;
+    left: 610px;
 
     button {
+      font-size: 0.9em !important;
       padding: 8px 16px;
       border: 1px solid #c8c8c8;
       background: white;

@@ -380,7 +380,7 @@
 .DayPickerShortcuts__ranges {
   position: absolute;
   top: 18px;
-  left: 580px;
+  left: 600px;
   padding-left: 30px;
   border-left: 1px #ccc solid; }
   .DayPickerShortcuts__ranges ul {
@@ -410,24 +410,35 @@
     color: #58A9AC !important; }
 
 .DayPickerControls {
-  position: relative; }
+  position: relative;
+  height: 46px; }
   .DayPickerControls .DayPickerControls__inputs {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 23px; }
     .DayPickerControls .DayPickerControls__inputs select, .DayPickerControls .DayPickerControls__inputs span, .DayPickerControls .DayPickerControls__inputs label {
+      font-size: 0.9em;
       vertical-align: middle;
       margin-right: 12px; }
-    .DayPickerControls .DayPickerControls__inputs .DateRangePicker {
-      margin-right: 12px; }
+    .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput {
+      border: 1px solid #c8c8c8;
+      vertical-align: middle;
+      margin-right: 12px;
+      overflow: auto; }
+    .DayPickerControls .DayPickerControls__inputs select {
+      padding: 4px 4px 4px;
+      height: 36px;
+      width: auto;
+      max-width: 210px; }
 
 .DayPickerControls__buttons {
   display: inline-block;
   position: absolute;
-  left: 580px;
-  margin-left: 4px; }
+  top: 2px;
+  left: 610px; }
   .DayPickerControls__buttons button {
+    font-size: 0.9em !important;
     padding: 8px 16px;
     border: 1px solid #c8c8c8;
     background: white;
