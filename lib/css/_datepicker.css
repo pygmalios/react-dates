@@ -77,6 +77,82 @@
   .CalendarDay--blocked-out-of-range:active {
     background: #fff; }
 
+.DayPicker.DayPicker--previous .CalendarDay {
+  border: 0 solid #e4e7e7;
+  padding: 0;
+  box-sizing: border-box;
+  color: #565a5c;
+  cursor: pointer;
+  width: 35px;
+  height: 35px; }
+  .DayPicker.DayPicker--previous .CalendarDay:active {
+    background: #f2f2f2; }
+
+.DayPicker.DayPicker--previous .CalendarDay--highlighted-calendar {
+  background: #ffe8bc;
+  color: #565a5c;
+  cursor: default; }
+  .DayPicker.DayPicker--previous .CalendarDay--highlighted-calendar:active {
+    background: #007a87; }
+
+.DayPicker.DayPicker--previous .CalendarDay--outside {
+  border: 0;
+  cursor: default; }
+  .DayPicker.DayPicker--previous .CalendarDay--outside:active {
+    background: #fff; }
+
+.DayPicker.DayPicker--previous .CalendarDay--hovered {
+  background: #fff;
+  border: 0px double #d4d9d9;
+  color: #565a5c; }
+
+.DayPicker.DayPicker--previous .CalendarDay--blocked-minimum-nights {
+  color: #cacccd;
+  background: #fff;
+  border: 1px solid #e4e7e7;
+  cursor: default; }
+  .DayPicker.DayPicker--previous .CalendarDay--blocked-minimum-nights:active {
+    background: #fff; }
+
+.DayPicker.DayPicker--previous .CalendarDay--selected-span {
+  background: #F1DCBD;
+  border: 0 double #F1DCBD;
+  color: #3c3f40; }
+  .DayPicker.DayPicker--previous .CalendarDay--selected-span.CalendarDay--hovered, .DayPicker.DayPicker--previous .CalendarDay--selected-span:active {
+    background: #eff1f1; }
+
+.DayPicker.DayPicker--previous .CalendarDay--hovered-span,
+.DayPicker.DayPicker--previous .CalendarDay--after-hovered-start {
+  background: #F1DCBD;
+  border: 0px double #80e8e0;
+  color: #565a5c; }
+
+.DayPicker.DayPicker--previous .CalendarDay--selected-start,
+.DayPicker.DayPicker--previous .CalendarDay--selected-end,
+.DayPicker.DayPicker--previous .CalendarDay--selected {
+  background: #FF9D00;
+  border: 1px double #FF9D00;
+  color: #fff; }
+  .DayPicker.DayPicker--previous .CalendarDay--selected-start:active,
+  .DayPicker.DayPicker--previous .CalendarDay--selected-end:active,
+  .DayPicker.DayPicker--previous .CalendarDay--selected:active {
+    background: #FF9D00; }
+
+.DayPicker.DayPicker--previous .CalendarDay--blocked-calendar {
+  background: #cacccd;
+  color: #82888a;
+  cursor: default; }
+  .DayPicker.DayPicker--previous .CalendarDay--blocked-calendar:active {
+    background: #cacccd; }
+
+.DayPicker.DayPicker--previous .CalendarDay--blocked-out-of-range {
+  color: #cacccd;
+  background: #fff;
+  border: 1px solid #e4e7e7;
+  cursor: default; }
+  .DayPicker.DayPicker--previous .CalendarDay--blocked-out-of-range:active {
+    background: #fff; }
+
 .CalendarMonth {
   text-align: center;
   padding: 0 13px;
@@ -183,7 +259,7 @@
     padding-left: 0; }
   .DayPicker__week-header li {
     display: inline-block;
-    width: 39px;
+    width: 35px;
     text-align: center; }
 
 .DayPicker--vertical .DayPicker__week-header {
@@ -302,25 +378,28 @@
     width: 100%; }
 
 .DayPickerShortcuts__ranges {
-  display: inline-block;
   position: absolute;
   top: 18px;
-  right: 32px; }
+  left: 580px;
+  padding-left: 30px;
+  border-left: 1px #ccc solid; }
   .DayPickerShortcuts__ranges ul {
     list-style: none;
     margin: 0 auto;
-    margin-bottom: 32px !important;
     padding: 0;
     width: 100%; }
   .DayPickerShortcuts__ranges li {
     background: none;
+    font-size: 0.9em !important;
     border: 0px !important;
     border-radius: 0px !important;
     color: #555 !important;
     padding: 0px 0px !important;
-    line-height: 32px !important;
+    line-height: 24px !important;
     margin-bottom: 8px;
     cursor: pointer; }
+  .DayPickerShortcuts__ranges li:last-child {
+    margin-bottom: 0; }
   .DayPickerShortcuts__ranges li:hover {
     background: transparent !important;
     border: 0px !important;
@@ -330,22 +409,36 @@
     border: 0px !important;
     color: #58A9AC !important; }
 
-.DayPickerControls__inputs {
-  margin-bottom: 12px; }
-  .DayPickerControls__inputs button.success {
-    background: #58A9AC !important;
-    color: white;
-    border-color: #58A9AC; }
-  .DayPickerControls__inputs button {
+.DayPickerControls {
+  position: relative; }
+  .DayPickerControls .DayPickerControls__inputs {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 23px; }
+    .DayPickerControls .DayPickerControls__inputs select, .DayPickerControls .DayPickerControls__inputs span, .DayPickerControls .DayPickerControls__inputs label {
+      vertical-align: middle;
+      margin-right: 12px; }
+    .DayPickerControls .DayPickerControls__inputs .DateRangePicker {
+      margin-right: 12px; }
+
+.DayPickerControls__buttons {
+  display: inline-block;
+  position: absolute;
+  left: 580px;
+  margin-left: 4px; }
+  .DayPickerControls__buttons button {
     padding: 8px 16px;
     border: 1px solid #c8c8c8;
     background: white;
     border-radius: 5px;
     cursor: pointer; }
-    .DayPickerControls__inputs button .success {
-      background: #58A9AC !important;
-      color: white;
-      border-color: #58A9AC; }
+  .DayPickerControls__buttons button.success {
+    background: #58A9AC !important;
+    color: white;
+    border-color: #58A9AC; }
+  .DayPickerControls__buttons button:first-child {
+    margin-right: 4px; }
 
 .DateInput {
   font-weight: 200;
