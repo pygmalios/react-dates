@@ -1,7 +1,7 @@
 .DayPickerShortcuts__ranges {
   position: absolute;
   top: 18px;
-  left: 630px;
+  left: 580px;
   padding-left: 30px;
   border-left: 1px #ccc solid;
 
@@ -19,9 +19,13 @@
     border-radius: 0px !important;
     color: #555 !important;
     padding: 0px 0px !important;
-    line-height: 26px !important;
+    line-height: 24px !important;
     margin-bottom: 8px;
     cursor: pointer;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
   }
 
   li:hover {

@@ -25,39 +25,43 @@ export default class DayPickerControls extends React.Component {
 
     return (
 
-      <div className="DayPickerControls__inputs">
-        <label htmlFor="compare-to-checkbox">
-          Compare to
-          <input
-            name="compare-to-checkbox"
-            type="checkbox"
-            checked={isComparing}
-            onChange={() => onCompareToChange(!isComparing)}
-          />
-        </label>
-
-        { isComparing &&
-          <div className="DateRangePicker">
-            <DateRangePickerController
-              startDate={startDate}
-              isStartDateFocused={focusedInput === START_DATE}
-              endDate={endDate}
-              isEndDateFocused={focusedInput === END_DATE}
-              onFocusChange={onFocusChange}
-              selectedShortcut={selectedShortcut}
+      <div className="DayPickerControls">
+        <div className="DayPickerControls__inputs">
+          <label htmlFor="compare-to-checkbox">
+            Compare to
+            <input
+              name="compare-to-checkbox"
+              type="checkbox"
+              checked={isComparing}
+              onChange={() => onCompareToChange(!isComparing)}
             />
-          </div>
-        }
-        { isComparing && <span>By</span> }
+          </label>
 
-        { isComparing &&
-          (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
-            { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
-          </select>)
-        }
+          { isComparing &&
+            <div className="DateRangePicker">
+              <DateRangePickerController
+                customArrowIcon="-"
+                startDate={startDate}
+                isStartDateFocused={focusedInput === START_DATE}
+                endDate={endDate}
+                isEndDateFocused={focusedInput === END_DATE}
+                onFocusChange={onFocusChange}
+                selectedShortcut={selectedShortcut}
+              />
+            </div>
+          }
+          { isComparing && <span>By</span> }
 
-        <button className="success" type="button" onClick={onApply}>Apply</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+          { isComparing &&
+            (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
+              { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
+            </select>)
+          }
+        </div>
+        <div className="DayPickerControls__buttons" >
+          <button className="success" type="button" onClick={onApply}>Apply</button>
+          <button type="button" onClick={onCancel}>Cancel</button>
+        </div>
       </div>
     );
   }

@@ -34,6 +34,7 @@ const today = moment().endOf('day');
 storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
+      customArrowIcon={"-"}
       isOutsideRange={day => day.isAfter(today)}
       isDayHighlightedFn={isDayHighlightedFn}
       keepOpenOnDateSelect

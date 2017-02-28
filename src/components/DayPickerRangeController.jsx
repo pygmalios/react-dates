@@ -446,6 +446,8 @@ export default class DayPickerRangeController extends React.Component {
           withShortcuts={withShortcuts}
           shortcuts={shortcuts}
         />
+
+          <div className="ComparisonPanel">
         { withControls &&
           <DayPickerControls
             startDate={previousStartDate}
@@ -486,6 +488,7 @@ export default class DayPickerRangeController extends React.Component {
             isPrevious
           />
         }
+        </div>
       </div>
     );
   }

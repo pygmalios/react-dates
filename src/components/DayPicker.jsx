@@ -20,9 +20,9 @@ import {
   VERTICAL_SCROLLABLE,
 } from '../../constants';
 
-const CALENDAR_MONTH_WIDTH = 300;
+const CALENDAR_MONTH_WIDTH = 274;
 const DAY_PICKER_PADDING = 9;
-const DAY_PICKER_SHORTCUTS = 180;
+const DAY_PICKER_SHORTCUTS = 170;
 const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
