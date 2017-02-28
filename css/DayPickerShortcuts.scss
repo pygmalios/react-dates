@@ -1,3 +1,5 @@
+@import "variables";
+
 .DayPickerShortcuts__ranges {
   position: absolute;
   top: 18px;
@@ -17,7 +19,7 @@
     font-size: 0.9em !important;
     border: 0px !important;
     border-radius: 0px !important;
-    color: #555 !important;
+    color: #555;
     padding: 0px 0px !important;
     line-height: 24px !important;
     margin-bottom: 8px;
@@ -31,12 +33,29 @@
   li:hover {
     background: transparent !important;
     border: 0px !important;
-    color: #58A9AC !important;
+    color: $react-dates-color-primary;
   }
 
   li.active {
     background: none;
     border: 0px !important;
-    color: #58A9AC !important;
+    color:$react-dates-color-primary;
+  }
+}
+
+.ComparisonPanel {
+  .DayPickerShortcuts__ranges {
+
+  li:hover {
+    background: transparent;
+    border: 0px !important;
+    color: $react-dates-color-primary-2;
+  }
+
+  li.active {
+    background: none;
+    border: 0px !important;
+    color: $react-dates-color-primary-2;
+  }
   }
 }
