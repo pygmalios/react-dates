@@ -22,7 +22,7 @@ import {
 
 const CALENDAR_MONTH_WIDTH = 300;
 const DAY_PICKER_PADDING = 9;
-const DAY_PICKER_SHORTCUTS = 200;
+const DAY_PICKER_SHORTCUTS = 180;
 const MONTH_PADDING = 23;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
@@ -316,8 +316,7 @@ export default class DayPicker extends React.Component {
 
     if (newMonthHeight !== calculateDimension(this.transitionContainer, 'height')) {
       this.monthHeight = newMonthHeight;
-      const shortcutsHeight = 50;
-      this.transitionContainer.style.height = `${newMonthHeight + shortcutsHeight}px`;
+      this.transitionContainer.style.height = `${newMonthHeight}px`;
     }
   }
 
