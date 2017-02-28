@@ -20,7 +20,7 @@ import {
   VERTICAL_SCROLLABLE,
 } from '../../constants';
 
-const CALENDAR_MONTH_WIDTH = 274;
+const CALENDAR_MONTH_WIDTH = 272;
 const DAY_PICKER_PADDING = 9;
 const DAY_PICKER_SHORTCUTS = 170;
 const MONTH_PADDING = 23;

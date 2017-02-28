@@ -292,8 +292,8 @@ export default class DayPickerRangeController extends React.Component {
 
   isDayAfterHoveredStartDate(day, startDate, endDate, hoverDate) {
     const { minimumNights } = this.props;
-    return !!startDate && !endDate && !this.isBlocked(day) && isNextDay(hoverDate, day) &&
-      minimumNights > 0 && isSameDay(hoverDate, startDate);
+    return startDate && !endDate && !this.isBlocked(day) && isNextDay(hoverDate, day) &&
+      minimumNights > 0 && isSameDay(hoverDate, day);
   }
 
   isEndDate(day, endDate) {
@@ -382,14 +382,16 @@ export default class DayPickerRangeController extends React.Component {
       'blocked-calendar': day => isDayBlocked(day),
       'blocked-out-of-range': day => isOutsideRange(day),
       'blocked-minimum-nights': day => this.doesNotMeetMinimumNights(day, startDate, focusedInput),
-      'highlighted-calendar': day => isDayHighlighted(day),
+      'highlighted-calendar-span': day => isDayHighlighted(day),
+      'highlighted-calendar-start': day => isSameDay(day, previousStartDate),
+      'highlighted-calendar-end': day => isSameDay(day, previousEndDate),
       valid: day => !this.isBlocked(day),
       // before anything has been set or after both are set
       hovered: day => this.isHovered(day, hoverDate),
 
       // while start date has been set, but end date has not been
-      'hovered-span': day => this.isInHoveredSpan(day, startDate, endDate),
-      'after-hovered-start': day => this.isDayAfterHoveredStartDate(day),
+      'hovered-span': day => this.isInHoveredSpan(day, startDate, endDate, hoverDate),
+      'after-hovered-start': day => this.isDayAfterHoveredStartDate(day, startDate, endDate, hoverDate),
       'last-in-range': day => this.isLastInRange(day, startDate, endDate),
 
       // once a start date and end date have been set
@@ -404,7 +406,9 @@ export default class DayPickerRangeController extends React.Component {
       'blocked-calendar': day => isDayBlocked(day),
       'blocked-out-of-range': day => isOutsideRange(day),
       'blocked-minimum-nights': day => this.doesNotMeetMinimumNights(day, previousStartDate, focusedInputPrevious),
-      'highlighted-calendar': day => isDayHighlightedPrevious(day),
+      'highlighted-calendar-span': day => isDayHighlightedPrevious(day),
+      'highlighted-calendar-start': day => isSameDay(day, startDate),
+      'highlighted-calendar-end': day => isSameDay(day, endDate),
       valid: day => !this.isBlocked(day),
       // before anything has been set or after both are set
       hovered: day => this.isHovered(day, previousHoverDate),

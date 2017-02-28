@@ -4,7 +4,7 @@
 .DayPicker.DayPicker--previous {
   // This order is important.
   .CalendarDay {
-    border: 1px solid lighten($react-dates-color-border-light, 3);
+    border: 0 solid lighten($react-dates-color-border-light, 3);
     padding: 0;
     box-sizing: border-box;
     color: $react-dates-color-gray;
@@ -37,9 +37,9 @@
   }
 
   .CalendarDay--hovered {
-    background: lighten($react-dates-color-border-light, 3);
-    border: 1px double darken($react-dates-color-border-light, 3);
-    color: inherit;
+    background: lighten($react-dates-color-border-light, 7);
+    border: 0px double darken($react-dates-color-border-light, 3);
+    color: $react-dates-color-gray;
   }
 
   .CalendarDay--blocked-minimum-nights {
@@ -54,26 +54,21 @@
   }
 
   .CalendarDay--selected-span {
-    background: $react-dates-color-primary-shade-2;
-    border: 1px double $react-dates-color-primary-shade-1;
-    color: $react-dates-color-white;
+    background: $react-dates-color-primary-2-shade-1;
+    border: 0 double $react-dates-color-primary-2-shade-1;
+    color: $react-dates-color-gray-dark;
 
     &.CalendarDay--hovered,
     &:active {
-      background: $react-dates-color-primary-shade-1;
-      border: 1px double $react-dates-color-primary;
-    }
-
-    &.CalendarDay--last-in-range {
-      border-right: $react-dates-color-primary;
+      background: lighten($react-dates-color-border-light, 7);
     }
   }
 
   .CalendarDay--hovered-span,
   .CalendarDay--after-hovered-start {
-    background: $react-dates-color-primary-shade-4;
-    border: 1px double $react-dates-color-primary-shade-3;
-    color: $react-dates-color-secondary;
+    background: $react-dates-color-primary-2-shade-1;
+    border: 0px double $react-dates-color-primary-shade-3;
+    color: $react-dates-color-gray;
   }
 
   .CalendarDay--selected-start,
