@@ -1,8 +1,8 @@
-$react-dates-width-input: 100px !default;
+$react-dates-width-input: 110px !default;
 $react-dates-width-arrow: 20px !default;
 $react-dates-width-tooltip-arrow: 20px !default;
-$react-dates-width-day-picker: 300px !default;
-$react-dates-spacing-vertical-picker: 72px !default;
+$react-dates-width-day-picker: 276px !default;
+$react-dates-spacing-vertical-picker: 46px !default;
 
 $react-dates-color-primary: #58A9AC !default;
 $react-dates-color-primary-dark: #00514a !default;
@@ -47,20 +47,36 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   }
 }
 
+.DateRangePickerInput {
+  background: transparent;
+}
+
 .DateInput {
   // font
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $react-dates-color-placeholder-text;
   margin: 0;
   padding: 0px;
 
   text-align: center;
-  background: $react-dates-color-white;
+  background: transparent;
   position: relative;
   display: inline-block;
   width: $react-dates-width-input;
   vertical-align: middle;
+
+  input {
+    cursor: pointer;
+  }
+}
+
+.DayPickerControls__inputs .DateInput {
+  font-size: 14px;
+}
+
+.DayPickerControls__inputs .DateRangePickerInput {
+  background: $react-dates-color-white;
 }
 
 .DateInput__display-text--focused {
@@ -143,9 +159,9 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .CalendarDay--blocked-minimum-nights {
-  color: $react-dates-color-gray-lighter;
+  color: #cacccd;
   background: $react-dates-color-white;
-  border: 1px solid lighten($react-dates-color-border-light, 3);
+  border: 0px solid lighten($react-dates-color-border-light, 3);
   cursor: default;
 
   &:active {
@@ -186,8 +202,8 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .CalendarDay--blocked-calendar {
-  background: $react-dates-color-gray-lighter;
-  color: $react-dates-color-gray-light;
+  background: $react-dates-color-white;
+  color: #cacccd;
   cursor: default;
 
   &:active {
@@ -196,9 +212,9 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .CalendarDay--blocked-out-of-range {
-  color: $react-dates-color-gray-lighter;
+  color: #cacccd;
   background: $react-dates-color-white;
-  border: 1px solid lighten($react-dates-color-border-light, 3);
+  border: 0px solid lighten($react-dates-color-border-light, 3);
   cursor: default;
 
   &:active {

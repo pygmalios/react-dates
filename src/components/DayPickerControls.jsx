@@ -27,16 +27,18 @@ export default class DayPickerControls extends React.Component {
 
       <div className="DayPickerControls">
         <div className="DayPickerControls__inputs">
-          <label htmlFor="compare-to-checkbox">
-            Compare to
+          <div>
             <input
               name="compare-to-checkbox"
               type="checkbox"
               checked={isComparing}
               onChange={() => onCompareToChange(!isComparing)}
             />
-          </label>
-
+            <label htmlFor="compare-to-checkbox">
+              <span></span>
+              Compare to
+            </label>
+          </div>
           { isComparing &&
             <div className="DateRangePicker">
               <DateRangePickerController

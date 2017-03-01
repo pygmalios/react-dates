@@ -58,6 +58,8 @@ export default {
   isDayHighlighted: PropTypes.func,
 
   // internationalization props
+  locale: PropTypes.string,
+  startOfWeek: PropTypes.number,
   displayFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   monthFormat: PropTypes.string,
   phrases: PropTypes.shape({

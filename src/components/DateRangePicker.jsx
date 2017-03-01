@@ -77,6 +77,8 @@ const defaultProps = {
   isDayHighlighted: () => false,
 
   // internationalization
+  locale: 'en',
+  startOfWeek: 1,
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   phrases: {
@@ -335,6 +337,7 @@ export default class DateRangePicker extends React.Component {
       onFocusChange,
       selectedShortcut,
     } = this.props;
+
 
     const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : undefined;
 

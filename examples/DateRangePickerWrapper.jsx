@@ -190,6 +190,7 @@ class DateRangePickerWrapper extends React.Component {
 
 
   render() {
+
     const {
       focusedInput,
       startDate,
