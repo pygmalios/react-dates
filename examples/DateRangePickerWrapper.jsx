@@ -267,8 +267,10 @@ class DateRangePickerWrapper extends React.Component {
     ]);
 
     if (props.withControls) {
-      props.isDayHighlighted = props.isDayHighlightedFn && props.isDayHighlightedFn(previousStartDate, previousEndDate);
-      props.isDayHighlightedPrevious = props.isDayHighlightedFn && props.isDayHighlightedFn(startDate, endDate);
+      props.isDayHighlighted = !isComparing ? (() => false)
+                                           : props.isDayHighlightedFn(previousStartDate, previousEndDate);
+      props.isDayHighlightedPrevious = !isComparing ? (() => false)
+                                                   : props.isDayHighlightedFn(startDate, endDate);
     }
 
     return (

@@ -381,8 +381,8 @@ export default class DayPickerRangeController extends React.Component {
       'blocked-out-of-range': day => isOutsideRange(day),
       'blocked-minimum-nights': day => this.doesNotMeetMinimumNights(day, startDate, focusedInput),
       'highlighted-calendar-span': day => isDayHighlighted(day),
-      'highlighted-calendar-start': day => isSameDay(day, previousStartDate),
-      'highlighted-calendar-end': day => isSameDay(day, previousEndDate),
+      'highlighted-calendar-start': day => isComparing && isSameDay(day, previousStartDate),
+      'highlighted-calendar-end': day => isComparing && isSameDay(day, previousEndDate),
       valid: day => !this.isBlocked(day),
       // before anything has been set or after both are set
       hovered: day => this.isHovered(day, hoverDate),
