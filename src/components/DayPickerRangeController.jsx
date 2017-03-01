@@ -76,6 +76,10 @@ const propTypes = forbidExtraProps({
   isPrevious: PropTypes.bool,
   onApply: PropTypes.func,
   onCancel: PropTypes.func,
+  isComparing: PropTypes.bool,
+  onIsComparingToggle: PropTypes.func,
+  compareBy: PropTypes.string,
+  onCompareByChange: PropTypes.func,
 });
 
 const defaultProps = {
@@ -115,6 +119,10 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY',
   onApply: () => {},
   onCancel: () => {},
+  onIsComparingToggle: () => {},
+  onCompareByChange: () => {},
+  isComparing: true,
+  compareBy: 'byPercentage',
 };
 
 export default class DayPickerRangeController extends React.Component {
@@ -122,8 +130,6 @@ export default class DayPickerRangeController extends React.Component {
     super(props);
     this.state = {
       focusedInputPrevious: null,
-      isComparing: true,
-      compareBy: 'byPercentage',
       hoverDate: null,
     };
 
@@ -134,8 +140,6 @@ export default class DayPickerRangeController extends React.Component {
     this.onShortcutClick = this.onShortcutClick.bind(this);
     this.onDayMouseEnter = this.onDayMouseEnter.bind(this);
     this.onDayMouseLeave = this.onDayMouseLeave.bind(this);
-    this.onCompareByChange = this.onCompareByChange.bind(this);
-    this.onCompareToChange = this.onCompareToChange.bind(this);
 
     this.onPreviousDayClick = this.onPreviousDayClick.bind(this);
     this.onPreviousShortcutClick = this.onPreviousShortcutClick.bind(this);
@@ -265,14 +269,6 @@ export default class DayPickerRangeController extends React.Component {
     this.props.onPreviousShortcutChange(shortcut);
   }
 
-  onCompareToChange(isComparing) {
-    this.setState({ isComparing });
-  }
-
-  onCompareByChange(compareBy) {
-    this.setState({ compareBy });
-  }
-
   doesNotMeetMinimumNights(day, startDate, focusedInput) {
     const { isOutsideRange, minimumNights } = this.props;
     if (focusedInput !== END_DATE) return false;
@@ -334,12 +330,10 @@ export default class DayPickerRangeController extends React.Component {
 
   render() {
     const {
-      isComparing,
-      compareBy,
       focusedInputPrevious,
       hoverDate,
       previousHoverDate,
-   } = this.state;
+    } = this.state;
     const {
       startDate,
       endDate,
@@ -370,6 +364,10 @@ export default class DayPickerRangeController extends React.Component {
       selectedShortcutPrevious,
       shortcuts,
       shortcutsPrevious,
+      isComparing,
+      compareBy,
+      onIsComparingToggle,
+      onCompareByChange,
     } = this.props;
 
     const modifiers = {
@@ -459,8 +457,8 @@ export default class DayPickerRangeController extends React.Component {
               onCancel={onCancel}
               isComparing={isComparing}
               compareBy={compareBy}
-              onCompareToChange={this.onCompareToChange}
-              onCompareByChange={this.onCompareByChange}
+              onIsComparingToggle={onIsComparingToggle}
+              onCompareByChange={onCompareByChange}
             />
           }
           { focusedInputPrevious &&

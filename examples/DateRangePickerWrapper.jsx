@@ -87,6 +87,7 @@ const defaultProps = {
     closeDatePicker: 'Close',
     clearDates: 'Clear Dates',
   },
+  isComparing: true,
 };
 
 class DateRangePickerWrapper extends React.Component {
@@ -109,6 +110,7 @@ class DateRangePickerWrapper extends React.Component {
         previousEndDate: props.initialEndDate,
         selectedShortcut: props.selectedShortcut,
         selectedShortcutPrevious: props.selectedShortcutPrevious,
+        isComparing: props.isComparing,
       },
       focusedInput,
       startDate: props.initialStartDate,
@@ -117,6 +119,7 @@ class DateRangePickerWrapper extends React.Component {
       previousEndDate: props.initialEndDate,
       selectedShortcut: props.selectedShortcut,
       selectedShortcutPrevious: props.selectedShortcutPrevious,
+      isComparing: props.isComparing,
     };
 
     this.updatePreviousPeriod = this.updatePreviousPeriod.bind(this);
@@ -130,6 +133,8 @@ class DateRangePickerWrapper extends React.Component {
     this.onFocusChange = this.onFocusChange.bind(this);
     this.onApply = this.onApply.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.onIsComparingToggle = this.onIsComparingToggle.bind(this);
+    this.onCompareByChange = this.onCompareByChange.bind(this);
   }
 
   getPreviousPeriod(startDate, endDate, selectedShortcut, selectedShortcutPrevious) {
@@ -200,7 +205,10 @@ class DateRangePickerWrapper extends React.Component {
       previousStartDate,
       previousEndDate,
       selectedShortcut,
-      selectedShortcutPrevious } = this.state;
+      selectedShortcutPrevious,
+      isComparing,
+      compareBy,
+     } = this.state;
     const isOpening = this.state.focusedInput === null && focusedInput !== null;
 
     if (isOpening) {
@@ -212,11 +220,21 @@ class DateRangePickerWrapper extends React.Component {
           previousEndDate: previousEndDate && previousEndDate.clone(),
           selectedShortcut: { ...selectedShortcut },
           selectedShortcutPrevious: { ...selectedShortcutPrevious },
+          isComparing,
+          compareBy,
         },
       });
     }
 
     this.setState({ focusedInput });
+  }
+
+  onCompareByChange(compareBy) {
+    this.setState({ compareBy });
+  }
+
+  onIsComparingToggle() {
+    this.setState({ isComparing: !this.state.isComparing });
   }
 
   onApply() {
@@ -237,6 +255,8 @@ class DateRangePickerWrapper extends React.Component {
       selectedShortcutPrevious,
       previousStartDate,
       previousEndDate,
+      isComparing,
+      compareBy,
      } = this.state;
 
     const props = omit(this.props, [
@@ -269,6 +289,10 @@ class DateRangePickerWrapper extends React.Component {
           previousEndDate={previousEndDate}
           onApply={this.onApply}
           onCancel={this.onCancel}
+          isComparing={isComparing}
+          compareBy={compareBy}
+          onCompareByChange={this.onCompareByChange}
+          onIsComparingToggle={this.onIsComparingToggle}
         />
       </div>
     );

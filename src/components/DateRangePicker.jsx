@@ -85,6 +85,10 @@ const defaultProps = {
 
   onApply: () => {},
   onCancel: () => {},
+  isComparing: true,
+  compareBy: 'byValue',
+  onCompareByChange: () => {},
+  onIsComparingToggle: () => {},
 };
 
 export default class DateRangePicker extends React.Component {
@@ -241,6 +245,10 @@ export default class DateRangePicker extends React.Component {
       previousStartDate,
       onApply,
       onCancel,
+      isComparing,
+      compareBy,
+      onCompareByChange,
+      onIsComparingToggle,
     } = this.props;
 
     const { dayPickerContainerStyles } = this.state;
@@ -295,6 +303,10 @@ export default class DateRangePicker extends React.Component {
           previousEndDate={previousEndDate}
           onApply={onApply}
           onCancel={onCancel}
+          isComparing={isComparing}
+          compareBy={compareBy}
+          onIsComparingToggle={onIsComparingToggle}
+          onCompareByChange={onCompareByChange}
         />
 
         {withFullScreenPortal &&

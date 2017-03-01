@@ -84,4 +84,8 @@ export default {
   previousStartDate: momentPropTypes.momentObj,
   onApply: PropTypes.func,
   onCancel: PropTypes.func,
+  isComparing: PropTypes.bool,
+  compareBy: PropTypes.string,
+  onCompareByChange: PropTypes.func,
+  onIsComparingToggle: PropTypes.func,
 };

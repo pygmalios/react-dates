@@ -4,7 +4,6 @@ import { START_DATE, END_DATE } from '../../constants';
 
 export default class DayPickerControls extends React.Component {
   render() {
-    const { compareBy, onCompareByChange } = this.props;
     const options = [
       { option: 'byPercentage', label: 'Change by % Value' },
       { option: 'byNumeric', label: 'Change by Numeric Value' },
@@ -16,10 +15,11 @@ export default class DayPickerControls extends React.Component {
       onApply,
       onCancel,
       selectedShortcut,
-      onCompareToChange,
-      onByValueChange,
+      onIsComparingToggle,
+      onCompareByChange,
       startDate,
       endDate,
+      compareBy,
       isComparing,
     } = this.props;
 
@@ -32,7 +32,7 @@ export default class DayPickerControls extends React.Component {
               name="compare-to-checkbox"
               type="checkbox"
               checked={isComparing}
-              onChange={() => onCompareToChange(!isComparing)}
+              onChange={onIsComparingToggle}
             />
             <label htmlFor="compare-to-checkbox">
               <span></span>
