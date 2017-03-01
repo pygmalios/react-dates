@@ -1,8 +1,10 @@
 import React from 'react';
+import cx from 'classnames';
 import DateRangePickerController from './DateRangePickerInputController';
 import { START_DATE, END_DATE } from '../../constants';
 
 export default class DayPickerControls extends React.Component {
+
   render() {
     const options = [
       { option: 'byPercentage', label: 'Change by % Value' },
@@ -23,10 +25,14 @@ export default class DayPickerControls extends React.Component {
       isComparing,
     } = this.props;
 
+    const className = cx('DayPickerControls__inputs', {
+      'DayPickerControls__inputs--disabled': !isComparing,
+    });
+
     return (
 
       <div className="DayPickerControls">
-        <div className="DayPickerControls__inputs">
+        <div className={className}>
           <div>
             <input
               name="compare-to-checkbox"
@@ -39,7 +45,7 @@ export default class DayPickerControls extends React.Component {
               Compare to
             </label>
           </div>
-          { isComparing &&
+
             <div className="DateRangePicker">
               <DateRangePickerController
                 customArrowIcon="-"
@@ -49,16 +55,15 @@ export default class DayPickerControls extends React.Component {
                 isEndDateFocused={focusedInput === END_DATE}
                 onFocusChange={onFocusChange}
                 selectedShortcut={selectedShortcut}
+                disabled={!isComparing}
               />
             </div>
-          }
-          { isComparing && <span>By</span> }
 
-          { isComparing &&
-            (<select value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
+          <span>By</span>
+
+          <select disabled={!isComparing} value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
               { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
-            </select>)
-          }
+          </select>
         </div>
         <div className="DayPickerControls__buttons" >
           <button className="success" type="button" onClick={onApply}>Apply</button>

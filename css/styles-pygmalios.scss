@@ -71,6 +71,23 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   }
 }
 
+.DateInput__display-text--disabled {
+  font-style: normal;
+  color: #B2A6B5;
+  background-color: #F5F5F6;
+}
+
+.DateRangePickerInput--disabled {
+  background: #F5F5F6 !important;
+  color: #B2A6B5;
+
+  .DateRangePickerInput__arrow {
+    background: #F5F5F6;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
 .DayPickerControls__inputs .DateInput {
   font-size: 14px;
 }

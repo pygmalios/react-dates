@@ -148,6 +148,10 @@ export default class DayPickerRangeController extends React.Component {
     this.onFocusChangePrevious = this.onFocusChangePrevious.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.isComparing) this.setState({ focusedInputPrevious: null });
+  }
+
   componentWillUpdate() {
     this.today = moment();
   }
