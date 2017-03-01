@@ -74,6 +74,8 @@ const propTypes = forbidExtraProps({
   withShortcuts: PropTypes.bool,
   withControls: PropTypes.bool,
   isPrevious: PropTypes.bool,
+  onApply: PropTypes.func,
+  onCancel: PropTypes.func,
 });
 
 const defaultProps = {
@@ -111,6 +113,8 @@ const defaultProps = {
 
   // i18n
   monthFormat: 'MMMM YYYY',
+  onApply: () => {},
+  onCancel: () => {},
 };
 
 export default class DayPickerRangeController extends React.Component {
@@ -128,8 +132,6 @@ export default class DayPickerRangeController extends React.Component {
 
     this.onDayClick = this.onDayClick.bind(this);
     this.onShortcutClick = this.onShortcutClick.bind(this);
-    this.onApply = this.onApply.bind(this);
-    this.onCancel = this.onCancel.bind(this);
     this.onDayMouseEnter = this.onDayMouseEnter.bind(this);
     this.onDayMouseLeave = this.onDayMouseLeave.bind(this);
     this.onCompareByChange = this.onCompareByChange.bind(this);
@@ -263,14 +265,6 @@ export default class DayPickerRangeController extends React.Component {
     this.props.onPreviousShortcutChange(shortcut);
   }
 
-  onApply() {
-    this.props.onFocusChange(null);
-  }
-
-  onCancel() {
-    this.props.onFocusChange(null);
-  }
-
   onCompareToChange(isComparing) {
     this.setState({ isComparing });
   }
@@ -363,6 +357,8 @@ export default class DayPickerRangeController extends React.Component {
       onOutsideClick,
       onPrevMonthClick,
       onNextMonthClick,
+      onApply,
+      onCancel,
       withPortal,
       withControls,
       withShortcuts,
@@ -451,47 +447,47 @@ export default class DayPickerRangeController extends React.Component {
           shortcuts={shortcuts}
         />
 
-          <div className="ComparisonPanel">
-        { withControls &&
-          <DayPickerControls
-            startDate={previousStartDate}
-            endDate={previousEndDate}
-            selectedShortcut={selectedShortcutPrevious}
-            focusedInput={focusedInputPrevious}
-            onFocusChange={this.onFocusChangePrevious}
-            onApply={this.onApply}
-            onCancel={this.onCancel}
-            isComparing={isComparing}
-            compareBy={compareBy}
-            onCompareToChange={this.onCompareToChange}
-            onCompareByChange={this.onCompareByChange}
-          />
+        <div className="ComparisonPanel">
+          { withControls &&
+            <DayPickerControls
+              startDate={previousStartDate}
+              endDate={previousEndDate}
+              selectedShortcut={selectedShortcutPrevious}
+              focusedInput={focusedInputPrevious}
+              onFocusChange={this.onFocusChangePrevious}
+              onApply={onApply}
+              onCancel={onCancel}
+              isComparing={isComparing}
+              compareBy={compareBy}
+              onCompareToChange={this.onCompareToChange}
+              onCompareByChange={this.onCompareByChange}
+            />
           }
-        { focusedInputPrevious &&
-          <DayPicker
-            initialVisibleMonth={() => (previousStartDate || previousEndDate || initialVisibleMonth())}
-            orientation={orientation}
-            enableOutsideDays={enableOutsideDays}
-            modifiers={modifiersPrevious}
-            numberOfMonths={numberOfMonths}
-            onDayClick={this.onPreviousDayClick}
-            onShortcutClick={this.onPreviousShortcutClick}
-            onDayMouseEnter={this.onPreviousDayMouseEnter}
-            onDayMouseLeave={this.onPreviousDayMouseLeave}
-            onPrevMonthClick={onPrevMonthClick}
-            onNextMonthClick={onNextMonthClick}
-            monthFormat={monthFormat}
-            withPortal={withPortal}
-            hidden={!focusedInputPrevious}
-            navPrev={navPrev}
-            navNext={navNext}
-            renderDay={renderDay}
-            shortcuts={shortcutsPrevious}
-            selectedShortcut={selectedShortcutPrevious}
-            withShortcuts
-            isPrevious
-          />
-        }
+          { focusedInputPrevious &&
+            <DayPicker
+              initialVisibleMonth={() => (previousStartDate || previousEndDate || initialVisibleMonth())}
+              orientation={orientation}
+              enableOutsideDays={enableOutsideDays}
+              modifiers={modifiersPrevious}
+              numberOfMonths={numberOfMonths}
+              onDayClick={this.onPreviousDayClick}
+              onShortcutClick={this.onPreviousShortcutClick}
+              onDayMouseEnter={this.onPreviousDayMouseEnter}
+              onDayMouseLeave={this.onPreviousDayMouseLeave}
+              onPrevMonthClick={onPrevMonthClick}
+              onNextMonthClick={onNextMonthClick}
+              monthFormat={monthFormat}
+              withPortal={withPortal}
+              hidden={!focusedInputPrevious}
+              navPrev={navPrev}
+              navNext={navNext}
+              renderDay={renderDay}
+              shortcuts={shortcutsPrevious}
+              selectedShortcut={selectedShortcutPrevious}
+              withShortcuts
+              isPrevious
+            />
+          }
         </div>
       </div>
     );

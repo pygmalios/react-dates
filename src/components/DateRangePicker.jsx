@@ -76,9 +76,6 @@ const defaultProps = {
   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => false,
 
-  // internationalization
-  locale: 'en',
-  startOfWeek: 1,
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   phrases: {
@@ -86,6 +83,8 @@ const defaultProps = {
     clearDates: 'Clear Dates',
   },
 
+  onApply: () => {},
+  onCancel: () => {},
 };
 
 export default class DateRangePicker extends React.Component {
@@ -240,6 +239,8 @@ export default class DateRangePicker extends React.Component {
       onPreviousShortcutChange,
       previousEndDate,
       previousStartDate,
+      onApply,
+      onCancel,
     } = this.props;
 
     const { dayPickerContainerStyles } = this.state;
@@ -292,6 +293,8 @@ export default class DateRangePicker extends React.Component {
           shortcutsPrevious={shortcutsPrevious}
           previousStartDate={previousStartDate}
           previousEndDate={previousEndDate}
+          onApply={onApply}
+          onCancel={onCancel}
         />
 
         {withFullScreenPortal &&

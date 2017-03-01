@@ -82,4 +82,6 @@ export default {
   onPreviousDatesChange: PropTypes.func,
   previousEndDate: momentPropTypes.momentObj,
   previousStartDate: momentPropTypes.momentObj,
+  onApply: PropTypes.func,
+  onCancel: PropTypes.func,
 };

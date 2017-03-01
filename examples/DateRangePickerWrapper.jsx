@@ -39,7 +39,7 @@ const defaultProps = {
   initialStartDate: null,
   initialEndDate: null,
   selectedShortcut: { name: 'Custom Range' },
-  selectedShortcutPrevious: { name: 'Custom Range' },
+  selectedShortcutPrevious: { name: 'Previous Period' },
 
   // input related props
   startDateId: START_DATE,
@@ -102,6 +102,14 @@ class DateRangePickerWrapper extends React.Component {
     }
 
     this.state = {
+      initialData: {
+        startDate: props.initialStartDate,
+        endDate: props.initialEndDate,
+        previousStartDate: props.initialStartDate,
+        previousEndDate: props.initialEndDate,
+        selectedShortcut: props.selectedShortcut,
+        selectedShortcutPrevious: props.selectedShortcutPrevious,
+      },
       focusedInput,
       startDate: props.initialStartDate,
       endDate: props.initialEndDate,
@@ -120,6 +128,8 @@ class DateRangePickerWrapper extends React.Component {
     this.onPreviousDatesChange = this.onPreviousDatesChange.bind(this);
 
     this.onFocusChange = this.onFocusChange.bind(this);
+    this.onApply = this.onApply.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   getPreviousPeriod(startDate, endDate, selectedShortcut, selectedShortcutPrevious) {
@@ -184,13 +194,41 @@ class DateRangePickerWrapper extends React.Component {
   }
 
   onFocusChange(focusedInput) {
+    const {
+      startDate,
+      endDate,
+      previousStartDate,
+      previousEndDate,
+      selectedShortcut,
+      selectedShortcutPrevious } = this.state;
+    const isOpening = this.state.focusedInput === null && focusedInput !== null;
+
+    if (isOpening) {
+      this.setState({
+        initialData: {
+          startDate: startDate && startDate.clone(),
+          endDate: endDate && endDate.clone(),
+          previousStartDate: previousStartDate && previousStartDate.clone(),
+          previousEndDate: previousEndDate && previousEndDate.clone(),
+          selectedShortcut: { ...selectedShortcut },
+          selectedShortcutPrevious: { ...selectedShortcutPrevious },
+        },
+      });
+    }
+
     this.setState({ focusedInput });
   }
 
+  onApply() {
+    this.setState({ focusedInput: null });
+  }
 
+  onCancel() {
+    this.setState({ focusedInput: null });
+    this.setState({ ...this.state.initialData });
+  }
 
   render() {
-
     const {
       focusedInput,
       startDate,
@@ -229,6 +267,8 @@ class DateRangePickerWrapper extends React.Component {
           selectedShortcutPrevious={selectedShortcutPrevious}
           previousStartDate={previousStartDate}
           previousEndDate={previousEndDate}
+          onApply={this.onApply}
+          onCancel={this.onCancel}
         />
       </div>
     );
