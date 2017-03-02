@@ -62,12 +62,12 @@ export default class DayPickerControls extends React.Component {
                 disabled={!isComparing}
               />
             </div>
-
-          <span>By</span>
-
-          <select disabled={!isComparing} value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
-              { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
-          </select>
+          { !!compareBy && <span>By</span> }
+          { !!compareBy &&
+            <select disabled={!isComparing} value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
+                { options.map(option => <option key={option.option} value={option.option}>{option.label}</option>) }
+            </select>
+          }
         </div>
         <div className="DayPickerControls__buttons" >
           <button className="success" type="button" disabled={!canApply} onClick={onApply}>Apply</button>
