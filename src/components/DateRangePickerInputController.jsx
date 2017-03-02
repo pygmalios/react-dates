@@ -133,9 +133,9 @@ export default class DateRangePickerInputWithHandlers extends React.Component {
   }
 
   onEndDateFocus() {
-    const { startDate, onFocusChange, withFullScreenPortal, disabled } = this.props;
+    const { startDate, onFocusChange, withFullScreenPortal, withControls, disabled } = this.props;
 
-    if (!startDate && withFullScreenPortal && !disabled) {
+    if (!startDate && (withFullScreenPortal || withControls) && !disabled) {
       // When the datepicker is full screen, we never want to focus the end date first
       // because there's no indication that that is the case once the datepicker is open and it
       // might confuse the user

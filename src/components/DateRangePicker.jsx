@@ -351,6 +351,7 @@ export default class DateRangePicker extends React.Component {
       onDatesChange,
       onFocusChange,
       selectedShortcut,
+      withControls,
     } = this.props;
 
 
@@ -385,6 +386,7 @@ export default class DateRangePicker extends React.Component {
             phrases={phrases}
             screenReaderMessage={screenReaderInputMessage}
             selectedShortcut={selectedShortcut}
+            withControls={withControls}
           />
 
           {this.maybeRenderDayPickerWithPortal()}

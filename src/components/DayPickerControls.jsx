@@ -12,6 +12,7 @@ export default class DayPickerControls extends React.Component {
       { option: 'byExact', label: 'Exact Value of Custom Range' },
     ];
     const {
+      isRangeSet,
       focusedInput,
       onFocusChange,
       onApply,
@@ -28,6 +29,8 @@ export default class DayPickerControls extends React.Component {
     const className = cx('DayPickerControls__inputs', {
       'DayPickerControls__inputs--disabled': !isComparing,
     });
+
+    const canApply = isRangeSet && (!isComparing || (!!startDate && !!endDate));
 
     return (
 
@@ -48,6 +51,7 @@ export default class DayPickerControls extends React.Component {
 
             <div className="DateRangePicker">
               <DateRangePickerController
+                displayFormat="DD.MMM.YYYY"
                 customArrowIcon="-"
                 startDate={startDate}
                 isStartDateFocused={focusedInput === START_DATE}
@@ -66,7 +70,7 @@ export default class DayPickerControls extends React.Component {
           </select>
         </div>
         <div className="DayPickerControls__buttons" >
-          <button className="success" type="button" onClick={onApply}>Apply</button>
+          <button className="success" type="button" disabled={!canApply} onClick={onApply}>Apply</button>
           <button type="button" onClick={onCancel}>Cancel</button>
         </div>
       </div>

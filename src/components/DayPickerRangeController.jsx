@@ -452,6 +452,7 @@ export default class DayPickerRangeController extends React.Component {
         <div className="ComparisonPanel">
           { withControls &&
             <DayPickerControls
+              isRangeSet={!!startDate && !!endDate}
               startDate={previousStartDate}
               endDate={previousEndDate}
               selectedShortcut={selectedShortcutPrevious}
