@@ -237,6 +237,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   background: $react-dates-color-white;
   border: 0px solid lighten($react-dates-color-border-light, 3);
   cursor: default;
+  pointer-events: none;
 
   &:active {
     background: $react-dates-color-white;
