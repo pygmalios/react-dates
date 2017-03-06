@@ -31,6 +31,7 @@ const propTypes = forbidExtraProps({
   startDate: momentPropTypes.momentObj,
   endDate: momentPropTypes.momentObj,
   onDatesChange: PropTypes.func,
+  displayFormat: PropTypes.string,
 
   focusedInput: FocusedInputShape,
   onFocusChange: PropTypes.func,
