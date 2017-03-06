@@ -349,6 +349,7 @@ export default class DayPickerRangeController extends React.Component {
       isDayHighlightedPrevious,
       numberOfMonths,
       orientation,
+      displayFormat,
       monthFormat,
       navPrev,
       navNext,
@@ -452,6 +453,7 @@ export default class DayPickerRangeController extends React.Component {
         <div className="ComparisonPanel">
           { withControls &&
             <DayPickerControls
+              displayFormat={displayFormat}
               isRangeSet={!!startDate && !!endDate}
               startDate={previousStartDate}
               endDate={previousEndDate}

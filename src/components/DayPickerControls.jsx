@@ -24,6 +24,7 @@ export default class DayPickerControls extends React.Component {
       endDate,
       compareBy,
       isComparing,
+      displayFormat,
     } = this.props;
 
     const className = cx('DayPickerControls__inputs', {
@@ -51,7 +52,7 @@ export default class DayPickerControls extends React.Component {
 
             <div className="DateRangePicker">
               <DateRangePickerController
-                displayFormat="DD.MMM.YYYY"
+                displayFormat={displayFormat}
                 customArrowIcon="-"
                 startDate={startDate}
                 isStartDateFocused={focusedInput === START_DATE}

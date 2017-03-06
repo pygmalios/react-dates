@@ -209,6 +209,7 @@ export default class DateRangePicker extends React.Component {
 
   renderDayPicker() {
     const {
+      displayFormat,
       isDayBlocked,
       isDayHighlighted,
       isOutsideRange,
@@ -267,6 +268,7 @@ export default class DateRangePicker extends React.Component {
       >
         <DayPickerRangeController
           ref={(ref) => { this.dayPicker = ref; }}
+          displayFormat={displayFormat}
           orientation={orientation}
           enableOutsideDays={enableOutsideDays}
           numberOfMonths={numberOfMonths}
