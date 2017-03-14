@@ -16,6 +16,17 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
   vertical-align: middle;
 }
 
+.DateInput--show-period {
+  text-align: left;
+  min-width: $react-dates-width-input;
+  width: auto !important;
+}
+
+.DateInput__display-text--hovered {
+  color: $react-dates-color-text-focus !important;
+}
+
+
 .DateInput--with-caret::before,
 .DateInput--with-caret::after {
   content: "";
@@ -60,7 +71,7 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
 }
 
 .DateInput__display-text {
-  padding: 4px 8px;
+  padding: 2px 8px;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -72,7 +83,7 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
 .DateInput__display-text--focused {
   background: $react-dates-color-focus;
   border-color: $react-dates-color-focus;
-  border-radius: 3px;
+  border-radius: 0px;
   color: $react-dates-color-text-focus;
 }
 

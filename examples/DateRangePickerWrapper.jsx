@@ -38,7 +38,7 @@ const defaultProps = {
   autoFocusEndDate: false,
   initialStartDate: null,
   initialEndDate: null,
-  selectedShortcut: { name: 'Custom Range' },
+  selectedShortcut: { name: 'Yesterday' },
   selectedShortcutPrevious: { name: 'Previous Period' },
 
   // input related props

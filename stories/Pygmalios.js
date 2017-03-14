@@ -34,10 +34,11 @@ const today = moment().endOf('day');
 storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
-      displayFormat="DD.MMM.YYYY"
+      displayFormat="DD. MMM YYYY"
+      showDefaultInputIcon
       locale="en"
       startOfWeek={1}
-      customArrowIcon={"-"}
+      customArrowIcon={'-'}
       isOutsideRange={day => day.isAfter(today)}
       isDayHighlightedFn={isDayHighlightedFn}
       keepOpenOnDateSelect
@@ -45,6 +46,7 @@ storiesOf('Pygmalios', module)
       autoFocus
       withControls
       withShortcuts
+      withSingleInput
       shortcuts={shortcuts}
       shortcutsPrevious={shortcutsPrevious}
     />

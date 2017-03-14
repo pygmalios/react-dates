@@ -1,4 +1,5 @@
 $react-dates-width-input: 110px !default;
+$react-dates-width-input-period: 250px !default;
 $react-dates-width-arrow: 20px !default;
 $react-dates-width-tooltip-arrow: 20px !default;
 $react-dates-width-day-picker: 276px !default;
@@ -49,6 +50,9 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
 .DateRangePickerInput {
   background: transparent;
+  &:hover {
+    color: $react-dates-color-text-focus !important;
+  }
 }
 
 .DateInput {
@@ -59,7 +63,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   margin: 0;
   padding: 0px;
 
-  text-align: center;
+  text-align: left;
   background: transparent;
   position: relative;
   display: inline-block;
@@ -92,16 +96,11 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   font-size: 14px;
 }
 
-.DayPickerControls__inputs .DateRangePickerInput {
-  background: $react-dates-color-white;
-}
-
 .DateInput__display-text--focused {
   background: transparent;
-  border-bottom: 2px solid $react-dates-color-primary;
+  border-bottom: 0px solid $react-dates-color-primary;
   border-radius: 0;
   color: lighten($react-dates-color-primary, 5);
-  margin: 0 2px;
 }
 
 .DayPickerControls__inputs {

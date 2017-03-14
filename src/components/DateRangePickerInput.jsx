@@ -98,6 +98,7 @@ export default class DateRangePickerInput extends React.Component {
     this.onClearDatesMouseLeave = this.onClearDatesMouseLeave.bind(this);
   }
 
+
   onClearDatesMouseEnter() {
     this.setState({
       isClearDatesHovered: true,
@@ -140,14 +141,16 @@ export default class DateRangePickerInput extends React.Component {
       customArrowIcon,
       phrases,
       selectedShortcut,
+      withSingleInput,
     } = this.props;
 
-    const hasSingleInput = selectedShortcut.period;
+    const hasDefaultPeriod = selectedShortcut.period;
     const inputIcon = customInputIcon || (<CalendarIcon />);
     const arrowIcon = customArrowIcon || (<RightArrow />);
-    const startDisplayValue = selectedShortcut.period
-      ? selectedShortcut.name
-      : startDate;
+    let startDisplayValue = hasDefaultPeriod ? selectedShortcut.name : startDate;
+    startDisplayValue = (withSingleInput && !hasDefaultPeriod) ?
+      `${startDisplayValue || 'Start Date'} - ${endDate || 'End Date'}` : startDisplayValue;
+
 
     return (
       <div
@@ -170,21 +173,22 @@ export default class DateRangePickerInput extends React.Component {
           displayValue={startDisplayValue}
           inputValue={startDateValue}
           screenReaderMessage={screenReaderMessage}
-          focused={isStartDateFocused}
+          focused={isStartDateFocused || (withSingleInput && isEndDateFocused)}
           disabled={disabled}
           required={required}
           showCaret={showCaret}
           onChange={onStartDateChange}
           onFocus={onStartDateFocus}
           onKeyDownShiftTab={onStartDateShiftTab}
+          showPeriod={withSingleInput && !hasDefaultPeriod}
         />
 
-        { !hasSingleInput &&
+        { (!hasDefaultPeriod && !withSingleInput) &&
         <div className="DateRangePickerInput__arrow">
           {arrowIcon}
         </div>
         }
-        { !hasSingleInput &&
+        { (!hasDefaultPeriod && !withSingleInput) &&
           <DateInput
             id={endDateId}
             placeholder={endDatePlaceholderText}
@@ -218,6 +222,13 @@ export default class DateRangePickerInput extends React.Component {
             </span>
             <CloseButton />
           </button>
+        }
+
+        {withSingleInput &&
+          <b
+            className="DateRangePickerInput__caret"
+            onClick={onStartDateFocus}
+          />
         }
       </div>
     );

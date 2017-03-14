@@ -214,6 +214,7 @@ export default class DateRangePickerInputWithHandlers extends React.Component {
       required,
       phrases,
       selectedShortcut,
+      withSingleInput,
     } = this.props;
 
     const startDateString = this.getDateString(startDate);
@@ -250,6 +251,7 @@ export default class DateRangePickerInputWithHandlers extends React.Component {
         onClearDates={this.clearDates}
         screenReaderMessage={screenReaderMessage}
         selectedShortcut={selectedShortcut}
+        withSingleInput={withSingleInput}
       />
     );
   }
