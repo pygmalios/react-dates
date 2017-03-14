@@ -509,6 +509,14 @@
   width: 140px;
   vertical-align: middle; }
 
+.DateInput--show-period {
+  text-align: left;
+  min-width: 140px;
+  width: auto !important; }
+
+.DateInput__display-text--hovered {
+  color: #007a87 !important; }
+
 .DateInput--with-caret::before,
 .DateInput--with-caret::after {
   content: "";
@@ -546,7 +554,7 @@
     user-select: none; }
 
 .DateInput__display-text {
-  padding: 4px 8px;
+  padding: 2px 8px;
   white-space: nowrap;
   overflow: hidden; }
 
@@ -556,7 +564,7 @@
 .DateInput__display-text--focused {
   background: #99ede6;
   border-color: #99ede6;
-  border-radius: 3px;
+  border-radius: 0px;
   color: #007a87; }
 
 .DateInput__display-text--disabled {
@@ -688,6 +696,17 @@
     height: 15px;
     width: 14px;
     vertical-align: middle; }
+
+.DateRangePickerInput__caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent; }
 
 .SingleDatePicker {
   position: relative;
