@@ -17,7 +17,7 @@ $react-dates-color-gray: #565a5c !default;
 $react-dates-color-gray-dark: darken($react-dates-color-gray, 10.5%) !default;
 $react-dates-color-gray-light: lighten($react-dates-color-gray, 17.8%) !default;   // #82888a
 $react-dates-color-gray-lighter: #EEEEEE !default;
-$react-dates-color-highlighted: lighten(#e5e5e5, 2) !default;
+$react-dates-color-highlighted: lighten(#e5e5e5, 3) !default;
 
 $react-dates-color-border: #dbdbdb !default;
 $react-dates-color-border-light: #dce0e0 !default;
@@ -71,7 +71,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   vertical-align: middle;
 
   input {
-    cursor: default;
+    cursor: pointer;
   }
 }
 
@@ -103,14 +103,6 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   .DateRangePickerInput {
     border: 0px;
   }
-
-  .DateRangePickerInput--focused {
-    color: red;
-  }
-
-  .DateRangePickerInput--hovered {
-    color: #ccc;
-  }
 }
 
 .ComparisonPanel {
@@ -124,10 +116,30 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
   .DateInput {
     width: 110px;
+
+    input {
+      cursor: default;
+    }
   }
 
   .CalendarMonthGrid {
     background-color: #EEEEEE;
+  }
+  .CalendarDay--highlighted-calendar-span {
+    background: darken($react-dates-color-highlighted, 3);
+    color: $react-dates-color-gray;
+    cursor: default;
+
+    &:active {
+      background: $react-dates-color-secondary;
+    }
+  }
+
+  .CalendarDay--highlighted-calendar-start,
+  .CalendarDay--highlighted-calendar-end {
+    background: #DEDEDE;
+    color: $react-dates-color-gray;
+    cursor: default;
   }
 }
 
@@ -158,7 +170,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
 .CalendarDay--highlighted-calendar-start,
 .CalendarDay--highlighted-calendar-end {
-  background: #DEDEDE;
+  background: darken($react-dates-color-highlighted, 3);
   color: $react-dates-color-gray;
   cursor: default;
 }

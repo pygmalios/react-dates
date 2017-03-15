@@ -38,6 +38,7 @@ storiesOf('Pygmalios', module)
     <DateRangePickerWrapper
       displayFormat="DD. MMM YYYY"
       showDefaultInputIcon
+      compareBy={null}
       locale="en"
       startOfWeek={1}
       customArrowIcon={'-'}

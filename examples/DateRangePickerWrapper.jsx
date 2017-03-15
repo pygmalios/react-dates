@@ -111,6 +111,7 @@ class DateRangePickerWrapper extends React.Component {
         selectedShortcut: props.selectedShortcut,
         selectedShortcutPrevious: props.selectedShortcutPrevious,
         isComparing: props.isComparing,
+        compareBy: props.compareBy,
       },
       focusedInput,
       startDate: props.initialStartDate,
@@ -120,6 +121,7 @@ class DateRangePickerWrapper extends React.Component {
       selectedShortcut: props.selectedShortcut,
       selectedShortcutPrevious: props.selectedShortcutPrevious,
       isComparing: props.isComparing,
+      compareBy: props.compareBy,
     };
 
     this.updatePreviousPeriod = this.updatePreviousPeriod.bind(this);
