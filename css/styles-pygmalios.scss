@@ -30,6 +30,39 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 @import 'variables.scss';
 @import 'styles.scss';
 
+.DayPickerNavigation__prev--default,
+.DayPickerNavigation__next--default {
+  border: 0px solid $react-dates-color-border-light;
+  background-color: transparent;
+  color: $react-dates-color-placeholder-text;
+
+  &:focus,
+  &:hover {
+    border: 0px solid $react-dates-color-border-medium;
+    background-color: $react-dates-color-gray-lighter;
+  }
+
+  &:active {
+    background: darken($react-dates-color-white, 5%);
+  }
+}
+
+.ComparisonPanel {
+  .DayPickerNavigation__prev--default,
+  .DayPickerNavigation__next--default {
+
+    &:focus,
+    &:hover {
+      border: 0px solid $react-dates-color-border-medium;
+      background-color: lighten($react-dates-color-gray-lighter, 4);
+    }
+
+    &:active {
+      background: darken($react-dates-color-white, 5%);
+    }
+  }
+}
+
 .DayPicker {
   background: $react-dates-color-white;
   position: relative;
