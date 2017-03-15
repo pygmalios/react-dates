@@ -4,10 +4,31 @@
   background-color: $react-dates-color-white;
   border: 1px solid $react-dates-color-gray-lighter;
   display: inline-block;
+  color: $react-dates-color-placeholder-text;
+}
+
+.DateRangePickerInput--hovered {
+  color: $react-dates-color-text-focus;
+
+  .DateRangePickerInput__calendar-icon {
+    svg {
+      fill: $react-dates-color-text-focus;
+    }
+  }
 }
 
 .DateRangePickerInput--disabled {
   background: $react-dates-color-gray-lighter;
+}
+
+.DateRangePickerInput--focused {
+  color: $react-dates-color-text-focus;
+
+  .DateRangePickerInput__calendar-icon {
+    svg {
+      fill: $react-dates-color-text-focus;
+    }
+  }
 }
 
 .DateRangePickerInput__arrow {
@@ -65,7 +86,7 @@
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0px;
   margin: 0 5px 0 10px;
 
   svg {
@@ -73,11 +94,13 @@
     height: 15px;
     width: 14px;
     vertical-align: middle;
+
   }
 }
 
 .DateRangePickerInput__caret {
   display: inline-block;
+  color: inherit;
   width: 0;
   height: 0;
   cursor: pointer;
@@ -86,4 +109,8 @@
   border-top: 5px solid;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
+}
+
+.DateRangePickerInput__caret--focused {
+  color: $react-dates-color-text-focus;
 }

@@ -5,7 +5,7 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
   font-weight: 200;
   font-size: 18px;
   line-height: 24px;
-  color: $react-dates-color-placeholder-text;
+  color: inherit !important;
   margin: 0;
   padding: 8px;
 
@@ -21,11 +21,6 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
   min-width: $react-dates-width-input;
   width: auto !important;
 }
-
-.DateInput__display-text--hovered {
-  color: $react-dates-color-text-focus !important;
-}
-
 
 .DateInput--with-caret::before,
 .DateInput--with-caret::after {
@@ -61,6 +56,7 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
   border: 0;
   height: 100%;
   width: 100%;
+  vertical-align: middle;
 
   &[readonly] {
     -moz-user-select: none;
@@ -71,13 +67,15 @@ $caret-top: $react-dates-spacing-vertical-picker - $react-dates-width-tooltip-ar
 }
 
 .DateInput__display-text {
-  padding: 2px 8px;
+  color: inherit;
+  padding: 5px 8px;
   white-space: nowrap;
   overflow: hidden;
+  vertical-align: middle;
 }
 
 .DateInput__display-text--has-input {
-  color: $react-dates-color-text;
+  color: inherit;
 }
 
 .DateInput__display-text--focused {

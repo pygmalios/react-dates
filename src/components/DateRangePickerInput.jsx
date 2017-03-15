@@ -91,13 +91,27 @@ export default class DateRangePickerInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isHovered: false,
       isClearDatesHovered: false,
     };
 
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onClearDatesMouseEnter = this.onClearDatesMouseEnter.bind(this);
     this.onClearDatesMouseLeave = this.onClearDatesMouseLeave.bind(this);
   }
 
+  onMouseEnter() {
+    this.setState({
+      isHovered: true,
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      isHovered: false,
+    });
+  }
 
   onClearDatesMouseEnter() {
     this.setState({
@@ -154,8 +168,12 @@ export default class DateRangePickerInput extends React.Component {
 
     return (
       <div
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         className={cx('DateRangePickerInput', {
           'DateRangePickerInput--disabled': disabled,
+          'DateRangePickerInput--hovered': this.state.isHovered,
+          'DateRangePickerInput--focused': isStartDateFocused || isEndDateFocused,
         })}
       >
         {(showDefaultInputIcon || customInputIcon !== null) &&
@@ -226,7 +244,9 @@ export default class DateRangePickerInput extends React.Component {
 
         {withSingleInput &&
           <b
-            className="DateRangePickerInput__caret"
+            className={cx('DateRangePickerInput__caret', {
+              'DateRangePickerInput__caret--focused': isStartDateFocused || isEndDateFocused,
+            })}
             onClick={onStartDateFocus}
           />
         }

@@ -6,6 +6,8 @@ import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 
 import DateRangePickerWrapper from '../examples/DateRangePickerWrapper';
 
+import { ANCHOR_RIGHT } from '../constants';
+
 const shortcuts = [
   { name: 'Today', period: [0, 'days'] },
   { name: 'Yesterday', period: [1, 'days'] },
@@ -35,6 +37,7 @@ storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
       displayFormat="DD. MMM YYYY"
+      anchorDirection={ANCHOR_RIGHT}
       showDefaultInputIcon
       locale="en"
       startOfWeek={1}

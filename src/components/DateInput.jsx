@@ -41,12 +41,9 @@ export default class DateInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isHovered: false,
       dateString: '',
     };
 
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
 
@@ -91,18 +88,6 @@ export default class DateInput extends React.Component {
     }
   }
 
-  onMouseEnter() {
-    this.setState({
-      isHovered: true,
-    });
-  }
-
-  onMouseLeave() {
-    this.setState({
-      isHovered: false,
-    });
-  }
-
   render() {
     const { dateString } = this.state;
     const {
@@ -125,8 +110,6 @@ export default class DateInput extends React.Component {
 
     return (
       <div
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
         className={cx('DateInput', {
           'DateInput--with-caret': showCaret && focused,
           'DateInput--disabled': disabled,
