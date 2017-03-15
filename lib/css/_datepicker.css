@@ -395,9 +395,8 @@
     border: 0px !important;
     border-radius: 0px !important;
     color: #555;
-    padding: 0px 0px !important;
     line-height: 24px !important;
-    margin-bottom: 8px;
+    padding-bottom: 8px;
     cursor: pointer; }
   .DayPickerShortcuts__ranges li:last-child {
     margin-bottom: 0; }
@@ -422,7 +421,7 @@
 
 .DayPickerControls {
   position: relative;
-  height: 46px; }
+  height: 36px; }
   .DayPickerControls .DayPickerControls__inputs {
     display: inline-flex;
     justify-content: space-between;
@@ -451,7 +450,7 @@
       margin: 0.25em 0.5em;
       border: 0.0625em solid silver;
       border-radius: 0.25em;
-      background: #e0e0e0; }
+      background: white; }
     .DayPickerControls .DayPickerControls__inputs input[type=checkbox]:checked + label > span {
       background: #FF9D00; }
     .DayPickerControls .DayPickerControls__inputs input[type=checkbox]:checked + label > span:before {
@@ -464,10 +463,16 @@
       text-align: center;
       line-height: 0.85em; }
     .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput {
-      border: 1px solid #c8c8c8;
+      border: 0px solid #c8c8c8;
       vertical-align: middle;
       margin-right: 8px;
       overflow: auto; }
+    .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--disabled {
+      background: transparent; }
+    .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--hovered {
+      color: inherit; }
+    .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--focused {
+      color: #757575; }
     .DayPickerControls .DayPickerControls__inputs select {
       padding: 4px 4px 4px;
       height: 36px;
@@ -488,7 +493,8 @@
     border: 1px solid #c8c8c8;
     background: white;
     border-radius: 5px;
-    cursor: pointer; }
+    cursor: pointer;
+    text-transform: uppercase; }
   .DayPickerControls__buttons button.success {
     background: #58A9AC !important;
     color: white;
@@ -500,7 +506,7 @@
   font-weight: 200;
   font-size: 18px;
   line-height: 24px;
-  color: #757575;
+  color: inherit !important;
   margin: 0;
   padding: 8px;
   background: #fff;
@@ -513,9 +519,6 @@
   text-align: left;
   min-width: 140px;
   width: auto !important; }
-
-.DateInput__display-text--hovered {
-  color: #007a87 !important; }
 
 .DateInput--with-caret::before,
 .DateInput--with-caret::after {
@@ -546,7 +549,8 @@
   left: 0;
   border: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  vertical-align: middle; }
   .DateInput__input[readonly] {
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -554,18 +558,19 @@
     user-select: none; }
 
 .DateInput__display-text {
-  padding: 2px 8px;
+  color: inherit;
+  padding: 5px 8px;
   white-space: nowrap;
-  overflow: hidden; }
+  overflow: hidden;
+  vertical-align: middle; }
 
 .DateInput__display-text--has-input {
-  color: #484848; }
+  color: inherit; }
 
 .DateInput__display-text--focused {
   background: #99ede6;
   border-color: #99ede6;
-  border-radius: 0px;
-  color: #007a87; }
+  border-radius: 0px; }
 
 .DateInput__display-text--disabled {
   font-style: italic; }
@@ -637,10 +642,21 @@
 .DateRangePickerInput {
   background-color: #fff;
   border: 1px solid #cacccd;
-  display: inline-block; }
+  display: inline-block;
+  color: #757575; }
+
+.DateRangePickerInput--hovered {
+  color: #007a87; }
+  .DateRangePickerInput--hovered .DateRangePickerInput__calendar-icon svg {
+    fill: #007a87; }
 
 .DateRangePickerInput--disabled {
   background: #cacccd; }
+
+.DateRangePickerInput--focused {
+  color: #007a87; }
+  .DateRangePickerInput--focused .DateRangePickerInput__calendar-icon svg {
+    fill: #007a87; }
 
 .DateRangePickerInput__arrow {
   display: inline-block;
@@ -689,7 +705,7 @@
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
-  padding: 10px;
+  padding: 0px;
   margin: 0 5px 0 10px; }
   .DateRangePickerInput__calendar-icon svg {
     fill: #82888a;
@@ -699,6 +715,7 @@
 
 .DateRangePickerInput__caret {
   display: inline-block;
+  color: inherit;
   width: 0;
   height: 0;
   cursor: pointer;
@@ -707,6 +724,9 @@
   border-top: 5px solid;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent; }
+
+.DateRangePickerInput__caret--focused {
+  color: #007a87; }
 
 .SingleDatePicker {
   position: relative;
