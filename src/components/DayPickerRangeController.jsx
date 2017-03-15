@@ -469,7 +469,7 @@ export default class DayPickerRangeController extends React.Component {
               onCompareByChange={onCompareByChange}
             />
           }
-          { focusedInputPrevious &&
+          { isComparing &&
             <DayPicker
               initialVisibleMonth={() => (previousStartDate || previousEndDate || initialVisibleMonth())}
               orientation={orientation}

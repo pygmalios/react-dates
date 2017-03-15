@@ -45,12 +45,12 @@ export default class DayPickerControls extends React.Component {
               onChange={onIsComparingToggle}
             />
             <label htmlFor="compare-to-checkbox">
-              <span></span>
+              <span />
               Compare to
             </label>
           </div>
 
-            <div className="DateRangePicker">
+          <div className="DateRangePicker">
               <DateRangePickerController
                 displayFormat={displayFormat}
                 customArrowIcon="-"
@@ -61,6 +61,7 @@ export default class DayPickerControls extends React.Component {
                 onFocusChange={onFocusChange}
                 selectedShortcut={selectedShortcut}
                 disabled={!isComparing}
+                withSingleInput
               />
             </div>
           { !!compareBy && <span>By</span> }

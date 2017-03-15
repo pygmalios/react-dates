@@ -355,6 +355,7 @@ export default class DateRangePicker extends React.Component {
       selectedShortcut,
       withControls,
       withSingleInput,
+      showDropdownCaret,
     } = this.props;
 
 
@@ -391,6 +392,7 @@ export default class DateRangePicker extends React.Component {
             selectedShortcut={selectedShortcut}
             withControls={withControls}
             withSingleInput={withSingleInput}
+            showDropdownCaret={showDropdownCaret}
           />
 
           {this.maybeRenderDayPickerWithPortal()}

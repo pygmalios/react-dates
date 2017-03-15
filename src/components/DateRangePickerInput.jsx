@@ -156,6 +156,7 @@ export default class DateRangePickerInput extends React.Component {
       phrases,
       selectedShortcut,
       withSingleInput,
+      showDropdownCaret,
     } = this.props;
 
     const hasDefaultPeriod = selectedShortcut.period;
@@ -242,7 +243,7 @@ export default class DateRangePickerInput extends React.Component {
           </button>
         }
 
-        {withSingleInput &&
+        {showDropdownCaret &&
           <b
             className={cx('DateRangePickerInput__caret', {
               'DateRangePickerInput__caret--focused': isStartDateFocused || isEndDateFocused,

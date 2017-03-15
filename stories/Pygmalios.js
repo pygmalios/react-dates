@@ -37,7 +37,6 @@ storiesOf('Pygmalios', module)
   .addWithInfo('default', () => (
     <DateRangePickerWrapper
       displayFormat="DD. MMM YYYY"
-      anchorDirection={ANCHOR_RIGHT}
       showDefaultInputIcon
       locale="en"
       startOfWeek={1}
@@ -50,6 +49,7 @@ storiesOf('Pygmalios', module)
       withControls
       withShortcuts
       withSingleInput
+      showDropdownCaret
       shortcuts={shortcuts}
       shortcutsPrevious={shortcutsPrevious}
     />

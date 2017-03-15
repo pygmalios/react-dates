@@ -77,12 +77,10 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
 .DateInput__display-text--disabled {
   font-style: normal;
-  color: #B2A6B5;
-  background-color: #F5F5F6;
 }
 
 .DateRangePickerInput--disabled {
-  background: #F5F5F6 !important;
+  background: #F5F5F6;
   color: #B2A6B5;
 
   .DateRangePickerInput__arrow {
@@ -104,10 +102,13 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .DayPickerControls__inputs {
+
+  .DateRangePickerInput {
+    border: 0px;
+  }
+
   .DateInput__display-text--focused {
     background: transparent;
-    border-bottom: 2px solid $react-dates-color-primary-2;
-    border-radius: 0;
     color: lighten($react-dates-color-primary-2, 5);
     margin: 0 2px;
   }
