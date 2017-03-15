@@ -151,6 +151,9 @@ export default class DayPickerRangeController extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.isComparing) this.setState({ focusedInputPrevious: null });
+    if (nextProps.isComparing && this.state.focusedInputPrevious === null) {
+      this.setState({ focusedInputPrevious: 'startDate' });
+    }
   }
 
   componentWillUpdate() {

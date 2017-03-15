@@ -17,7 +17,7 @@ $react-dates-color-gray: #565a5c !default;
 $react-dates-color-gray-dark: darken($react-dates-color-gray, 10.5%) !default;
 $react-dates-color-gray-light: lighten($react-dates-color-gray, 17.8%) !default;   // #82888a
 $react-dates-color-gray-lighter: #EEEEEE !default;
-$react-dates-color-highlighted: #e5e5e5 !default;
+$react-dates-color-highlighted: lighten(#e5e5e5, 2) !default;
 
 $react-dates-color-border: #dbdbdb !default;
 $react-dates-color-border-light: #dce0e0 !default;
@@ -51,7 +51,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 .DateRangePickerInput {
   background: transparent;
   &:hover {
-    color: $react-dates-color-text-focus !important;
+    color: $react-dates-color-text-focus;
   }
 }
 
@@ -71,7 +71,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   vertical-align: middle;
 
   input {
-    cursor: pointer;
+    cursor: default;
   }
 }
 
@@ -96,9 +96,6 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
 .DateInput__display-text--focused {
   background: transparent;
-  border-bottom: 0px solid $react-dates-color-primary;
-  border-radius: 0;
-  color: lighten($react-dates-color-primary, 5);
 }
 
 .DayPickerControls__inputs {
@@ -107,10 +104,12 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
     border: 0px;
   }
 
-  .DateInput__display-text--focused {
-    background: transparent;
-    color: lighten($react-dates-color-primary-2, 5);
-    margin: 0 2px;
+  .DateRangePickerInput--focused {
+    color: red;
+  }
+
+  .DateRangePickerInput--hovered {
+    color: #ccc;
   }
 }
 
