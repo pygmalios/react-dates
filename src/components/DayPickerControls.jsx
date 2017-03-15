@@ -51,19 +51,19 @@ export default class DayPickerControls extends React.Component {
           </div>
 
           <div className="DateRangePicker">
-              <DateRangePickerController
-                displayFormat={displayFormat}
-                customArrowIcon="-"
-                startDate={startDate}
-                isStartDateFocused={focusedInput === START_DATE}
-                endDate={endDate}
-                isEndDateFocused={focusedInput === END_DATE}
-                onFocusChange={onFocusChange}
-                selectedShortcut={selectedShortcut}
-                disabled={!isComparing}
-                withSingleInput
-              />
-            </div>
+            <DateRangePickerController
+              displayFormat={displayFormat}
+              customArrowIcon="-"
+              startDate={startDate}
+              isStartDateFocused={focusedInput === START_DATE}
+              endDate={endDate}
+              isEndDateFocused={focusedInput === END_DATE}
+              onFocusChange={onFocusChange}
+              selectedShortcut={selectedShortcut}
+              disabled={!isComparing}
+              withSingleInput
+            />
+          </div>
           { !!compareBy && <span>By</span> }
           { !!compareBy &&
             <select disabled={!isComparing} value={compareBy} onChange={evt => onCompareByChange(evt.target.value)}>
