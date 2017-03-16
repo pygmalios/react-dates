@@ -14,6 +14,7 @@ const propTypes = forbidExtraProps({
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   showCaret: PropTypes.bool,
+  showPeriod: PropTypes.bool,
 
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
@@ -30,6 +31,7 @@ const defaultProps = {
   disabled: false,
   required: false,
   showCaret: false,
+  showPeriod: false,
 
   onChange() {},
   onFocus() {},

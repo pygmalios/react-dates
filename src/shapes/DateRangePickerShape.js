@@ -88,4 +88,6 @@ export default {
   compareBy: PropTypes.string,
   onCompareByChange: PropTypes.func,
   onIsComparingToggle: PropTypes.func,
+  withSingleInput: PropTypes.bool,
+  showDropdownCaret: PropTypes.bool,
 };

@@ -50,6 +50,8 @@ const propTypes = forbidExtraProps({
   }),
 
   selectedShortcut: shortcutShape,
+  withSingleInput: PropTypes.bool,
+  showDropdownCaret: PropTypes.bool,
 });
 
 const defaultProps = {

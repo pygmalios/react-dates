@@ -55,6 +55,8 @@ const propTypes = forbidExtraProps({
     period: PropTypes.array,
   }),
   withControls: PropTypes.bool,
+  withSingleInput: PropTypes.bool,
+  showDropdownCaret: PropTypes.bool,
 });
 
 const defaultProps = {
