@@ -2,7 +2,7 @@
 
 .CalendarMonth {
   text-align: center;
-  padding: 0 13px;
+  padding: 0 32px;
   vertical-align: top;
 
   &:first-of-type {
@@ -10,6 +10,14 @@
     z-index: -1;
     opacity: 0;
     pointer-events: none;
+  }
+
+  &:nth-child(2) {
+    padding-right: 0px;
+  }
+
+  &:nth-child(3) {
+    padding-right: 0px;
   }
 
   table {
@@ -37,17 +45,16 @@
 
 .CalendarMonth__caption {
   color: $react-dates-color-gray-dark;
-  margin-top: 7px;
-  font-size: 18px;
+  margin-top: 32px;
+  font-size: 16px;
   text-align: center;
   // necessary to not hide borders in FF
-  margin-bottom: 2px;
   caption-side: initial;
 }
 
 .CalendarMonth--horizontal .CalendarMonth__caption,
 .CalendarMonth--vertical .CalendarMonth__caption {
-  padding: 15px 0 35px;
+  padding: 0 0 32px;
 }
 
 .CalendarMonth--vertical-scrollable .CalendarMonth__caption {

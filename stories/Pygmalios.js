@@ -34,24 +34,26 @@ function isDayHighlightedFn(startDate, endDate) {
 
 const today = moment().endOf('day');
 storiesOf('Pygmalios', module)
-  .addWithInfo('default', () => (
-    <DateRangePickerWrapper
-      displayFormat="DD. MMM YYYY"
-      showDefaultInputIcon
-      compareBy={null}
-      locale="en"
-      startOfWeek={1}
-      customArrowIcon={'-'}
-      isOutsideRange={day => day.isAfter(today)}
-      isDayHighlightedFn={isDayHighlightedFn}
-      keepOpenOnDateSelect
-      minimumNights={0}
-      autoFocus
-      withControls
-      withShortcuts
-      withSingleInput
-      showDropdownCaret
-      shortcuts={shortcuts}
-      shortcutsPrevious={shortcutsPrevious}
-    />
-  ));
+  .addWithInfo('default', () => {
+    moment.locale('en-GB');
+    return (
+      <DateRangePickerWrapper
+        displayFormat="DD. MMM YYYY"
+        showDefaultInputIcon
+        compareBy={null}
+        locale="en"
+        startOfWeek={1}
+        customArrowIcon={'-'}
+        isOutsideRange={day => day.isAfter(today)}
+        isDayHighlightedFn={isDayHighlightedFn}
+        keepOpenOnDateSelect
+        minimumNights={0}
+        autoFocus
+        withControls
+        withShortcuts
+        withSingleInput
+        showDropdownCaret
+        shortcuts={shortcuts}
+        shortcutsPrevious={shortcutsPrevious}
+      />);
+  });

@@ -14,6 +14,7 @@ export default function getCalendarMonthWeeks(month, enableOutsideDays) {
     currentWeek.unshift(prevDay);
   }
 
+  console.log('yollo', currentDay.weekday());
   while (currentDay < lastOfMonth) {
     currentWeek.push(currentDay.clone());
     currentDay.add(1, 'd');

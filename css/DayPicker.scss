@@ -32,16 +32,16 @@
 }
 
 .DayPicker--horizontal .DayPicker__week-headers {
-  margin-left: 9px;
+  margin-left: 0px;
 }
 
 .DayPicker__week-header {
   color: $react-dates-color-placeholder-text;
   position: absolute;
-  width: $react-dates-width-day-picker;
-  top: 62px;
+  width: auto;
+  top: 64px;
   z-index: 2;
-  padding: 0 13px;
+  padding: 0 0;
   text-align: left;
 
   ul {
@@ -52,7 +52,7 @@
 
   li {
     display: inline-block;
-    width: 35px;
+    width: 32px;
     text-align: center;
   }
 }

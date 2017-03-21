@@ -8,7 +8,7 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 23px;
+    margin-left: 32px;
 
     select, span, label {
       font-size: 0.9em;
@@ -20,7 +20,7 @@
       font-size: 0.9em;
       vertical-align: middle;
       width     : 2em;
-      height:   36px;
+      height:   32px;
       margin    : 0;
       padding   : 0;
       opacity   : 0;
@@ -78,7 +78,7 @@
 
     select {
       padding: 4px 4px 4px;
-      height: 36px;
+      height: 32px;
       width: auto;
       max-width: 210px;
     }
@@ -91,12 +91,16 @@
 }
 
 .DayPickerControls__buttons {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     position: absolute;
     top: 2px;
-    left: 610px;
+    left: 544px;
+    right: 32px;
 
     button {
+      flex: 0 1;
       font-size: 0.9em !important;
       padding: 8px 16px;
       border: 1px solid #c8c8c8;
@@ -110,9 +114,5 @@
       background: #58A9AC !important;
       color: white;
       border-color: #58A9AC;
-    }
-
-    button:first-child {
-      margin-right: 4px;
     }
   }

@@ -33,17 +33,17 @@
   .DayPickerNavigation__next {
     border-radius: 3px;
     padding: 6px 9px;
-    top: 18px;
+    top: 26px;
     z-index: 2;
     position: absolute;
   }
 
   .DayPickerNavigation__prev {
-    left: 22px;
+    left: 32px;
   }
 
   .DayPickerNavigation__next {
-    right: 22px;
+    right: 0px;
   }
 
   .DayPickerNavigation__prev--default,

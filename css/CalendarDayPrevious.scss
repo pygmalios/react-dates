@@ -9,8 +9,8 @@
     box-sizing: border-box;
     color: $react-dates-color-gray;
     cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
 
     &:active {
       background: darken($react-dates-color-white, 5%);

@@ -140,7 +140,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
 .ComparisonPanel {
   position: relative;
-  padding-top: 8px;
+  padding-top: 16px;
   background-color: #EEEEEE;
 
   .DayPicker {
@@ -158,6 +158,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   .CalendarMonthGrid {
     background-color: #EEEEEE;
   }
+
   .CalendarDay--highlighted-calendar-span {
     background: darken($react-dates-color-highlighted, 3);
     color: $react-dates-color-gray;
@@ -183,8 +184,8 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
   box-sizing: border-box;
   color: $react-dates-color-gray;
   cursor: pointer;
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
 
   &:active {
     background: darken($react-dates-color-white, 5%);

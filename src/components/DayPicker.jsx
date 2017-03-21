@@ -20,10 +20,10 @@ import {
   VERTICAL_SCROLLABLE,
 } from '../../constants';
 
-const CALENDAR_MONTH_WIDTH = 272;
-const DAY_PICKER_PADDING = 9;
-const DAY_PICKER_SHORTCUTS = 210;
-const MONTH_PADDING = 23;
+const DAY_WIDTH = 32;
+const CALENDAR_MONTH_WIDTH = 32 * 7;
+const DAY_PICKER_SHORTCUTS = 32 * 7;
+const MONTH_PADDING = 32;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
 
@@ -302,7 +302,10 @@ export default class DayPicker extends React.Component {
   }
 
   adjustDayPickerHeight() {
-    const heights = [];
+    const shortcutContainer = ReactDOM.findDOMNode(this.shortcutsContainer);
+    const sHeight = calculateDimension(shortcutContainer, 'height') + DAY_WIDTH;
+    console.log('shortcut height', shortcutContainer, sHeight);
+    const heights = [sHeight];
 
     Array.prototype.forEach.call(this.transitionContainer.querySelectorAll('.CalendarMonth'),
       (el) => {
@@ -358,7 +361,7 @@ export default class DayPicker extends React.Component {
 
   renderWeekHeader(index) {
     const horizontalStyle = {
-      left: index * CALENDAR_MONTH_WIDTH,
+      left: (index * CALENDAR_MONTH_WIDTH) + ((index + 1) * DAY_WIDTH),
     };
 
     const style = this.isHorizontal() ? horizontalStyle : {};
@@ -439,7 +442,7 @@ export default class DayPicker extends React.Component {
       'transition-container--vertical': this.isVertical(),
     });
 
-    const transitionContainerWidth = (CALENDAR_MONTH_WIDTH * numberOfMonths) + (2 * DAY_PICKER_PADDING)
+    const transitionContainerWidth = (CALENDAR_MONTH_WIDTH * numberOfMonths) + (2 * DAY_WIDTH);
     const horizontalWidth = transitionContainerWidth + (withShortcuts ? DAY_PICKER_SHORTCUTS : 0);
     // this is a kind of made-up value that generally looks good. we'll
     // probably want to let the user set this explicitly.
@@ -469,7 +472,10 @@ export default class DayPicker extends React.Component {
     return (
       <div className={dayPickerClassNames} style={dayPickerStyle} >
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
-          <div style={contentContainerStyle} className="DayPicker__content">
+          <div
+            ref={(ref) => { this.contentContainer = ref; }}
+            style={contentContainerStyle} className="DayPicker__content"
+          >
             <div style={{ width: transitionContainerWidth }} >
               {!verticalScrollable && this.renderNavigation()}
             </div>
@@ -504,6 +510,7 @@ export default class DayPicker extends React.Component {
             </div>
             {!verticalScrollable && withShortcuts &&
             <DayPickerShortcuts
+              ref={ref => { this.shortcutsContainer = ref; }}
               shortcuts={shortcuts}
               selectedShortcut={selectedShortcut}
               onShortcutClick={onShortcutClick}
