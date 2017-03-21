@@ -487,7 +487,6 @@ export default class DayPickerRangeController extends React.Component {
               onNextMonthClick={onNextMonthClick}
               monthFormat={monthFormat}
               withPortal={withPortal}
-              hidden={!focusedInputPrevious}
               navPrev={navPrev}
               navNext={navNext}
               renderDay={renderDay}
