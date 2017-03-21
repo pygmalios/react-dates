@@ -84,8 +84,8 @@
   box-sizing: border-box;
   color: #565a5c;
   cursor: pointer;
-  width: 35px;
-  height: 35px; }
+  width: 32px;
+  height: 32px; }
   .DayPicker.DayPicker--previous .CalendarDay:active {
     background: #f2f2f2; }
 
@@ -156,7 +156,7 @@
 
 .CalendarMonth {
   text-align: center;
-  padding: 0 13px;
+  padding: 0 32px;
   vertical-align: top;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -167,6 +167,10 @@
     z-index: -1;
     opacity: 0;
     pointer-events: none; }
+  .CalendarMonth:nth-child(2) {
+    padding-right: 0px; }
+  .CalendarMonth:nth-child(3) {
+    padding-right: 0px; }
   .CalendarMonth table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -181,15 +185,14 @@
 
 .CalendarMonth__caption {
   color: #3c3f40;
-  margin-top: 7px;
-  font-size: 18px;
+  margin-top: 32px;
+  font-size: 16px;
   text-align: center;
-  margin-bottom: 2px;
   caption-side: initial; }
 
 .CalendarMonth--horizontal .CalendarMonth__caption,
 .CalendarMonth--vertical .CalendarMonth__caption {
-  padding: 15px 0 35px; }
+  padding: 0 0 32px; }
 
 .CalendarMonth--vertical-scrollable .CalendarMonth__caption {
   padding: 5px 0; }
@@ -207,7 +210,7 @@
 
 .CalendarMonthGrid--horizontal {
   position: absolute;
-  left: 9px;
+  left: 0px;
   width: 1200px; }
 
 .CalendarMonthGrid--vertical {
@@ -244,15 +247,15 @@
   position: relative; }
 
 .DayPicker--horizontal .DayPicker__week-headers {
-  margin-left: 9px; }
+  margin-left: 0px; }
 
 .DayPicker__week-header {
   color: #757575;
   position: absolute;
-  width: 300px;
-  top: 62px;
+  width: auto;
+  top: 64px;
   z-index: 2;
-  padding: 0 13px;
+  padding: 0 0;
   text-align: left; }
   .DayPicker__week-header ul {
     list-style: none;
@@ -260,7 +263,7 @@
     padding-left: 0; }
   .DayPicker__week-header li {
     display: inline-block;
-    width: 35px;
+    width: 32px;
     text-align: center; }
 
 .DayPicker--vertical .DayPicker__week-header {
@@ -332,13 +335,13 @@
   .DayPickerNavigation--horizontal .DayPickerNavigation__next {
     border-radius: 3px;
     padding: 6px 9px;
-    top: 18px;
+    top: 26px;
     z-index: 2;
     position: absolute; }
   .DayPickerNavigation--horizontal .DayPickerNavigation__prev {
-    left: 22px; }
+    left: 32px; }
   .DayPickerNavigation--horizontal .DayPickerNavigation__next {
-    right: 22px; }
+    right: 0px; }
   .DayPickerNavigation--horizontal .DayPickerNavigation__prev--default svg,
   .DayPickerNavigation--horizontal .DayPickerNavigation__next--default svg {
     height: 19px;
@@ -380,9 +383,9 @@
 
 .DayPickerShortcuts__ranges {
   position: absolute;
-  top: 18px;
-  left: 600px;
-  padding-left: 30px;
+  top: 32px;
+  left: 544px;
+  padding-left: 32px;
   border-left: 1px #ccc solid; }
   .DayPickerShortcuts__ranges ul {
     list-style: none;
@@ -395,9 +398,10 @@
     border: 0px !important;
     border-radius: 0px !important;
     color: #555;
-    line-height: 24px !important;
-    padding-bottom: 8px;
+    padding-bottom: 16px;
     cursor: pointer; }
+    .DayPickerShortcuts__ranges li:last-child {
+      padding-bottom: 0; }
   .DayPickerShortcuts__ranges li:last-child {
     margin-bottom: 0; }
   .DayPickerShortcuts__ranges li:hover {
@@ -426,7 +430,7 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 23px; }
+    margin-left: 32px; }
     .DayPickerControls .DayPickerControls__inputs select, .DayPickerControls .DayPickerControls__inputs span, .DayPickerControls .DayPickerControls__inputs label {
       font-size: 0.9em;
       vertical-align: middle;
@@ -435,7 +439,7 @@
       font-size: 0.9em;
       vertical-align: middle;
       width: 2em;
-      height: 36px;
+      height: 32px;
       margin: 0;
       padding: 0;
       opacity: 0; }
@@ -475,7 +479,7 @@
       color: #757575; }
     .DayPickerControls .DayPickerControls__inputs select {
       padding: 4px 4px 4px;
-      height: 36px;
+      height: 32px;
       width: auto;
       max-width: 210px; }
 
@@ -483,11 +487,15 @@
   color: #B2A6B5; }
 
 .DayPickerControls__buttons {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: absolute;
   top: 2px;
-  left: 610px; }
+  left: 544px;
+  right: 32px; }
   .DayPickerControls__buttons button {
+    flex: 0 1;
     font-size: 0.9em !important;
     padding: 8px 16px;
     border: 1px solid #c8c8c8;
@@ -499,8 +507,6 @@
     background: #58A9AC !important;
     color: white;
     border-color: #58A9AC; }
-  .DayPickerControls__buttons button:first-child {
-    margin-right: 4px; }
 
 .DateInput {
   font-weight: 200;
