@@ -252,10 +252,11 @@ export default class DayPicker extends React.Component {
   }
 
   onShortcutClick(shortcut) {
+    this.props.onShortcutClick(shortcut);
+    if (!shortcut.range) return;
+
     const { currentMonth } = this.state;
     const [startDate] = shortcut.range;
-
-    this.props.onShortcutClick(shortcut);
 
     const diff = currentMonth.clone().startOf('month').diff(startDate.clone().startOf('month'), 'month');
     const translationValue = (this.isVertical() ? this.getMonthHeightByIndex(1) : this.dayPickerWidth) * diff;
@@ -300,7 +301,6 @@ export default class DayPicker extends React.Component {
   updateStateAfterMonthTransition() {
     const { currentMonth, monthTransition, translationCount } = this.state;
 
-    console.log('translationCount', translationCount);
     let newMonth = currentMonth;
     if (monthTransition === PREV_TRANSITION) {
       newMonth = currentMonth.clone().subtract(translationCount, 'month');
