@@ -93,8 +93,8 @@ const defaultProps = {
 class DateRangePickerWrapper extends React.Component {
   constructor(props) {
     super(props);
-    this.today = moment();
-    this.yesterday = moment().subtract(1, 'days');
+    this.today = moment().endOf('day');
+    this.yesterday = moment().subtract(1, 'days').endOf('day');
 
     this.shortcuts = [
       { name: 'Today', range: [this.today.clone().startOf('day'), this.today.clone()] },
@@ -164,7 +164,7 @@ class DateRangePickerWrapper extends React.Component {
   getPreviousRange(startDate, endDate, selectedShortcut, selectedShortcutPrevious) {
     if (startDate && endDate) {
       return selectedShortcutPrevious.name === PREVIOUS_PERIOD_SHORTCUT
-        ? [startDate.clone().subtract(endDate.diff(startDate)), startDate.clone().subtract(1, 'days')] || [endDate.diff(startDate)]
+        ? [startDate.clone().subtract(endDate.diff(startDate)), startDate.clone().subtract(1, 'days')]
         : selectedShortcutPrevious.range;
     }
   }
@@ -178,13 +178,13 @@ class DateRangePickerWrapper extends React.Component {
 
   updatePreviousShortcuts(startDate) {
     const dayBefore = startDate.clone().subtract(1, 'days');
-
+    console.log('update shortcuts previous', this.shortcutsPrevious);
     this.shortcutsPrevious = this.shortcutsPrevious.map((shortcut) => {
       switch (shortcut.name) {
-        case 'Week ago': return { ...shortcut, range: [dayBefore.clone().subtract(6, 'days'), dayBefore.clone()] }
-        case 'Month ago': return { ...shortcut, range: [dayBefore.clone().subtract(1, 'months').add(1, 'days'), dayBefore.clone()] }
-        case 'Quartal ago': return { ...shortcut, range: [dayBefore.clone().subtract(3, 'months').add(1, 'days'), dayBefore.clone()] }
-        case 'Year ago': return { ...shortcut, range: [dayBefore.clone().subtract(1, 'years').add(1, 'days'), dayBefore.clone()] }
+        case 'Week ago': return { ...shortcut, range: [dayBefore.clone().subtract(6, 'days'), dayBefore.clone()] };
+        case 'Month ago': return { ...shortcut, range: [dayBefore.clone().subtract(1, 'months').add(1, 'days'), dayBefore.clone()] };
+        case 'Quartal ago': return { ...shortcut, range: [dayBefore.clone().subtract(3, 'months').add(1, 'days'), dayBefore.clone()] };
+        case 'Year ago': return { ...shortcut, range: [dayBefore.clone().subtract(1, 'years').add(1, 'days'), dayBefore.clone()] };
         default:
           return shortcut;
       }
@@ -192,16 +192,13 @@ class DateRangePickerWrapper extends React.Component {
   }
 
   onShortcutChange(selectedShortcut) {
-    if (selectedShortcut.name !== CUSTOM_RANGE_SHORTCUT) {
-      const [startDate, endDate] = selectedShortcut.range;
-      this.setState({ startDate, endDate });
-      const range = this.getPreviousRange(
-        startDate, endDate, selectedShortcut,
-        this.state.selectedShortcutPrevious);
-      this.updatePreviousShortcuts(startDate);
-      this.updatePreviousPeriod(startDate, endDate, range);
-    }
+    if (selectedShortcut.name === CUSTOM_RANGE_SHORTCUT) return;
+    const [startDate, endDate] = selectedShortcut.range;
+    this.setState({ startDate, endDate });
+    const range = this.getPreviousRange(startDate, endDate, selectedShortcut, this.state.selectedShortcutPrevious);
+    this.updatePreviousPeriod(startDate, endDate, range);
 
+    this.updatePreviousShortcuts(startDate);
     this.setState({ selectedShortcut });
   }
 

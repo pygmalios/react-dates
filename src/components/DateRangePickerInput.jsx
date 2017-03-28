@@ -161,7 +161,7 @@ export default class DateRangePickerInput extends React.Component {
       showDropdownCaret,
     } = this.props;
 
-    const hasDefaultPeriod = selectedShortcut.period;
+    const hasDefaultPeriod = selectedShortcut.range;
     const inputIcon = customInputIcon || (<CalendarIcon />);
     const arrowIcon = customArrowIcon || (<RightArrow />);
     let startDisplayValue = hasDefaultPeriod ? selectedShortcut.name : startDate;
