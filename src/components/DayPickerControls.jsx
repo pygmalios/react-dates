@@ -2,6 +2,27 @@ import React from 'react';
 import cx from 'classnames';
 import DateRangePickerController from './DateRangePickerInputController';
 import { START_DATE, END_DATE } from '../../constants';
+import Unchecked from '../svg/check-0.svg';
+import Checked from '../svg/check-1.svg';
+
+const Checkbox = ({checked, onClick}) => (
+  <div>
+    <input
+      name="compare-to-checkbox"
+      type="checkbox"
+      checked={checked}
+      onChange={onClick}
+    />
+    <label htmlFor="compare-to-checkbox">
+      <span>
+        { checked
+        ? <Checked stroke="pink" width="16" height="16" />
+        : <Unchecked fill="white" width="16" height="16" /> }
+      </span>
+        Compare to
+    </label>
+  </div>
+);
 
 export default class DayPickerControls extends React.Component {
 
@@ -37,18 +58,10 @@ export default class DayPickerControls extends React.Component {
 
       <div className="DayPickerControls">
         <div className={className}>
-          <div>
-            <input
-              name="compare-to-checkbox"
-              type="checkbox"
-              checked={isComparing}
-              onChange={onIsComparingToggle}
-            />
-            <label htmlFor="compare-to-checkbox">
-              <span />
-              Compare to
-            </label>
-          </div>
+          <Checkbox
+            checked={isComparing}
+            onClick={onIsComparingToggle}
+          />
 
           <div className="DateRangePicker">
             <DateRangePickerController

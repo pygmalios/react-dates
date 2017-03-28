@@ -189,8 +189,6 @@ class DateRangePickerWrapper extends React.Component {
           return shortcut;
       }
     });
-
-    console.log('previousShortcuts', this.shortcutsPrevious);
   }
 
   onShortcutChange(selectedShortcut) {
