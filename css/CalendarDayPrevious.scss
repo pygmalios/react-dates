@@ -39,7 +39,7 @@
   .CalendarDay--hovered {
     background: $react-dates-color-white;
     border: 0px double darken($react-dates-color-border-light, 3);
-    color: $react-dates-color-gray;
+    color: $react-dates-color-primary-2;
   }
 
   .CalendarDay--blocked-minimum-nights {
@@ -61,6 +61,7 @@
     &.CalendarDay--hovered,
     &:active {
       background: lighten($react-dates-color-border-light, 7);
+      color: $react-dates-color-primary-2;
     }
   }
 
@@ -68,7 +69,7 @@
   .CalendarDay--after-hovered-start {
     background: $react-dates-color-primary-2-shade-1;
     border: 0px double $react-dates-color-primary-shade-3;
-    color: $react-dates-color-gray;
+    color: $react-dates-color-primary-2;
   }
 
   .CalendarDay--selected-start,

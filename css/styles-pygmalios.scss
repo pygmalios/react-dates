@@ -219,9 +219,9 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .CalendarDay--hovered {
-  background: lighten($react-dates-color-border-light, 3);
+  background: $react-dates-color-white;
   border: 0px double darken($react-dates-color-border-light, 3);
-  color: $react-dates-color-gray;
+  color: $react-dates-color-primary;
 }
 
 .CalendarDay--blocked-minimum-nights {
@@ -241,7 +241,9 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 
   &.CalendarDay--hovered,
   &:active {
-    background: $react-dates-color-primary-shade-1;
+    background: $react-dates-color-white;
+    border: 0px;
+    color: $react-dates-color-primary;
   }
 
   &.CalendarDay--last-in-range {
@@ -259,7 +261,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 .CalendarDay--selected-end,
 .CalendarDay--selected {
   background: $react-dates-color-primary;
-  border: 1px double $react-dates-color-primary;
+  border: 0px double $react-dates-color-primary;
   color: $react-dates-color-white;
 
   &:active {
