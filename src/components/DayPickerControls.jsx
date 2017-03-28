@@ -16,8 +16,8 @@ const Checkbox = ({checked, onClick}) => (
     <label htmlFor="compare-to-checkbox">
       <span>
         { checked
-        ? <Checked stroke="pink" width="16" height="16" />
-        : <Unchecked fill="white" width="16" height="16" /> }
+        ? <Checked width="16" height="16" />
+        : <Unchecked width="16" height="16" /> }
       </span>
         Compare to
     </label>
