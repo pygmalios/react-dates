@@ -386,8 +386,8 @@ export default class DayPickerRangeController extends React.Component {
       'blocked-out-of-range': day => isOutsideRange(day),
       'blocked-minimum-nights': day => this.doesNotMeetMinimumNights(day, startDate, focusedInput),
       'highlighted-calendar-span': day => isDayHighlighted(day),
-      'highlighted-calendar-start': day => isComparing && isSameDay(day, previousStartDate),
-      'highlighted-calendar-end': day => isComparing && isSameDay(day, previousEndDate),
+      'highlighted-calendar-start': day => isComparing && isDayHighlighted(day) && isSameDay(day, previousStartDate),
+      'highlighted-calendar-end': day => isComparing && isDayHighlighted(day) && isSameDay(day, previousEndDate),
       valid: day => !this.isBlocked(day),
       // before anything has been set or after both are set
       hovered: day => this.isHovered(day, hoverDate),
@@ -410,8 +410,8 @@ export default class DayPickerRangeController extends React.Component {
       'blocked-out-of-range': day => isOutsideRange(day),
       'blocked-minimum-nights': day => this.doesNotMeetMinimumNights(day, previousStartDate, focusedInputPrevious),
       'highlighted-calendar-span': day => isDayHighlightedPrevious(day),
-      'highlighted-calendar-start': day => isSameDay(day, startDate),
-      'highlighted-calendar-end': day => isSameDay(day, endDate),
+      'highlighted-calendar-start': day => isDayHighlightedPrevious(day) && isSameDay(day, startDate),
+      'highlighted-calendar-end': day => isDayHighlightedPrevious(day) && isSameDay(day, endDate),
       valid: day => !this.isBlocked(day),
       // before anything has been set or after both are set
       hovered: day => this.isHovered(day, previousHoverDate),
