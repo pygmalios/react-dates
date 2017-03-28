@@ -104,7 +104,7 @@
 .DayPicker.DayPicker--previous .CalendarDay--hovered {
   background: #fff;
   border: 0px double #d4d9d9;
-  color: #565a5c; }
+  color: #FF9D00; }
 
 .DayPicker.DayPicker--previous .CalendarDay--blocked-minimum-nights {
   color: #cacccd;
@@ -118,7 +118,10 @@
   background: #F1DCBD;
   border: 0 double #F1DCBD;
   color: #3c3f40; }
-  .DayPicker.DayPicker--previous .CalendarDay--selected-span.CalendarDay--hovered, .DayPicker.DayPicker--previous .CalendarDay--selected-span:active {
+  .DayPicker.DayPicker--previous .CalendarDay--selected-span.CalendarDay--hovered {
+    color: #FF9D00;
+    background: #eff1f1; }
+  .DayPicker.DayPicker--previous .CalendarDay--selected-span:active {
     background: #eff1f1; }
 
 .DayPicker.DayPicker--previous .CalendarDay--hovered-span,
