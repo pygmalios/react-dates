@@ -164,11 +164,13 @@ export default class DayPicker extends React.Component {
       currentMonth: props.hidden ? moment() : props.initialVisibleMonth(),
       monthTransition: null,
       translationValue: 0,
+      translationCount: 1,
       scrollableMonthMultiple: 1,
     };
 
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
+    this.onShortcutClick = this.onShortcutClick.bind(this);
     this.multiplyScrollableMonths = this.multiplyScrollableMonths.bind(this);
     this.updateStateAfterMonthTransition = this.updateStateAfterMonthTransition.bind(this);
   }
@@ -229,6 +231,7 @@ export default class DayPicker extends React.Component {
     this.setState({
       monthTransition: PREV_TRANSITION,
       translationValue,
+      translationCount: 1,
     });
   }
 
@@ -244,7 +247,24 @@ export default class DayPicker extends React.Component {
     this.setState({
       monthTransition: NEXT_TRANSITION,
       translationValue,
+      translationCount: 1,
     });
+  }
+
+  onShortcutClick(shortcut) {
+    const { currentMonth } = this.state;
+    const [startDate] = shortcut.range;
+
+    this.props.onShortcutClick(shortcut);
+
+    const diff = currentMonth.clone().startOf('month').diff(startDate.clone().startOf('month'), 'month');
+    const translationValue = (this.isVertical() ? this.getMonthHeightByIndex(1) : this.dayPickerWidth) * diff;
+    if (diff === 0) return;
+    if (diff > 1) this.translateFirstDayPickerForAnimation(translationValue);
+
+    const monthTransition = diff < 0 ? NEXT_TRANSITION : PREV_TRANSITION;
+
+    this.setState({ monthTransition, translationValue, translationCount: Math.abs(diff) });
   }
 
   getMonthHeightByIndex(i) {
@@ -271,20 +291,21 @@ export default class DayPicker extends React.Component {
   initializeDayPickerWidth() {
     this.dayPickerWidth = calculateDimension(
       // eslint-disable-next-line react/no-find-dom-node
-      ReactDOM.findDOMNode(this.calendarMonthGrid).querySelector('.CalendarMonth'),
+      ReactDOM.findDOMNode(this.calendarMonthGrid).querySelector('.CalendarMonth').querySelector('table'),
       'width',
       true,
     );
   }
 
   updateStateAfterMonthTransition() {
-    const { currentMonth, monthTransition } = this.state;
+    const { currentMonth, monthTransition, translationCount } = this.state;
 
+    console.log('translationCount', translationCount);
     let newMonth = currentMonth;
     if (monthTransition === PREV_TRANSITION) {
-      newMonth = currentMonth.clone().subtract(1, 'month');
+      newMonth = currentMonth.clone().subtract(translationCount, 'month');
     } else if (monthTransition === NEXT_TRANSITION) {
-      newMonth = currentMonth.clone().add(1, 'month');
+      newMonth = currentMonth.clone().add(translationCount, 'month');
     }
 
     // clear the previous transforms
@@ -304,7 +325,6 @@ export default class DayPicker extends React.Component {
   adjustDayPickerHeight() {
     const shortcutContainer = ReactDOM.findDOMNode(this.shortcutsContainer);
     const sHeight = calculateDimension(shortcutContainer, 'height') + DAY_WIDTH;
-    console.log('shortcut height', shortcutContainer, sHeight);
     const heights = [sHeight];
 
     Array.prototype.forEach.call(this.transitionContainer.querySelectorAll('.CalendarMonth'),
@@ -393,6 +413,7 @@ export default class DayPicker extends React.Component {
       currentMonth,
       monthTransition,
       translationValue,
+      translationCount,
       scrollableMonthMultiple,
     } = this.state;
     const {
@@ -403,7 +424,6 @@ export default class DayPicker extends React.Component {
       withPortal,
       withShortcuts,
       onDayClick,
-      onShortcutClick,
       onDayMouseEnter,
       onDayMouseLeave,
       renderDay,
@@ -422,9 +442,9 @@ export default class DayPicker extends React.Component {
 
     let firstVisibleMonthIndex = 1;
     if (monthTransition === PREV_TRANSITION) {
-      firstVisibleMonthIndex -= 1;
+      firstVisibleMonthIndex -= translationCount;
     } else if (monthTransition === NEXT_TRANSITION) {
-      firstVisibleMonthIndex += 1;
+      firstVisibleMonthIndex += translationCount;
     }
 
     const verticalScrollable = this.props.orientation === VERTICAL_SCROLLABLE;
@@ -510,10 +530,10 @@ export default class DayPicker extends React.Component {
             </div>
             {!verticalScrollable && withShortcuts &&
             <DayPickerShortcuts
-              ref={ref => { this.shortcutsContainer = ref; }}
+              ref={(ref) => { this.shortcutsContainer = ref; }}
               shortcuts={shortcuts}
               selectedShortcut={selectedShortcut}
-              onShortcutClick={onShortcutClick}
+              onShortcutClick={this.onShortcutClick}
             />}
           </div>
         </OutsideClickHandler>
