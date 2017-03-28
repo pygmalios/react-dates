@@ -58,10 +58,13 @@
     border: 0 double $react-dates-color-primary-2-shade-1;
     color: $react-dates-color-gray-dark;
 
-    &.CalendarDay--hovered,
+    &.CalendarDay--hovered {
+      color: $react-dates-color-primary-2;
+      background: lighten($react-dates-color-border-light, 7);
+    }
+
     &:active {
       background: lighten($react-dates-color-border-light, 7);
-      color: $react-dates-color-primary-2;
     }
   }
 
@@ -69,7 +72,7 @@
   .CalendarDay--after-hovered-start {
     background: $react-dates-color-primary-2-shade-1;
     border: 0px double $react-dates-color-primary-shade-3;
-    color: $react-dates-color-primary-2;
+    color: $react-dates-color-gray;
   }
 
   .CalendarDay--selected-start,
