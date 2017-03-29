@@ -120,7 +120,7 @@
   color: #3c3f40; }
   .DayPicker.DayPicker--previous .CalendarDay--selected-span.CalendarDay--hovered {
     color: #FF9D00;
-    background: #eff1f1; }
+    background: white; }
   .DayPicker.DayPicker--previous .CalendarDay--selected-span:active {
     background: #eff1f1; }
 
@@ -194,7 +194,7 @@
 
 .CalendarMonth--horizontal .CalendarMonth__caption,
 .CalendarMonth--vertical .CalendarMonth__caption {
-  padding: 0 0 32px; }
+  padding: 0 0 64px; }
 
 .CalendarMonth--vertical-scrollable .CalendarMonth__caption {
   padding: 5px 0; }
@@ -255,7 +255,7 @@
   color: #757575;
   position: absolute;
   width: auto;
-  top: 64px;
+  top: 80px;
   z-index: 2;
   padding: 0 0;
   text-align: left; }
@@ -399,7 +399,7 @@
     font-size: 0.9em !important;
     border: 0px !important;
     border-radius: 0px !important;
-    color: #555;
+    color: #666;
     padding-bottom: 16px;
     cursor: pointer; }
     .DayPickerShortcuts__ranges li:last-child {
@@ -430,15 +430,14 @@
   height: 36px; }
   .DayPickerControls .DayPickerControls__inputs {
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-left: 32px; }
     .DayPickerControls .DayPickerControls__inputs select, .DayPickerControls .DayPickerControls__inputs span, .DayPickerControls .DayPickerControls__inputs label {
       font-size: 0.9em;
       vertical-align: middle;
-      margin-right: 8px; }
+      margin-right: 0.5em; }
     .DayPickerControls .DayPickerControls__inputs input[type=checkbox] {
-      font-size: 0.9em;
       vertical-align: middle;
       width: 2em;
       height: 32px;
@@ -447,25 +446,35 @@
       opacity: 0; }
     .DayPickerControls .DayPickerControls__inputs input[type="checkbox"] + label {
       display: inline-block;
-      margin-left: -2em;
-      text-align: center; }
+      font-size: 1em;
+      color: #666;
+      margin-left: -2em; }
     .DayPickerControls .DayPickerControls__inputs input[type=checkbox] + label > span {
       display: inline-block;
       width: 1.5em;
       height: 1.5em;
       margin: 0.25em 0.5em;
+      margin-top: 0.1em;
       background: white; }
-    .DayPickerControls .DayPickerControls__inputs input[type=checkbox] + label > span > svg {
+    .DayPickerControls .DayPickerControls__inputs input[type=checkbox]:checked + label > span > svg {
       width: 1.5em;
       height: 1.5em;
       fill: #FF9D00; }
+    .DayPickerControls .DayPickerControls__inputs input[type=checkbox] + label > span > svg {
+      width: 1.5em;
+      height: 1.5em;
+      fill: #999; }
     .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput {
+      flex: 0 1;
       border: 0px solid #c8c8c8;
       vertical-align: middle;
-      margin-right: 8px;
-      overflow: auto; }
+      margin-right: 0; }
+      .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput .DateInput__display-text {
+        padding: 0;
+        color: #666; }
     .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--disabled {
-      background: transparent; }
+      background: transparent;
+      color: #666; }
     .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--hovered {
       color: inherit; }
     .DayPickerControls .DayPickerControls__inputs .DateRangePickerInput--focused {
@@ -477,7 +486,7 @@
       max-width: 210px; }
 
 .DayPickerControls__inputs--disabled {
-  color: #B2A6B5; }
+  color: #666; }
 
 .DayPickerControls__buttons {
   display: flex;
