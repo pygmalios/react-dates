@@ -60,7 +60,7 @@
 
     &.CalendarDay--hovered {
       color: $react-dates-color-primary-2;
-      background: lighten($react-dates-color-border-light, 7);
+      background: white;
     }
 
     &:active {

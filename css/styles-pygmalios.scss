@@ -48,6 +48,8 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .ComparisonPanel {
+  padding-bottom: 16px;
+
   .DayPickerNavigation__prev--default,
   .DayPickerNavigation__next--default {
 
@@ -124,7 +126,7 @@ $react-dates-color-focus: $react-dates-color-primary-shade-2 !default;
 }
 
 .DayPickerControls__inputs .DateInput {
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .DateInput__display-text--focused {
