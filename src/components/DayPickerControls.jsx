@@ -5,9 +5,10 @@ import { START_DATE, END_DATE } from '../../constants';
 import Unchecked from '../svg/check-0.svg';
 import Checked from '../svg/check-1.svg';
 
-const Checkbox = ({checked, onClick}) => (
+const Checkbox = ({ checked, onClick }) => (
   <div>
     <input
+      id="compare-to-checkbox"
       name="compare-to-checkbox"
       type="checkbox"
       checked={checked}
@@ -19,7 +20,7 @@ const Checkbox = ({checked, onClick}) => (
         ? <Checked width="16" height="16" />
         : <Unchecked width="16" height="16" /> }
       </span>
-        Compare to
+      Compare to
     </label>
   </div>
 );
