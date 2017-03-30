@@ -455,7 +455,8 @@
       height: 1.5em;
       margin: 0.25em 0.5em;
       margin-top: 0.1em;
-      background: white; }
+      background: white;
+      border-radius: 5px; }
     .DayPickerControls .DayPickerControls__inputs input[type=checkbox]:checked + label > span > svg {
       width: 1.5em;
       height: 1.5em;
