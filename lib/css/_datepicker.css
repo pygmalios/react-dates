@@ -242,9 +242,6 @@
 .DayPicker--vertical.DayPicker--portal {
   position: initial; }
 
-.DayPicker__content {
-  position: relative; }
-
 .DayPicker__week-headers {
   position: relative; }
 
@@ -258,7 +255,8 @@
   top: 80px;
   z-index: 2;
   padding: 0 0;
-  text-align: left; }
+  text-align: left;
+  width: 230px; }
   .DayPicker__week-header ul {
     list-style: none;
     margin: 1px 0;
@@ -269,8 +267,9 @@
     text-align: center; }
 
 .DayPicker--vertical .DayPicker__week-header {
-  margin-left: -150px;
-  left: 50%; }
+  width: 100%;
+  padding-right: 10px;
+  text-align: center; }
 
 .DayPicker--vertical-scrollable {
   height: 100%; }
