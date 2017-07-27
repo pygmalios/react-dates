@@ -5,6 +5,7 @@ import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
 import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 
 import DateRangePickerWrapper from '../examples/DateRangePickerWrapper';
+import SingleDatePickerWrapper from '../examples/SingleDatePickerWrapper';
 
 import { ANCHOR_RIGHT } from '../constants';
 
@@ -122,7 +123,7 @@ storiesOf('Pygmalios', module)
   .addWithInfo('mobile', () => {
     moment.locale('en-GB');
     return (
-      <DateRangePickerWrapper
+      <SingleDatePickerWrapper
         displayFormat="DD. MMM YYYY"
         showDefaultInputIcon
         compareBy={null}
@@ -137,7 +138,7 @@ storiesOf('Pygmalios', module)
         withControls
         withSingleInput
         showDropdownCaret
-        orientation="verticalScrollable"
+        orientation="vertical"
         withFullScreenPortal
       />
     );

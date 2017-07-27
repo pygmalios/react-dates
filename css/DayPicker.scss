@@ -23,10 +23,6 @@
   position: initial;
 }
 
-.DayPicker__content {
-  position: relative;
-}
-
 .DayPicker__week-headers {
   position: relative;
 }
@@ -43,6 +39,7 @@
   z-index: 2;
   padding: 0 0;
   text-align: left;
+  width: 230px;
 
   ul {
     list-style: none;
@@ -58,8 +55,9 @@
 }
 
 .DayPicker--vertical .DayPicker__week-header {
-  margin-left: -1 * $react-dates-width-day-picker / 2;
-  left: 50%;
+  width: 100%;
+  padding-right: 10px;
+  text-align: center;
 }
 
 .DayPicker--vertical-scrollable {
