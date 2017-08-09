@@ -4,12 +4,12 @@ import { addEventListener, removeEventListener } from 'consolidated-events';
 
 const propTypes = {
   children: PropTypes.node,
-  onOutsideClick: PropTypes.func,
+  onOutsideClick: PropTypes.func
 };
 
 const defaultProps = forbidExtraProps({
   children: <span />,
-  onOutsideClick: () => {},
+  onOutsideClick: () => {}
 });
 
 export default class OutsideClickHandler extends React.Component {
@@ -21,19 +21,22 @@ export default class OutsideClickHandler extends React.Component {
   componentDidMount() {
     // `capture` flag is set to true so that a `stopPropagation` in the children
     // will not prevent all outside click handlers from firing - maja
+    console.log('react dates mounting');
     this.clickHandle = addEventListener(
       document,
       'click',
       this.onOutsideClick,
-      { capture: true },
+      { capture: true }
     );
   }
 
   componentWillUnmount() {
-    removeEventListener(this.clickHandle);
+    console.log('react dates unmounting');
+    this.clickHandle();
   }
 
   onOutsideClick(e) {
+    console.log('this childNode is', this.childNode);
     const isDescendantOfRoot = this.childNode.contains(e.target);
     if (!isDescendantOfRoot) {
       this.props.onOutsideClick(e);
@@ -42,7 +45,11 @@ export default class OutsideClickHandler extends React.Component {
 
   render() {
     return (
-      <div ref={(ref) => { this.childNode = ref; }}>
+      <div
+        ref={ref => {
+          this.childNode = ref;
+        }}
+      >
         {this.props.children}
       </div>
     );
