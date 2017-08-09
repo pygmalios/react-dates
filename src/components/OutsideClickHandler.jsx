@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { forbidExtraProps } from 'airbnb-prop-types';
-import { addEventListener, removeEventListener } from 'consolidated-events';
+import { addEventListener } from 'consolidated-events';
 
 const propTypes = {
   children: PropTypes.node,
@@ -21,7 +21,6 @@ export default class OutsideClickHandler extends React.Component {
   componentDidMount() {
     // `capture` flag is set to true so that a `stopPropagation` in the children
     // will not prevent all outside click handlers from firing - maja
-    console.log('react dates mounting');
     this.clickHandle = addEventListener(
       document,
       'click',
@@ -31,12 +30,10 @@ export default class OutsideClickHandler extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('react dates unmounting');
     this.clickHandle();
   }
 
   onOutsideClick(e) {
-    console.log('this childNode is', this.childNode);
     const isDescendantOfRoot = this.childNode.contains(e.target);
     if (!isDescendantOfRoot) {
       this.props.onOutsideClick(e);
