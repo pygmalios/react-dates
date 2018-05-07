@@ -104,12 +104,9 @@ export default class DateRangePicker extends React.Component {
   }
 
   componentDidMount() {
-    this.resizeHandle = addEventListener(
-      window,
-      'resize',
-      this.responsivizePickerPosition,
-      { passive: true },
-    );
+    this.resizeHandle = addEventListener(window, 'resize', this.responsivizePickerPosition, {
+      passive: true,
+    });
     this.responsivizePickerPosition();
   }
 
@@ -129,19 +126,21 @@ export default class DateRangePicker extends React.Component {
   }
 
   onOutsideClick() {
-    const { onFocusChange } = this.props;
+    const { onCancel } = this.props;
     if (!this.isOpened()) return;
 
-    onFocusChange(null);
+    onCancel();
+    // const areDatesPicked = !!startDate && !!endDate;
+    // const arePreviousDatesPicked = !isComparing || (!!previousStartDate && !!previousEndDate);
+    // if (areDatesPicked && arePreviousDatesPicked) {
+    //   onApply();
+    // } else {
+    //   onCancel();
+    // }
   }
 
   getDayPickerContainerClasses() {
-    const {
-      orientation,
-      withPortal,
-      withFullScreenPortal,
-      anchorDirection,
-    } = this.props;
+    const { orientation, withPortal, withFullScreenPortal, anchorDirection } = this.props;
     const dayPickerClassName = cx('DateRangePicker__picker', {
       'DateRangePicker__picker--direction-left': anchorDirection === ANCHOR_LEFT,
       'DateRangePicker__picker--direction-right': anchorDirection === ANCHOR_RIGHT,
@@ -175,8 +174,9 @@ export default class DateRangePicker extends React.Component {
     if (!withPortal && !withFullScreenPortal) {
       const containerRect = this.dayPickerContainer.getBoundingClientRect();
       const currentOffset = dayPickerContainerStyles[anchorDirection] || 0;
-      const containerEdge =
-        isAnchoredLeft ? containerRect[ANCHOR_RIGHT] : containerRect[ANCHOR_LEFT];
+      const containerEdge = isAnchoredLeft
+        ? containerRect[ANCHOR_RIGHT]
+        : containerRect[ANCHOR_LEFT];
 
       this.setState({
         dayPickerContainerStyles: getResponsiveContainerStyles(
@@ -197,11 +197,7 @@ export default class DateRangePicker extends React.Component {
     }
 
     if (withPortal || withFullScreenPortal) {
-      return (
-        <Portal isOpened>
-          {this.renderDayPicker()}
-        </Portal>
-      );
+      return <Portal isOpened>{this.renderDayPicker()}</Portal>;
     }
 
     return this.renderDayPicker();
@@ -254,20 +250,22 @@ export default class DateRangePicker extends React.Component {
 
     const { dayPickerContainerStyles } = this.state;
 
-    const onOutsideClick = (!withFullScreenPortal && withPortal)
-      ? this.onOutsideClick
-      : undefined;
+    const onOutsideClick = !withFullScreenPortal && withPortal ? this.onOutsideClick : undefined;
     const initialVisibleMonthThunk =
-      initialVisibleMonth || (() => (startDate || endDate || moment()));
+      initialVisibleMonth || (() => startDate || endDate || moment());
 
     return (
       <div
-        ref={(ref) => { this.dayPickerContainer = ref; }}
+        ref={(ref) => {
+          this.dayPickerContainer = ref;
+        }}
         className={this.getDayPickerContainerClasses()}
         style={dayPickerContainerStyles}
       >
         <DayPickerRangeController
-          ref={(ref) => { this.dayPicker = ref; }}
+          ref={(ref) => {
+            this.dayPicker = ref;
+          }}
           displayFormat={displayFormat}
           orientation={orientation}
           enableOutsideDays={enableOutsideDays}
@@ -311,18 +309,12 @@ export default class DateRangePicker extends React.Component {
           onCompareByChange={onCompareByChange}
         />
 
-        {withFullScreenPortal &&
-          <button
-            className="DateRangePicker__close"
-            type="button"
-            onClick={this.onOutsideClick}
-          >
-            <span className="screen-reader-only">
-              {this.props.phrases.closeDatePicker}
-            </span>
+        {withFullScreenPortal && (
+          <button className="DateRangePicker__close" type="button" onClick={this.onOutsideClick}>
+            <span className="screen-reader-only">{this.props.phrases.closeDatePicker}</span>
             <CloseButton />
           </button>
-        }
+        )}
       </div>
     );
   }
@@ -358,8 +350,7 @@ export default class DateRangePicker extends React.Component {
       showDropdownCaret,
     } = this.props;
 
-
-    const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : undefined;
+    const onOutsideClick = !withPortal && !withFullScreenPortal ? this.onOutsideClick : undefined;
 
     return (
       <div className="DateRangePicker">
